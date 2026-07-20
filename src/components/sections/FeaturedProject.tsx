@@ -4,12 +4,13 @@ import {m } from "motion/react";
 import { STAGES, TECH_HIGHLIGHTS } from "../../constants/featuredProject";
 import { ProcessTimeline } from "./featured/ProcessTimeline";
 import { ArchitectureDiagram } from "./featured/ArchitectureDiagram";
+import { EASE_OUT_EXPO } from "../../lib/motion";
 
 export function FeaturedProject() {
   const [activeStage, setActiveStage] = useState(STAGES[0].id);
 
   return (
-    <section id="solution" className="py-32 bg-[#020202] border-t border-white/5 relative overflow-hidden">
+    <section id="solution" className="py-32 bg-[#020202] relative overflow-hidden">
       {/* Background gradients */}
       <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_left,rgba(255,255,255,0.03)_0%,rgba(0,0,0,0)_50%)] pointer-events-none" />
 
@@ -19,10 +20,10 @@ export function FeaturedProject() {
             Representative Solution
           </span>
           <m.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.9, ease: EASE_OUT_EXPO }}
           >
             <h2 className="font-display text-4xl md:text-5xl font-medium tracking-tight text-white mb-6">
               From Business Challenge to Intelligent Solution

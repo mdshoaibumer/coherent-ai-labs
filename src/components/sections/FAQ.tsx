@@ -7,6 +7,7 @@ import { FAQS } from "../../constants/faq";
 import { SectionWrapper } from "../ui/SectionWrapper";
 import { useSearch } from "../../hooks/useSearch";
 import { FAQAccordion } from "./faq/FAQAccordion";
+import { EASE_OUT_EXPO } from "../../lib/motion";
 
 export function FAQ() {
   const [openIndexes, setOpenIndexes] = useState<Set<number>>(new Set([0]));
@@ -36,10 +37,10 @@ export function FAQ() {
     >
         <div className="text-center mb-16">
           <m.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.9, ease: EASE_OUT_EXPO }}
           >
             <div className="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
               <MessageCircleQuestion className="w-6 h-6 text-[#aaa]" strokeWidth={1.5} />
@@ -55,10 +56,10 @@ export function FAQ() {
 
         {/* Search Box */}
         <m.div 
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 10, filter: "blur(3px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
+          transition={{ duration: 0.6, delay: 0.1, ease: EASE_OUT_EXPO }}
           className="relative mb-12"
         >
           <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">

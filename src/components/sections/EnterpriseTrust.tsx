@@ -2,6 +2,8 @@
 import { useState } from "react";
 import {m } from "motion/react";
 import { cn } from "../../lib/utils";
+import { AmbientGlow, NoiseTexture } from "../animations/AmbientGlow";
+import { EASE_OUT_EXPO } from "../../lib/motion";
 
 
 import { TRUST_PILLARS, ENGINEERING_PRACTICES } from "../../constants/trust";
@@ -10,17 +12,18 @@ export function EnterpriseTrust() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   return (
-    <section id="trust" className="py-32 bg-[#020202] border-t border-white/5 relative overflow-hidden">
-      {/* Background gradients */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.02)_0%,rgba(0,0,0,0)_70%)] pointer-events-none" />
+    <section id="trust" className="py-32 bg-[#020202] relative overflow-hidden">
+      {/* Background atmosphere */}
+      <AmbientGlow position="top-center" size="xl" intensity={0.025} />
+      <NoiseTexture opacity={0.015} />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-20">
           <m.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.9, ease: EASE_OUT_EXPO }}
           >
             <h2 className="font-display text-4xl md:text-5xl font-medium tracking-tight text-white mb-6">
               Built for Security, Reliability, and Long-Term Growth

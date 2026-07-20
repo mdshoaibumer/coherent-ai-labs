@@ -1,6 +1,7 @@
 "use client";
 import { ArrowRight } from "lucide-react";
-import {m } from "motion/react";
+import { m } from "motion/react";
+import Link from "next/link";
 import { PLATFORM_ITEMS, SOLUTIONS_ITEMS, RESOURCES_ITEMS, COMPANY_ITEMS } from "../../../constants/navigation";
 import { MobileAccordion } from "../../ui/MobileAccordion";
 
@@ -17,7 +18,7 @@ export function MobileNavigation({ onClose }: MobileNavigationProps) {
       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       className="fixed inset-0 z-40 bg-black/95 backdrop-blur-2xl flex flex-col pt-24 pb-6 px-6 lg:hidden overflow-y-auto"
     >
-      <m.nav 
+      <m.nav
         aria-label="Mobile Navigation"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -26,36 +27,48 @@ export function MobileNavigation({ onClose }: MobileNavigationProps) {
       >
         <MobileAccordion title="Platform" items={PLATFORM_ITEMS} />
         <MobileAccordion title="Solutions" items={SOLUTIONS_ITEMS} />
-        
-        <a href="#services" onClick={onClose} className="w-full py-4 text-xl font-medium text-[#aaa] hover:text-white focus-visible:outline-none focus-visible:text-white transition-colors border-b border-[#222]">
+
+        <Link
+          href="/services"
+          onClick={onClose}
+          className="w-full py-4 text-xl font-medium text-[#aaa] hover:text-white focus-visible:outline-none focus-visible:text-white transition-colors border-b border-[#222]"
+        >
           Services
-        </a>
-        <a href="#industries" onClick={onClose} className="w-full py-4 text-xl font-medium text-[#aaa] hover:text-white focus-visible:outline-none focus-visible:text-white transition-colors border-b border-[#222]">
+        </Link>
+        <Link
+          href="/industries"
+          onClick={onClose}
+          className="w-full py-4 text-xl font-medium text-[#aaa] hover:text-white focus-visible:outline-none focus-visible:text-white transition-colors border-b border-[#222]"
+        >
           Industries
-        </a>
-        <a href="#work" onClick={onClose} className="w-full py-4 text-xl font-medium text-[#aaa] hover:text-white focus-visible:outline-none focus-visible:text-white transition-colors border-b border-[#222]">
+        </Link>
+        <Link
+          href="/case-studies"
+          onClick={onClose}
+          className="w-full py-4 text-xl font-medium text-[#aaa] hover:text-white focus-visible:outline-none focus-visible:text-white transition-colors border-b border-[#222]"
+        >
           Case Studies
-        </a>
-        
+        </Link>
+
         <MobileAccordion title="Resources" items={RESOURCES_ITEMS} />
         <MobileAccordion title="Company" items={COMPANY_ITEMS} />
 
         <div className="mt-auto pt-8 flex flex-col gap-4">
-          <a
-            href="#contact"
+          <Link
+            href="/contact"
             onClick={onClose}
-            className="w-full bg-transparent text-white border border-[#333] px-6 py-4 text-center text-lg font-medium hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white transition-colors rounded-sm"
+            className="w-full bg-transparent text-white border border-[#333] px-6 py-4 text-center text-lg font-medium hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white transition-colors rounded-xl"
           >
             Contact Us
-          </a>
-          <a
-            href="#contact"
+          </Link>
+          <Link
+            href="/contact"
             onClick={onClose}
-            className="w-full bg-white text-black px-6 py-4 text-center text-lg font-medium hover:bg-gray-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white transition-colors flex items-center justify-center gap-2 rounded-sm"
+            className="w-full bg-white text-black px-6 py-4 text-center text-lg font-medium hover:bg-gray-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white transition-colors flex items-center justify-center gap-2 rounded-xl"
           >
             Book Discovery Call
             <ArrowRight className="w-5 h-5" />
-          </a>
+          </Link>
         </div>
       </m.nav>
     </m.div>

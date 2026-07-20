@@ -2,6 +2,7 @@
 import { useState } from "react";
 import {m, AnimatePresence } from "motion/react";
 import { cn } from "../../lib/utils";
+import { EASE_OUT_EXPO } from "../../lib/motion";
 import { 
   HeartPulse, Building2, ShoppingCart, 
   Factory, Truck, HardHat, GraduationCap, 
@@ -215,17 +216,17 @@ export function Industries() {
   const activeData = INDUSTRIES.find(i => i.id === activeTab) || INDUSTRIES[0];
 
   return (
-    <section id="industries" className="py-32 bg-[#020202] border-t border-white/5 relative overflow-hidden">
+    <section id="industries" className="py-32 bg-[#020202] relative overflow-hidden">
       {/* Background gradients */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(ellipse_at_right_center,rgba(255,255,255,0.02)_0%,rgba(0,0,0,0)_60%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="max-w-3xl mb-20">
           <m.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.9, ease: EASE_OUT_EXPO }}
           >
             <h2 className="font-display text-4xl md:text-5xl font-medium tracking-tight text-white mb-6">
               AI Solutions Tailored for Every Industry

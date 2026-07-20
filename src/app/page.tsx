@@ -11,22 +11,41 @@ import { FeaturedProject } from "../components/sections/FeaturedProject";
 import { Testimonials } from "../components/sections/Testimonials";
 import { FAQ } from "../components/sections/FAQ";
 import { FinalCTA } from "../components/sections/FinalCTA";
+import { SectionTransition } from "../components/animations/SectionTransition";
+import { MidPageCTA } from "../components/sections/MidPageCTA";
+import { Comparison } from "../components/sections/Comparison";
 
 export default function Home() {
   return (
     <>
       <Hero />
+      <SectionTransition variant="glow" />
       <EnterpriseTrust />
+      <SectionTransition variant="sweep" />
       <ProblemStatement />
+      <SectionTransition variant="glow" />
       <WorkflowTransformation />
+      <SectionTransition variant="sweep" />
       <CoreServices />
+      <SectionTransition variant="glow" />
+      <MidPageCTA />
+      <SectionTransition variant="sweep" />
       <PlatformCapabilities />
+      <SectionTransition variant="fade" />
       <Industries />
+      <SectionTransition variant="sweep" />
       <WhyUs />
+      <SectionTransition variant="glow" />
+      <Comparison />
+      <SectionTransition variant="sweep" />
       <TechStack />
+      <SectionTransition variant="sweep" />
       <FeaturedProject />
+      <SectionTransition variant="glow" />
       <Testimonials />
+      <SectionTransition variant="fade" />
       <FAQ />
+      <SectionTransition variant="glow" />
       <FinalCTA />
     </>
   );

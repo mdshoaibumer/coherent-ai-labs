@@ -1,22 +1,23 @@
 "use client";
 import {m } from "motion/react";
 import { CheckCircle2 } from "lucide-react";
+import { EASE_OUT_EXPO } from "../../lib/motion";
 
 import { DIFFERENTIATORS, PRINCIPLES } from "../../constants/whyUs";
 
 export function WhyUs() {
   return (
-    <section id="why-us" className="py-32 bg-[#020202] border-t border-white/5 relative overflow-hidden">
+    <section id="why-us" className="py-32 bg-[#020202] relative overflow-hidden">
       {/* Background Lighting */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-white/[0.02] blur-[120px] pointer-events-none rounded-full" />
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-20">
           <m.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.9, ease: EASE_OUT_EXPO }}
           >
             <h2 className="font-display text-4xl md:text-5xl font-medium tracking-tight text-white mb-6">
               Why Engineering Teams Choose Coherent AI Labs

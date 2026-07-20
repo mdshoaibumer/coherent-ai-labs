@@ -1,20 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact Engineering | Coherent AI Labs",
-  description: "Request a technical discovery call with our senior engineering architects."
+  title: "AI Readiness Assessment | Coherent AI Labs",
+  description:
+    "Assess your organization's AI readiness in 3 minutes. Receive personalized solution recommendations, estimated timeline, and engagement complexity — instantly.",
 };
 
-
-
-import { ContactForm } from "../../components/sections/contact/ContactForm";
+import { DiscoveryPage } from "./DiscoveryPage";
 
 export default function Contact() {
-  
-
-  return (
-    <div className="pt-24">
-      <ContactForm />
-    </div>
-  );
+  return <DiscoveryPage />;
 }
