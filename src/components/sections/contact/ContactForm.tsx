@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from 'react';
 import { SplitLayout } from '../../layouts/SplitLayout';
 import { Heading } from '../../ui/Heading';

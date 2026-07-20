@@ -1,3 +1,4 @@
+"use client";
 import React, { useRef, useState, useEffect } from 'react';
 import { m, useSpring } from 'motion/react';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
@@ -55,7 +56,7 @@ export function MagneticButton({ children, strength = 40, className, ...props }:
       onMouseLeave={handleMouseLeave}
       style={{ x, y }}
       className={className}
-      {...props as any}
+      {...(props as React.ComponentProps<typeof m.button>)}
     >
       {children}
     </m.button>

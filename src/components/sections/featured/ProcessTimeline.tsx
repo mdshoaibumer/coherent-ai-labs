@@ -1,3 +1,4 @@
+"use client";
 import {m, AnimatePresence } from "motion/react";
 import { cn } from "../../../lib/utils";
 import { STAGES } from "../../../constants/featuredProject";

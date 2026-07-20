@@ -1,3 +1,4 @@
+"use client";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import {m, AnimatePresence } from "motion/react";
@@ -5,7 +6,7 @@ import { cn } from "../../lib/utils";
 import { useHeaderScroll } from "../../hooks/useHeaderScroll";
 import { DesktopNavigation } from "./header/DesktopNavigation";
 import { MobileNavigation } from "./header/MobileNavigation";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -37,7 +38,7 @@ export function Header() {
         )}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3 group relative z-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded-sm">
+          <Link href="/" className="flex items-center gap-3 group relative z-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded-sm">
             <div className="w-5 h-5 bg-white rounded-sm group-hover:scale-95 transition-transform" />
             <span className="font-display text-lg font-medium tracking-tight text-white">Coherent AI Labs</span>
           </Link>

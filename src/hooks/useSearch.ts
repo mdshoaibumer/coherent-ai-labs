@@ -1,3 +1,4 @@
+"use client";
 import { useState, useMemo } from 'react';
 
 export function useSearch<T>(data: T[], searchFn: (item: T, query: string) => boolean) {

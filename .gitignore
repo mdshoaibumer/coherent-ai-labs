@@ -6,3 +6,11 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# Next.js
+.next/
+out/
+
+# Testing
+playwright-report/
+test-results/

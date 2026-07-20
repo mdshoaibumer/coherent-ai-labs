@@ -7,7 +7,7 @@ interface MegaMenuProps {
   columns?: number;
 }
 
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 export function MegaMenu({ title, items, columns = 2 }: MegaMenuProps) {
   return (
@@ -23,7 +23,7 @@ export function MegaMenu({ title, items, columns = 2 }: MegaMenuProps) {
             {items.map((item, i) => (
               <Link 
                 key={i} 
-                to={item.href || `/#${item.name.toLowerCase().replace(/\\s+/g, '-')}`} 
+                href={item.href || `/#${item.name.toLowerCase().replace(/\\s+/g, '-')}`} 
                 className="group/item flex items-start gap-4 hover:bg-white/5 focus-visible:outline-none focus-visible:bg-white/5 p-3 -m-3 transition-colors rounded-lg"
               >
                 <div className="mt-0.5 p-2 bg-white/5 border border-white/10 text-[#888] group-hover/item:text-white group-hover/item:border-white/20 transition-colors rounded-md">

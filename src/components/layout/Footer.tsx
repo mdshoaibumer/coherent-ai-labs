@@ -1,3 +1,4 @@
+"use client";
 import {m } from "motion/react";
 import { Mail, MapPin, Clock } from "lucide-react";
 import { FooterBrand } from "./footer/FooterBrand";

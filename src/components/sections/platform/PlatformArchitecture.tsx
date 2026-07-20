@@ -1,16 +1,17 @@
+"use client";
 import React from 'react';
 import { Section } from '../../ui/Section';
 import { Container } from '../../ui/Container';
 import { Heading } from '../../ui/Heading';
 import { SectionReveal } from '../../animations/SectionReveal';
 import { GlassPanel } from '../../ui/GlassPanel';
-import { m } from 'motion/react';
+import { m, type Variants } from 'motion/react';
 import { useReducedMotion } from '../../../hooks/useReducedMotion';
 
 export function PlatformArchitecture() {
   const prefersReducedMotion = useReducedMotion();
 
-  const pathVariants: any = {
+  const pathVariants: Variants = {
     hidden: { pathLength: 0, opacity: 0 },
     visible: { 
       pathLength: 1, 

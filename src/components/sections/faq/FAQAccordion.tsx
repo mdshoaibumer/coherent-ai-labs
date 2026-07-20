@@ -1,3 +1,4 @@
+"use client";
 import {m, AnimatePresence } from "motion/react";
 import { Plus, Minus } from "lucide-react";
 import { cn } from "../../../lib/utils";

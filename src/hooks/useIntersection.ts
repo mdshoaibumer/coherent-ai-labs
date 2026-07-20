@@ -1,3 +1,4 @@
+"use client";
 import { useState, useEffect, RefObject } from 'react';
 
 export function useIntersection(ref: RefObject<Element | null>, rootMargin = '0px', threshold = 0) {

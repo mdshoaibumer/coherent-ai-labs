@@ -1,3 +1,4 @@
+"use client";
 import { useReducedMotion as useFramerReducedMotion } from 'motion/react';
 import { useMediaQuery } from './useMediaQuery';
 

@@ -1,3 +1,4 @@
+"use client";
 import { ArrowRight } from "lucide-react";
 import {m } from "motion/react";
 import { PLATFORM_ITEMS, SOLUTIONS_ITEMS, RESOURCES_ITEMS, COMPANY_ITEMS } from "../../../constants/navigation";

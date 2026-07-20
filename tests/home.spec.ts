@@ -17,11 +17,11 @@ test.describe('Homepage E2E', () => {
       // Mobile nav interaction
       const menuBtn = page.getByLabel('Open menu');
       await menuBtn.click();
-      const servicesLink = page.locator('a[href="#services"]').first();
+      const servicesLink = page.locator('a[href="/services"]').first();
       await expect(servicesLink).toBeVisible();
     } else {
       // Desktop nav interaction
-      const servicesLink = page.locator('a[href="#services"]').first();
+      const servicesLink = page.locator('a[href="/services"]').first();
       await expect(servicesLink).toBeVisible();
     }
   });

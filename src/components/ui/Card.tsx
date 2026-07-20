@@ -1,3 +1,4 @@
+"use client";
 import { ReactNode, forwardRef } from "react";
 import { m, HTMLMotionProps } from "motion/react";
 import { cva, type VariantProps } from "class-variance-authority";

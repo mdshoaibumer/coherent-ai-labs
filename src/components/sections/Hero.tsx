@@ -1,3 +1,4 @@
+"use client";
 import { m, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { ArrowRight, Lock, Shield } from "lucide-react";

@@ -1,3 +1,4 @@
+"use client";
 import { useState, useRef } from "react";
 import { useScroll, useMotionValueEvent } from "motion/react";
 

@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import { m, AnimatePresence } from "motion/react";
 import { LAYERS } from "../../constants/workflow";

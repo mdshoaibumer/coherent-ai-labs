@@ -1,3 +1,4 @@
+"use client";
 import { m } from "motion/react";
 import { Building2 } from "lucide-react";
 import { PHILOSOPHY, TIMELINE, RECOGNITION } from "../../constants/testimonials";

@@ -1,3 +1,4 @@
+"use client";
 import { Twitter, Linkedin, Github } from "lucide-react";
 import {m } from "motion/react";
 

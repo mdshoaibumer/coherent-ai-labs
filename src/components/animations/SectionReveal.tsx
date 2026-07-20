@@ -1,3 +1,4 @@
+"use client";
 import React, { useRef } from 'react';
 import { m, useInView } from 'motion/react';
 import { fadeUp } from '../../lib/animations';

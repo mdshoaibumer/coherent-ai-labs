@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import {m } from "motion/react";
 import { STAGES, TECH_HIGHLIGHTS } from "../../constants/featuredProject";

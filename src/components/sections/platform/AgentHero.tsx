@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import { HeroLayout } from '../../layouts/HeroLayout';
 import { Heading } from '../../ui/Heading';
@@ -7,7 +8,7 @@ import { Button } from '../../ui/Button';
 import { m } from 'motion/react';
 import { fadeUp, staggerContainer } from '../../../lib/animations';
 import { ArrowLeft } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Link from "next/link";
 
 export function AgentHero() {
   return (
@@ -26,7 +27,7 @@ export function AgentHero() {
         className="max-w-4xl"
       >
         <m.div variants={fadeUp} className="mb-8">
-          <Link to="/platform" className="inline-flex items-center text-sm text-[#888] hover:text-white transition-colors">
+          <Link href="/platform" className="inline-flex items-center text-sm text-[#888] hover:text-white transition-colors">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Platform
           </Link>

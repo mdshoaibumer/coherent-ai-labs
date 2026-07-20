@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import { HeroLayout } from '../../layouts/HeroLayout';
 import { Heading } from '../../ui/Heading';
