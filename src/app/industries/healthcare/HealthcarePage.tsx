@@ -11,53 +11,35 @@ const data: IndustryPageData = {
   title: "AI That Respects Patient Privacy and Accelerates Care.",
   description: "We engineer HIPAA-compliant AI systems that automate clinical workflows, enhance patient engagement, and reduce administrative burden — without compromising data security or compliance.",
   heroImage: "/assets/images/healthcare_ai.png",
-  heroImage: "/assets/images/healthcare_ai.png",
 
   challenges: [
     { title: "Administrative Overload", description: "Clinicians spend 50% of their time on documentation, coding, and administrative tasks instead of patient care." },
-  heroImage: "/assets/images/healthcare_ai.png",
     { title: "Fragmented Patient Data", description: "Health records span multiple EHR systems, labs, imaging, and referral networks with no unified view." },
-  heroImage: "/assets/images/healthcare_ai.png",
     { title: "Compliance Complexity", description: "HIPAA, HITECH, and state-level privacy regulations require meticulous data handling at every processing stage." },
-  heroImage: "/assets/images/healthcare_ai.png",
     { title: "Staffing Shortages", description: "Growing patient volumes outpace available clinical staff, creating bottlenecks in scheduling, triage, and follow-up." },
-  heroImage: "/assets/images/healthcare_ai.png",
     { title: "Slow Prior Authorizations", description: "Insurance prior auth workflows take 5-14 days manually, delaying patient access to necessary treatments." },
-  heroImage: "/assets/images/healthcare_ai.png",
     { title: "Unstructured Medical Documents", description: "Faxed referrals, handwritten notes, and scanned records remain inaccessible to digital systems." },
-  heroImage: "/assets/images/healthcare_ai.png",
   ],
 
   opportunities: [
     { title: "Clinical Documentation AI", icon: FileText, description: "Ambient clinical documentation that generates structured notes from patient-clinician conversations in real-time." },
-  heroImage: "/assets/images/healthcare_ai.png",
     { title: "Patient Communication Agents", icon: Users, description: "AI assistants handling appointment scheduling, medication reminders, pre-visit intake, and post-discharge follow-up." },
-  heroImage: "/assets/images/healthcare_ai.png",
     { title: "Medical Document Intelligence", icon: Search, description: "Extract structured data from faxes, referrals, lab results, and insurance forms using multi-modal AI." },
-  heroImage: "/assets/images/healthcare_ai.png",
     { title: "Clinical Decision Support", icon: Brain, description: "Evidence-based recommendations surfaced at point-of-care, grounded in patient history and medical literature." },
-  heroImage: "/assets/images/healthcare_ai.png",
     { title: "Prior Authorization Automation", icon: Clock, description: "AI agents that compile clinical evidence, submit auth requests, and follow up with payers autonomously." },
-  heroImage: "/assets/images/healthcare_ai.png",
     { title: "Operational Analytics", icon: Activity, description: "Real-time dashboards for bed utilization, staffing optimization, wait times, and throughput analysis." },
-  heroImage: "/assets/images/healthcare_ai.png",
   ],
 
   solutions: [
     { title: "Clinical Workflow Automation", icon: Bot, description: "Multi-agent systems that handle intake, documentation, coding, and billing workflows end-to-end.", capabilities: ["Ambient Documentation", "ICD-10 Coding", "Charge Capture", "Prior Auth"] },
-  heroImage: "/assets/images/healthcare_ai.png",
     { title: "Patient Engagement Platform", icon: Users, description: "AI-powered communication across SMS, email, and portal — handling scheduling, reminders, and education.", capabilities: ["Appointment Scheduling", "Medication Reminders", "Health Education", "Surveys"] },
-  heroImage: "/assets/images/healthcare_ai.png",
     { title: "Medical Knowledge System", icon: Database, description: "RAG-powered knowledge base grounding AI in clinical guidelines, formularies, and institutional protocols.", capabilities: ["Clinical Guidelines", "Drug Interactions", "Protocol Search", "Literature Review"] },
-  heroImage: "/assets/images/healthcare_ai.png",
     { title: "Secure Health Data Platform", icon: Shield, description: "HIPAA-compliant infrastructure for ingesting, processing, and storing PHI with complete audit trails.", capabilities: ["Encryption at Rest/Transit", "Access Audit", "De-identification", "Consent Management"] },
-  heroImage: "/assets/images/healthcare_ai.png",
   ],
 
   architecture: {
     title: "Healthcare AI Architecture",
     description: "A HIPAA-compliant, multi-tenant platform designed for clinical AI workloads with complete data isolation and audit capability.",
-  heroImage: "/assets/images/healthcare_ai.png",
     layers: [
       { label: "Data Ingestion", items: ["HL7 FHIR", "EHR Adapters", "Lab Feeds", "Imaging DICOM", "Document OCR"] },
       { label: "AI Processing", items: ["Clinical NLP", "Medical Coding", "Entity Extraction", "Summarization"] },
@@ -71,16 +53,11 @@ const data: IndustryPageData = {
   workflow: {
     title: "Patient Journey Automation",
     description: "From initial contact through treatment to follow-up — AI agents coordinate every touchpoint.",
-  heroImage: "/assets/images/healthcare_ai.png",
     steps: [
       { step: "01", title: "Intake & Triage", description: "AI collects symptoms, insurance, and history via conversational interface. Routes to appropriate provider." },
-  heroImage: "/assets/images/healthcare_ai.png",
       { step: "02", title: "Clinical Documentation", description: "Ambient AI generates structured clinical notes during the encounter. Codes automatically for billing." },
-  heroImage: "/assets/images/healthcare_ai.png",
       { step: "03", title: "Treatment Coordination", description: "Agents handle prior auth, referral routing, prescription processing, and lab ordering in parallel." },
-  heroImage: "/assets/images/healthcare_ai.png",
       { step: "04", title: "Follow-Up & Monitoring", description: "Automated post-visit communication, medication adherence tracking, and outcome measurement." },
-  heroImage: "/assets/images/healthcare_ai.png",
     ],
   },
 

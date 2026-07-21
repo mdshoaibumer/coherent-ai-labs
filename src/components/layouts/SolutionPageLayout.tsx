@@ -62,6 +62,10 @@ export interface SolutionPageData {
   title: string;
   /** Supporting description */
   description: string;
+  /** Optional hero image */
+  heroImage?: string;
+  /** Optional hero image alt text */
+  heroImageAlt?: string;
   /** Problem statement section */
   problem: {
     headline: string;

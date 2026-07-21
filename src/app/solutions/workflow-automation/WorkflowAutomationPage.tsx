@@ -7,7 +7,6 @@ import {
 import { SolutionPageLayout, SolutionPageData } from "../../../components/layouts/SolutionPageLayout";
 
 const data: SolutionPageData = {
-  id: "workflow-automation",
   eyebrow: "AI Workflow Automation",
   title: "Intelligent Pipelines That Replace Manual Work.",
   description:
@@ -27,8 +26,7 @@ const data: SolutionPageData = {
   },
 
   features: [
-    { title: "Document Intelligence", description: "Extract, classify, and route information from PDFs, emails, invoices, and contracts using multi-modal AI.",
-  heroImage: "/assets/images/workflow_automation_ai.png", icon: FileText },
+    { title: "Document Intelligence", description: "Extract, classify, and route information from PDFs, emails, invoices, and contracts using multi-modal AI.", icon: FileText },
     { title: "Event-Driven Triggers", description: "Workflows activate on system events — new emails, form submissions, database changes, webhook calls, or scheduled intervals.", icon: Zap },
     { title: "Human Approval Gates", description: "Configurable checkpoints where high-stakes decisions require human review before the pipeline continues.", icon: Users },
     { title: "Multi-System Orchestration", description: "Coordinate actions across CRM, ERP, email, Slack, databases, and third-party APIs in a single workflow.", icon: Network },

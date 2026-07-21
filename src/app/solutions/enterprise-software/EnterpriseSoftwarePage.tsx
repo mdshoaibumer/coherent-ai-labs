@@ -7,7 +7,6 @@ import {
 import { SolutionPageLayout, SolutionPageData } from "../../../components/layouts/SolutionPageLayout";
 
 const data: SolutionPageData = {
-  id: "enterprise-software",
   eyebrow: "Enterprise Software",
   title: "Full-Stack Applications Built for the AI Era.",
   description:
@@ -27,8 +26,7 @@ const data: SolutionPageData = {
   },
 
   features: [
-    { title: "Microservices Architecture", description: "Independently deployable services with clear domain boundaries, enabling parallel development and targeted scaling.",
-  heroImage: "/assets/images/enterprise_software_ai.png", icon: Layers },
+    { title: "Microservices Architecture", description: "Independently deployable services with clear domain boundaries, enabling parallel development and targeted scaling.", icon: Layers },
     { title: "API-First Design", description: "Every capability exposed via versioned REST or GraphQL APIs — enabling AI agents, mobile apps, and third-party integrations.", icon: Network },
     { title: "Authentication & RBAC", description: "Enterprise SSO, MFA, and granular role-based access built into the foundation — not bolted on later.", icon: Key },
     { title: "Cloud-Native Infrastructure", description: "Containerized deployments on Kubernetes with auto-scaling, health checks, and zero-downtime releases.", icon: Cloud },

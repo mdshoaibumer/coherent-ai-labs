@@ -11,53 +11,35 @@ const data: IndustryPageData = {
   title: "Intelligent Commerce That Scales with Demand.",
   description: "We engineer AI systems that personalize customer experiences, optimize inventory, automate pricing, and orchestrate fulfillment — turning data into revenue at every customer touchpoint.",
   heroImage: "/assets/images/retail_ai.png",
-  heroImage: "/assets/images/retail_ai.png",
 
   challenges: [
     { title: "Generic Customer Experiences", description: "One-size-fits-all product pages and recommendations fail to convert. Visitors see irrelevant products and leave." },
-  heroImage: "/assets/images/retail_ai.png",
     { title: "Inventory Forecasting Errors", description: "Overstocking wastes capital; understocking loses sales. Manual forecasting cannot account for demand signal complexity." },
-  heroImage: "/assets/images/retail_ai.png",
     { title: "Support Ticket Volume", description: "Customer inquiries about orders, returns, and product questions overwhelm support teams during peak periods." },
-  heroImage: "/assets/images/retail_ai.png",
     { title: "Pricing Rigidity", description: "Static pricing ignores competitor movements, demand elasticity, and margin optimization opportunities in real-time." },
-  heroImage: "/assets/images/retail_ai.png",
     { title: "Fulfillment Complexity", description: "Multi-channel orders from web, app, marketplace, and in-store require unified orchestration across warehouses." },
-  heroImage: "/assets/images/retail_ai.png",
     { title: "Customer Churn", description: "Lack of predictive signals means retention efforts are reactive — by the time you notice churn, the customer is gone." },
-  heroImage: "/assets/images/retail_ai.png",
   ],
 
   opportunities: [
     { title: "Recommendation Engines", icon: Brain, description: "Collaborative and content-based filtering that personalizes product discovery across every channel in real-time." },
-  heroImage: "/assets/images/retail_ai.png",
     { title: "Demand Forecasting", icon: TrendingUp, description: "ML models incorporating seasonality, trends, events, and external signals to predict demand with high accuracy." },
-  heroImage: "/assets/images/retail_ai.png",
     { title: "Customer Support Agents", icon: Bot, description: "AI agents handling order status, returns, product questions, and escalation — 24/7 with human-level quality." },
-  heroImage: "/assets/images/retail_ai.png",
     { title: "Dynamic Pricing", icon: Tag, description: "Real-time price optimization balancing margin targets, competitor positioning, and demand elasticity." },
-  heroImage: "/assets/images/retail_ai.png",
     { title: "Customer Analytics", icon: BarChart3, description: "Unified customer profiles with lifetime value prediction, churn scoring, and segment-level behavior analysis." },
-  heroImage: "/assets/images/retail_ai.png",
     { title: "Warehouse Intelligence", icon: Package, description: "AI-optimized picking routes, slot allocation, and replenishment triggers based on demand forecasts." },
-  heroImage: "/assets/images/retail_ai.png",
   ],
 
   solutions: [
     { title: "Personalization Engine", icon: Users, description: "Real-time recommendation system serving personalized products, content, and offers across web, email, and app.", capabilities: ["Collaborative Filtering", "Content-Based", "Context-Aware", "A/B Testing"] },
-  heroImage: "/assets/images/retail_ai.png",
     { title: "Inventory Intelligence", icon: Package, description: "Demand forecasting with automated replenishment, safety stock optimization, and multi-location allocation.", capabilities: ["Demand Forecasting", "Auto-Replenishment", "Allocation", "Markdown Optimization"] },
-  heroImage: "/assets/images/retail_ai.png",
     { title: "Commerce AI Agents", icon: Bot, description: "Conversational agents for customer support, product discovery, personal shopping, and order management.", capabilities: ["Order Support", "Product Search", "Returns", "Upselling"] },
-  heroImage: "/assets/images/retail_ai.png",
     { title: "Revenue Optimization", icon: TrendingUp, description: "Dynamic pricing, promotion effectiveness analysis, and customer lifetime value maximization.", capabilities: ["Price Optimization", "Promo Effectiveness", "LTV Prediction", "Churn Prevention"] },
-  heroImage: "/assets/images/retail_ai.png",
   ],
 
   architecture: {
     title: "Retail AI Architecture",
     description: "A real-time, event-driven platform processing customer interactions, inventory signals, and market data into actionable intelligence.",
-  heroImage: "/assets/images/retail_ai.png",
     layers: [
       { label: "Data Ingestion", items: ["Clickstream", "Transaction Log", "Inventory Feed", "Market Data", "CRM"] },
       { label: "Processing", items: ["Real-time Events", "Batch ML", "Feature Store", "Embedding Pipeline"] },
@@ -71,16 +53,11 @@ const data: IndustryPageData = {
   workflow: {
     title: "Customer Lifecycle Automation",
     description: "AI orchestrating every stage of the customer journey from discovery through retention.",
-  heroImage: "/assets/images/retail_ai.png",
     steps: [
       { step: "01", title: "Acquisition & Discovery", description: "Personalized product recommendations, intelligent search, and dynamic landing pages that adapt to visitor intent." },
-  heroImage: "/assets/images/retail_ai.png",
       { step: "02", title: "Conversion & Purchase", description: "Smart pricing, contextual upselling, abandoned cart recovery agents, and frictionless checkout optimization." },
-  heroImage: "/assets/images/retail_ai.png",
       { step: "03", title: "Fulfillment & Delivery", description: "Intelligent order routing, warehouse picking optimization, carrier selection, and proactive delivery updates." },
-  heroImage: "/assets/images/retail_ai.png",
       { step: "04", title: "Retention & Growth", description: "Churn prediction, personalized re-engagement campaigns, loyalty optimization, and lifetime value maximization." },
-  heroImage: "/assets/images/retail_ai.png",
     ],
   },
 

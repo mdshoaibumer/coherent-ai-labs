@@ -6,7 +6,6 @@ import {
 import { SolutionPageLayout, SolutionPageData } from "../../../components/layouts/SolutionPageLayout";
 
 const data: SolutionPageData = {
-  id: "web-applications",
   eyebrow: "Web Applications",
   title: "Modern Web Experiences That Scale Globally.",
   description:
@@ -26,8 +25,7 @@ const data: SolutionPageData = {
   },
 
   features: [
-    { title: "Server-Side Rendering", description: "Pages render on the server for instant perceived load, SEO indexability, and optimal Core Web Vitals scores.",
-  heroImage: "/assets/images/web_applications_ai.png", icon: Server },
+    { title: "Server-Side Rendering", description: "Pages render on the server for instant perceived load, SEO indexability, and optimal Core Web Vitals scores.", icon: Server },
     { title: "Progressive Enhancement", description: "Core functionality works without JavaScript. Interactions layer on progressively for resilient, accessible experiences.", icon: Layers },
     { title: "Design System Architecture", description: "Component library with consistent tokens, accessibility built-in, and design-dev alignment from day one.", icon: Palette },
     { title: "Performance Engineering", description: "Code splitting, lazy loading, image optimization, and edge caching for sub-second load times globally.", icon: Zap },
