@@ -15,11 +15,17 @@ import { Variants, Transition } from "motion/react";
 /** Exponential ease-out — fast attack, slow settle. Primary easing. */
 export const EASE_OUT_EXPO: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
+/** Premium cinematic ease — slower, more elegant */
+export const EASE_OUT_CUBIC: [number, number, number, number] = [0.33, 1, 0.68, 1];
+
 /** Smooth ease-in-out for breathing/looping animations */
 export const EASE_IN_OUT: [number, number, number, number] = [0.4, 0, 0.2, 1];
 
 /** Snappy spring-like feel for micro-interactions */
 export const EASE_SNAP: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+/** Smooth spring for organic motion */
+export const EASE_SPRING: [number, number, number, number] = [0.34, 1.56, 0.64, 1];
 
 /* ═══════════════════════════════════════════════════════════
    DURATION PRESETS
@@ -103,6 +109,17 @@ export const reveal = {
     },
   } satisfies Variants,
 
+  /** Premium fade up with deeper blur — more cinematic */
+  fadeUpPremium: {
+    hidden: { opacity: 0, y: 40, filter: "blur(8px)" },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: { duration: 0.95, ease: EASE_OUT_CUBIC },
+    },
+  } satisfies Variants,
+
   /** Fade + slight scale from depth */
   scaleUp: {
     hidden: { opacity: 0, scale: 0.94, filter: "blur(4px)" },
@@ -111,6 +128,17 @@ export const reveal = {
       scale: 1,
       filter: "blur(0px)",
       transition: { duration: DURATION.slow, ease: EASE_OUT_EXPO },
+    },
+  } satisfies Variants,
+
+  /** Deep scale reveal — premium feel */
+  scaleUpPremium: {
+    hidden: { opacity: 0, scale: 0.9, filter: "blur(6px)" },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      filter: "blur(0px)",
+      transition: { duration: 1, ease: EASE_OUT_CUBIC },
     },
   } satisfies Variants,
 
@@ -146,6 +174,18 @@ export const reveal = {
     },
   } satisfies Variants,
 
+  /** Deep perspective reveal — premium 3D effect */
+  perspectivePremium: {
+    hidden: { opacity: 0, rotateX: 12, y: 30, filter: "blur(6px)" },
+    visible: {
+      opacity: 1,
+      rotateX: 0,
+      y: 0,
+      filter: "blur(0px)",
+      transition: { duration: 1, ease: EASE_OUT_CUBIC },
+    },
+  } satisfies Variants,
+
   /** Pure fade — no movement */
   fade: {
     hidden: { opacity: 0 },
@@ -162,6 +202,17 @@ export const reveal = {
       opacity: 1,
       scale: 1,
       transition: { duration: DURATION.fast, ease: EASE_SNAP },
+    },
+  } satisfies Variants,
+
+  /** Layered cascade reveal — multiple depths */
+  layered: {
+    hidden: { opacity: 0, y: 50, filter: "blur(8px)" },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: { duration: 1.1, ease: EASE_OUT_CUBIC },
     },
   } satisfies Variants,
 } as const;
@@ -207,8 +258,21 @@ export const hover = {
   lift: { y: -4, transition: { duration: 0.3, ease: EASE_OUT_EXPO } },
   /** Stronger lift for featured elements */
   liftStrong: { y: -6, scale: 1.01, transition: { duration: 0.3, ease: EASE_OUT_EXPO } },
+  /** Premium lift with glow — deep elevation */
+  liftPremium: { 
+    y: -8, 
+    scale: 1.02, 
+    transition: { duration: 0.35, ease: EASE_OUT_CUBIC } 
+  },
   /** Scale for buttons and icons */
   scale: { scale: 1.05, transition: { duration: 0.2, ease: EASE_SNAP } },
+  /** Premium scale with smooth spring */
+  scalePremium: { 
+    scale: 1.08, 
+    transition: { duration: 0.3, ease: EASE_SPRING } 
+  },
   /** Press feedback */
   tap: { scale: 0.97 },
+  /** Premium press with spring */
+  tapPremium: { scale: 0.93, transition: { duration: 0.2, ease: EASE_SNAP } },
 } as const;

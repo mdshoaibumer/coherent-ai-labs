@@ -19,33 +19,33 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <SectionTransition variant="glow" />
+      <SectionTransition variant="glowPremium" />
       <EnterpriseTrust />
-      <SectionTransition variant="sweep" />
+      <SectionTransition variant="sweepPremium" />
       <ProblemStatement />
-      <SectionTransition variant="glow" />
+      <SectionTransition variant="glowPremium" />
       <WorkflowTransformation />
-      <SectionTransition variant="sweep" />
+      <SectionTransition variant="sweepPremium" />
       <CoreServices />
-      <SectionTransition variant="glow" />
+      <SectionTransition variant="glowPremium" />
       <MidPageCTA />
-      <SectionTransition variant="sweep" />
+      <SectionTransition variant="sweepPremium" />
       <PlatformCapabilities />
       <SectionTransition variant="fade" />
       <Industries />
-      <SectionTransition variant="sweep" />
+      <SectionTransition variant="sweepPremium" />
       <WhyUs />
-      <SectionTransition variant="glow" />
+      <SectionTransition variant="glowPremium" />
       <Comparison />
-      <SectionTransition variant="sweep" />
+      <SectionTransition variant="sweepPremium" />
       <TechStack />
-      <SectionTransition variant="sweep" />
+      <SectionTransition variant="sweepPremium" />
       <FeaturedProject />
-      <SectionTransition variant="glow" />
+      <SectionTransition variant="glowPremium" />
       <Testimonials />
       <SectionTransition variant="fade" />
       <FAQ />
-      <SectionTransition variant="glow" />
+      <SectionTransition variant="glowPremium" />
       <FinalCTA />
     </>
   );

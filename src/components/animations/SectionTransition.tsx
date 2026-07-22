@@ -13,14 +13,17 @@ import { useReducedMotion } from "../../hooks/useReducedMotion";
  * Variants:
  * - "fade": gradient fade from one section to the next
  * - "glow": centered glow line that appears on scroll
+ * - "glowPremium": enhanced glow with volumetric depth
  * - "sweep": horizontal line that draws across on scroll
+ * - "sweepPremium": enhanced sweep with accent color
  *
  * Usage:
  *   <SectionTransition variant="glow" />
+ *   <SectionTransition variant="glowPremium" />
  *   <SectionTransition variant="sweep" />
  */
 
-type TransitionVariant = "fade" | "glow" | "sweep";
+type TransitionVariant = "fade" | "glow" | "glowPremium" | "sweep" | "sweepPremium";
 
 interface SectionTransitionProps {
   variant?: TransitionVariant;
@@ -77,6 +80,81 @@ export function SectionTransition({
                 "linear-gradient(to right, transparent, rgba(255,255,255,0.15) 30%, rgba(255,255,255,0.15) 70%, transparent)",
             }}
           />
+        )}
+      </div>
+    );
+  }
+
+  if (variant === "sweepPremium") {
+    return (
+      <div
+        ref={ref}
+        className={cn(
+          "relative h-0.5 w-full overflow-hidden",
+          className
+        )}
+      >
+        {prefersReducedMotion ? (
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.1] to-transparent" />
+        ) : (
+          <>
+            <m.div
+              className="absolute inset-y-0 left-0 right-0 origin-left"
+              style={{
+                scaleX: lineScaleX,
+                background:
+                  "linear-gradient(to right, transparent, rgba(0,200,255,0.4) 30%, rgba(0,200,255,0.4) 70%, transparent)",
+              }}
+            />
+            <m.div
+              className="absolute inset-y-0 left-0 right-0 origin-left"
+              style={{
+                scaleX: lineScaleX,
+                background:
+                  "linear-gradient(to right, transparent, rgba(255,255,255,0.2) 30%, rgba(255,255,255,0.2) 70%, transparent)",
+                filter: "blur(1px)",
+              }}
+            />
+          </>
+        )}
+      </div>
+    );
+  }
+
+  if (variant === "glowPremium") {
+    return (
+      <div
+        ref={ref}
+        className={cn(
+          "relative h-1 w-full overflow-visible",
+          className
+        )}
+      >
+        {/* Base line with subtle gradient */}
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+
+        {/* Animated accent core */}
+        {!prefersReducedMotion && (
+          <>
+            <m.div
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] h-1"
+              style={{
+                opacity: glowOpacity,
+                background:
+                  "linear-gradient(to right, transparent, rgba(0,200,255,0.5), transparent)",
+                filter: "blur(2px)",
+              }}
+            />
+            <m.div
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40%] h-0.5"
+              style={{
+                opacity: glowOpacity,
+                background:
+                  "linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent)",
+                filter: "blur(1px)",
+              }}
+            />
+          </>
         )}
       </div>
     );

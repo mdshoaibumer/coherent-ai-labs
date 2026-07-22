@@ -72,11 +72,11 @@ export function FinalCTA() {
       <Container size="md">
         {/* Main Header */}
         <div className="text-center max-w-4xl mx-auto mb-20">
-          <Reveal variant="perspective">
+          <Reveal variant="perspectivePremium">
             <Heading level={2} className="md:text-6xl leading-[1.1] mb-8">
               Let&apos;s Build the Future of{" "}
               <br className="hidden md:block" />
-              Your Business with AI
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/90">Your Business with AI</span>
             </Heading>
             <Text size="xl" className="max-w-3xl mx-auto mb-12">
               Whether you&apos;re exploring AI agents, workflow automation,

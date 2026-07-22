@@ -225,20 +225,21 @@ const BentoCard: React.FC<BentoCardProps> = React.memo(function BentoCard({
 
   return (
     <Card
-      initial={{ opacity: 0, y: 24, scale: 0.97 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      initial={{ opacity: 0, y: 32, scale: 0.95, filter: "blur(6px)" }}
+      whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{
-        duration: 0.6,
-        delay: index * 0.04,
-        ease: [0.16, 1, 0.3, 1],
+        duration: 0.7,
+        delay: index * 0.05,
+        ease: [0.33, 1, 0.68, 1],
       }}
-      whileHover={prefersReducedMotion ? {} : { y: -6, scale: 1.01 }}
-      whileTap={{ scale: 0.98 }}
+      whileHover={prefersReducedMotion ? {} : { y: -8, scale: 1.02 }}
+      whileTap={{ scale: 0.96 }}
+      premium={true}
       className={cn(
         service.size,
         "transition-[opacity,filter] duration-500",
-        isDimmed && "opacity-40 blur-[0.5px]",
+        isDimmed && "opacity-35 blur-[0.8px]",
         isHighlighted && !isDimmed && "opacity-100"
       )}
       tabIndex={0}
@@ -268,17 +269,17 @@ const BentoCard: React.FC<BentoCardProps> = React.memo(function BentoCard({
           className={cn(
             "w-12 h-12 rounded-xl border flex items-center justify-center transition-all duration-500 shadow-inner",
             isHighlighted && !isDimmed
-              ? "bg-white/10 border-white/20 shadow-[0_0_16px_rgba(255,255,255,0.06)]"
-              : "bg-[#111] border-white/10 group-hover:bg-white/10 group-hover:scale-110"
+              ? "bg-white/15 border-white/30 shadow-[0_0_24px_rgba(0,200,255,0.2),inset_0_0_12px_rgba(255,255,255,0.08)]"
+              : "bg-[#111] border-white/10 group-hover:bg-white/12 group-hover:shadow-[0_0_12px_rgba(0,200,255,0.1)]"
           )}
           animate={
             prefersReducedMotion
               ? {}
               : {
-                  scale: isHighlighted && !isDimmed ? 1.08 : 1,
+                  scale: isHighlighted && !isDimmed ? 1.12 : 1,
                 }
           }
-          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.45, ease: [0.33, 1, 0.68, 1] }}
         >
           <service.icon
             className={cn(

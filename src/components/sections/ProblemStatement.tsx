@@ -2,7 +2,7 @@
 import { m } from "motion/react";
 import { Reveal, RevealStagger, RevealItem } from "../animations/Reveal";
 import { AmbientGlow } from "../animations/AmbientGlow";
-import { EASE_OUT_EXPO, DURATION } from "../../lib/motion";
+import { EASE_OUT_EXPO, EASE_OUT_CUBIC, DURATION } from "../../lib/motion";
 
 export function ProblemStatement() {
   return (
@@ -26,24 +26,33 @@ export function ProblemStatement() {
           </Reveal>
 
           {/* Right: data cards with staggered slide-in */}
-          <RevealStagger stagger={0.1} className="font-mono text-sm space-y-4">
+          <RevealStagger stagger={0.12} className="font-mono text-sm space-y-4">
             <RevealItem>
-              <div className="p-6 rounded-xl border border-white/5 bg-[#050505] flex justify-between items-center hover:border-white/10 transition-colors">
-                <span className="text-[#666]">Avg. Manual Processing Time</span>
-                <span className="text-[#ff4444]">14.2 mins / cycle</span>
-              </div>
+              <m.div 
+                className="p-6 rounded-xl border border-white/10 bg-[#080808] flex justify-between items-center hover:border-white/20 hover:bg-white/[0.02] transition-all duration-500 shadow-[0_0_16px_rgba(255,68,68,0.08)]"
+                whileHover={{ scale: 1.02, boxShadow: "0 0 24px rgba(255,68,68,0.15)" }}
+              >
+                <span className="text-[#888]">Avg. Manual Processing Time</span>
+                <span className="text-[#ff6b6b] font-semibold">14.2 mins / cycle</span>
+              </m.div>
             </RevealItem>
             <RevealItem>
-              <div className="p-6 rounded-xl border border-white/5 bg-[#050505] flex justify-between items-center hover:border-white/10 transition-colors">
-                <span className="text-[#666]">System Latency Overhead</span>
-                <span className="text-[#ff4444]">+ 28% YoY</span>
-              </div>
+              <m.div 
+                className="p-6 rounded-xl border border-white/10 bg-[#080808] flex justify-between items-center hover:border-white/20 hover:bg-white/[0.02] transition-all duration-500 shadow-[0_0_16px_rgba(255,68,68,0.08)]"
+                whileHover={{ scale: 1.02, boxShadow: "0 0 24px rgba(255,68,68,0.15)" }}
+              >
+                <span className="text-[#888]">System Latency Overhead</span>
+                <span className="text-[#ff6b6b] font-semibold">+ 28% YoY</span>
+              </m.div>
             </RevealItem>
             <RevealItem>
-              <div className="p-6 rounded-xl border border-white/5 bg-[#050505] flex justify-between items-center hover:border-white/10 transition-colors">
-                <span className="text-[#666]">Error Rate (Human Factor)</span>
-                <span className="text-[#ff4444]">3.4% per 10k ops</span>
-              </div>
+              <m.div 
+                className="p-6 rounded-xl border border-white/10 bg-[#080808] flex justify-between items-center hover:border-white/20 hover:bg-white/[0.02] transition-all duration-500 shadow-[0_0_16px_rgba(255,68,68,0.08)]"
+                whileHover={{ scale: 1.02, boxShadow: "0 0 24px rgba(255,68,68,0.15)" }}
+              >
+                <span className="text-[#888]">Error Rate (Human Factor)</span>
+                <span className="text-[#ff6b6b] font-semibold">3.4% per 10k ops</span>
+              </m.div>
             </RevealItem>
           </RevealStagger>
         </div>

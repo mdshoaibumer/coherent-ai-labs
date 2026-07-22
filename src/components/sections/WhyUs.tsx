@@ -1,23 +1,24 @@
 "use client";
 import {m } from "motion/react";
 import { CheckCircle2 } from "lucide-react";
-import { EASE_OUT_EXPO } from "../../lib/motion";
+import { EASE_OUT_EXPO, EASE_OUT_CUBIC } from "../../lib/motion";
 
 import { DIFFERENTIATORS, PRINCIPLES } from "../../constants/whyUs";
 
 export function WhyUs() {
   return (
     <section id="why-us" className="py-32 bg-[#020202] relative overflow-hidden">
-      {/* Background Lighting */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-white/[0.02] blur-[120px] pointer-events-none rounded-full" />
+      {/* Background Lighting — layered depth */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-white/[0.03] blur-[140px] pointer-events-none rounded-full" />
+      <div className="absolute top-1/2 right-0 w-[600px] h-[300px] bg-[radial-gradient(ellipse,rgba(0,200,255,0.02)_0%,transparent_70%)] blur-[120px] pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-20">
           <m.div
-            initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
+            initial={{ opacity: 0, y: 35, filter: "blur(8px)" }}
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true }}
-            transition={{ duration: 0.9, ease: EASE_OUT_EXPO }}
+            transition={{ duration: 0.95, ease: EASE_OUT_CUBIC }}
           >
             <h2 className="font-display text-4xl md:text-5xl font-medium tracking-tight text-white mb-6">
               Why Engineering Teams Choose Coherent AI Labs
@@ -32,19 +33,25 @@ export function WhyUs() {
           {DIFFERENTIATORS.map((item, i) => (
             <m.div
               key={item.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 28, scale: 0.96, filter: "blur(4px)" }}
+              whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group relative p-8 rounded-2xl bg-[#080808] border border-white/5 hover:border-white/20 transition-all duration-500 overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-white"
+              transition={{ duration: 0.6, delay: i * 0.08, ease: EASE_OUT_CUBIC }}
+              whileHover={{ y: -4, scale: 1.02 }}
+              className="group relative p-8 rounded-2xl bg-[#080808] border border-white/8 hover:border-white/25 hover:bg-white/[0.02] transition-all duration-500 overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-white shadow-[0_0_0_rgba(0,200,255,0),inset_0_0_0_rgba(255,255,255,0)] hover:shadow-[0_0_20px_rgba(0,200,255,0.08),inset_0_1px_1px_rgba(255,255,255,0.05)]"
               tabIndex={0}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-br from-white/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(0,200,255,0.05)_0%,transparent_60%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
               
               <div className="relative z-10 flex flex-col h-full">
-                <div className="w-12 h-12 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:border-white/30 transition-all duration-500">
-                  <item.icon className="w-6 h-6 text-[#ccc] group-hover:text-white transition-colors duration-500" strokeWidth={1.5} />
-                </div>
+                <m.div 
+                  className="w-12 h-12 bg-white/8 border border-white/15 rounded-xl flex items-center justify-center mb-6 group-hover:border-white/40 transition-all duration-500 shadow-[0_0_12px_rgba(0,200,255,0.05)]"
+                  whileHover={{ scale: 1.15, boxShadow: "0 0 20px rgba(0,200,255,0.15)" }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <item.icon className="w-6 h-6 text-[#ddd] group-hover:text-white transition-colors duration-500" strokeWidth={1.5} />
+                </m.div>
                 
                 <h3 className="font-display text-xl font-medium text-white mb-3 tracking-tight">
                   {item.title}

@@ -2,7 +2,7 @@
 import { useState } from "react";
 import {m, AnimatePresence } from "motion/react";
 import { cn } from "../../lib/utils";
-import { EASE_OUT_EXPO } from "../../lib/motion";
+import { EASE_OUT_EXPO, EASE_OUT_CUBIC } from "../../lib/motion";
 import { 
   HeartPulse, Building2, ShoppingCart, 
   Factory, Truck, HardHat, GraduationCap, 
@@ -138,12 +138,21 @@ const INDUSTRIES: IndustryData[] = [
 
 function IndustryDetails({ data }: { data: IndustryData }) {
   return (
-    <div className="flex flex-col h-full animate-in fade-in duration-500">
+    <m.div 
+      className="flex flex-col h-full"
+      initial={{ opacity: 0, filter: "blur(6px)" }}
+      animate={{ opacity: 1, filter: "blur(0px)" }}
+      transition={{ duration: 0.5, ease: EASE_OUT_CUBIC }}
+    >
       <div className="mb-8 border-b border-white/10 pb-8">
         <div className="flex items-center gap-4 mb-4">
-          <div className="p-3 rounded-xl bg-white/5 border border-white/10">
+          <m.div 
+            className="p-3 rounded-xl bg-white/8 border border-white/15 shadow-[0_0_16px_rgba(0,200,255,0.1)]"
+            whileHover={{ scale: 1.08, boxShadow: "0 0 24px rgba(0,200,255,0.2)" }}
+            transition={{ duration: 0.3 }}
+          >
             <data.icon className="w-6 h-6 text-white" />
-          </div>
+          </m.div>
           <h3 className="font-display text-3xl font-medium text-white tracking-tight">{data.name}</h3>
         </div>
         <p className="text-[#aaa] text-lg leading-relaxed max-w-2xl">{data.description}</p>
@@ -207,7 +216,7 @@ function IndustryDetails({ data }: { data: IndustryData }) {
           </div>
         </div>
       </div>
-    </div>
+    </m.div>
   );
 }
 

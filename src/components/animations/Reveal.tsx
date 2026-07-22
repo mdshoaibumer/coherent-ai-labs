@@ -2,7 +2,7 @@
 import React from "react";
 import { m, Variants } from "motion/react";
 import { cn } from "../../lib/utils";
-import { reveal, staggerContainer, staggerItem, STAGGER, EASE_OUT_EXPO, DURATION } from "../../lib/motion";
+import { reveal, staggerContainer, staggerItem, STAGGER, EASE_OUT_EXPO, EASE_OUT_CUBIC, DURATION } from "../../lib/motion";
 import { useReducedMotion } from "../../hooks/useReducedMotion";
 
 /* ═══════════════════════════════════════════════════════════
@@ -12,12 +12,16 @@ import { useReducedMotion } from "../../hooks/useReducedMotion";
 
 type RevealVariant =
   | "fadeUp"
+  | "fadeUpPremium"
   | "scaleUp"
+  | "scaleUpPremium"
   | "slideRight"
   | "slideLeft"
   | "perspective"
+  | "perspectivePremium"
   | "fade"
-  | "pop";
+  | "pop"
+  | "layered";
 
 interface RevealProps {
   children: React.ReactNode;

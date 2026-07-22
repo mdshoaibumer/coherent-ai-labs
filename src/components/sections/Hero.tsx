@@ -8,7 +8,7 @@ import { Text } from "../ui/Text";
 import { SplitText } from "../animations/SplitText";
 import { MagneticButton } from "../animations/MagneticButton";
 import { useMousePosition } from "../../hooks/useMousePosition";
-import { EASE_OUT_EXPO } from "../../lib/motion";
+import { EASE_OUT_EXPO, EASE_OUT_CUBIC } from "../../lib/motion";
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -45,38 +45,55 @@ export function Hero() {
           accent="0, 200, 255"
         />
 
-        {/* Cinematic glow — mouse-tracked, accent-tinted */}
+        {/* Layered depth glow system */}
+        {/* Primary accent glow — blue core */}
         <m.div
           className="absolute inset-0 pointer-events-none will-change-transform"
           style={{ x: glowX, y: glowY }}
         >
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[700px] bg-[radial-gradient(ellipse_at_center,rgba(0,200,255,0.025)_0%,rgba(0,200,255,0.005)_35%,transparent_65%)]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[800px] bg-[radial-gradient(ellipse_at_center,rgba(0,200,255,0.04)_0%,rgba(0,200,255,0.008)_40%,transparent_70%)] blur-[80px]" />
+        </m.div>
+
+        {/* Secondary white glow — volumetric depth */}
+        <m.div
+          className="absolute inset-0 pointer-events-none will-change-transform"
+          style={{ x: glowX, y: glowY }}
+        >
+          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[600px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.05)_0%,transparent_60%)] blur-[100px]" />
         </m.div>
 
         {/* Abstract Hero Visualization */}
-        <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[800px] h-[800px] max-w-[100vw] opacity-20 pointer-events-none mix-blend-screen" style={{ maskImage: "radial-gradient(ellipse at center, black 40%, transparent 70%)", WebkitMaskImage: "radial-gradient(ellipse at center, black 40%, transparent 70%)" }}>
-          <img src="/assets/images/home_hero_ai.png" alt="AI Core" className="w-full h-full object-cover animate-pulse-slow" />
+        <m.div 
+          className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[800px] h-[800px] max-w-[100vw] opacity-25 pointer-events-none mix-blend-screen" 
+          animate={{ opacity: [0.2, 0.28, 0.2] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          style={{ maskImage: "radial-gradient(ellipse at center, black 40%, transparent 70%)", WebkitMaskImage: "radial-gradient(ellipse at center, black 40%, transparent 70%)" }}>
+          <img src="/assets/images/home_hero_ai.png" alt="AI Core" className="w-full h-full object-cover" />
+        </m.div>
+
+        {/* Accent particle field */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+          <div className="absolute top-1/4 left-1/4 w-1 h-1 bg-[#00c8ff] rounded-full opacity-30 blur-0.5" style={{ animation: "float 12s ease-in-out infinite" }} />
+          <div className="absolute top-1/3 right-1/4 w-1.5 h-1.5 bg-[#00c8ff] rounded-full opacity-20 blur-0.5" style={{ animation: "float 14s ease-in-out infinite 2s" }} />
+          <div className="absolute bottom-1/3 left-1/3 w-1 h-1 bg-white rounded-full opacity-20 blur-0.5" style={{ animation: "float 15s ease-in-out infinite 4s" }} />
         </div>
 
-        {/* White warmth glow on headline area */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.03)_0%,transparent_70%)] pointer-events-none" />
-
-        {/* Film grain */}
+        {/* Film grain — enhanced for cinematic feel */}
         <div
-          className="absolute inset-0 opacity-[0.02] pointer-events-none mix-blend-screen"
+          className="absolute inset-0 opacity-[0.015] pointer-events-none mix-blend-screen"
           style={{
             backgroundImage:
               'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\'/%3E%3C/svg%3E")',
           }}
         />
 
-        {/* Scroll dissolution */}
+        {/* Scroll dissolution with enhanced gradient */}
         <m.div
-          className="absolute bottom-0 left-0 right-0 h-[45%] pointer-events-none z-20"
+          className="absolute bottom-0 left-0 right-0 h-[50%] pointer-events-none z-20"
           style={{
             opacity: maskOpacity,
             background:
-              "linear-gradient(to bottom, transparent 0%, rgba(2,2,2,0.7) 50%, rgba(2,2,2,1) 100%)",
+              "linear-gradient(to bottom, transparent 0%, rgba(2,2,2,0.3) 30%, rgba(2,2,2,0.8) 70%, rgba(2,2,2,1) 100%)",
           }}
         />
       </div>
@@ -88,12 +105,16 @@ export function Hero() {
       >
         {/* Status badge */}
         <m.div
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1, ease: EASE_OUT_EXPO }}
+          initial={{ opacity: 0, y: -12, filter: "blur(4px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 0.8, delay: 0.15, ease: EASE_OUT_CUBIC }}
           className="mb-8"
         >
-          <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/[0.03] border border-white/[0.06] text-xs font-mono text-[#888] tracking-wider backdrop-blur-sm">
+          <m.div 
+            className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/[0.03] border border-white/[0.06] text-xs font-mono text-[#888] tracking-wider backdrop-blur-sm hover:bg-white/[0.05] hover:border-white/[0.08] transition-all duration-300"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00c8ff] opacity-50" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00c8ff]" />
@@ -101,40 +122,40 @@ export function Hero() {
             AI Platform Active
             <span className="text-[#555]">·</span>
             <span className="text-[#666]">Enterprise Ready</span>
-          </div>
+          </m.div>
         </m.div>
 
         {/* Headline */}
         <h1 className="font-display font-bold tracking-[-0.02em] text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.08] max-w-4xl mb-7">
           <SplitText
             splitBy="word"
-            staggerDelay={0.045}
-            baseDelay={0.15}
-            duration={0.8}
-            blur={10}
-            yOffset={30}
+            staggerDelay={0.05}
+            baseDelay={0.18}
+            duration={0.95}
+            blur={12}
+            yOffset={35}
           >
             Engineering
           </SplitText>{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c8ff] via-white to-white">
             <SplitText
               splitBy="word"
-              staggerDelay={0.045}
-              baseDelay={0.35}
-              duration={0.8}
-              blur={10}
-              yOffset={30}
+              staggerDelay={0.05}
+              baseDelay={0.42}
+              duration={0.95}
+              blur={12}
+              yOffset={35}
             >
               intelligent software
             </SplitText>
           </span>{" "}
           <SplitText
             splitBy="word"
-            staggerDelay={0.045}
-            baseDelay={0.6}
-            duration={0.8}
-            blur={10}
-            yOffset={30}
+            staggerDelay={0.05}
+            baseDelay={0.72}
+            duration={0.95}
+            blur={12}
+            yOffset={35}
           >
             for the AI era.
           </SplitText>
@@ -154,26 +175,30 @@ export function Hero() {
 
         {/* CTAs */}
         <m.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.05, ease: EASE_OUT_EXPO }}
-          className="mt-10 flex flex-col sm:flex-row items-center gap-4"
+          initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 0.9, delay: 1.15, ease: EASE_OUT_CUBIC }}
+          className="mt-12 flex flex-col sm:flex-row items-center gap-4"
         >
           <a href="/contact" className="w-full sm:w-auto">
             <MagneticButton
-              strength={28}
-              className="w-full sm:w-auto rounded-xl font-medium transition-all duration-300 flex items-center justify-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c8ff]/50 outline-none bg-white text-black hover:bg-gray-50 hover:scale-[1.02] active:scale-[0.97] px-8 py-4 text-base shadow-[0_0_20px_rgba(0,200,255,0.08),0_0_40px_rgba(255,255,255,0.05)] hover:shadow-[0_0_30px_rgba(0,200,255,0.15),0_0_60px_rgba(255,255,255,0.08)]"
+              strength={32}
+              className="w-full sm:w-auto rounded-xl font-medium transition-all duration-300 flex items-center justify-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c8ff]/50 outline-none bg-white text-black hover:bg-gray-50 px-8 py-4 text-base shadow-[0_0_30px_rgba(0,200,255,0.12),0_0_50px_rgba(255,255,255,0.08)] hover:shadow-[0_0_40px_rgba(0,200,255,0.2),0_0_80px_rgba(255,255,255,0.12)]"
+              whileHover={{ scale: 1.03, y: -2 }}
+              whileTap={{ scale: 0.95 }}
             >
               Book a Discovery Call
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </MagneticButton>
           </a>
           <a href="/platform" className="w-full sm:w-auto">
             <MagneticButton
-              strength={20}
-              className="w-full sm:w-auto rounded-xl font-medium transition-all duration-300 flex items-center justify-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 outline-none bg-white/[0.04] text-[#ccc] border border-white/[0.08] hover:bg-white/[0.07] hover:border-white/15 hover:text-white px-8 py-4 text-base backdrop-blur-sm"
+              strength={24}
+              className="w-full sm:w-auto rounded-xl font-medium transition-all duration-300 flex items-center justify-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 outline-none bg-white/[0.05] text-[#ddd] border border-white/[0.1] hover:bg-white/[0.08] hover:border-white/20 hover:text-white px-8 py-4 text-base backdrop-blur-md shadow-[0_0_20px_rgba(0,200,255,0.05)]"
+              whileHover={{ scale: 1.02, y: -1 }}
+              whileTap={{ scale: 0.96 }}
             >
-              <Activity className="w-4 h-4 text-[#00c8ff]/60 group-hover:text-[#00c8ff]" />
+              <Activity className="w-4 h-4 text-[#00c8ff]/70 group-hover:text-[#00c8ff]" />
               Explore Platform
             </MagneticButton>
           </a>
