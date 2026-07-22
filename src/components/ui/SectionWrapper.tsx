@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import { cn } from "../../lib/utils";
+import { ReactNode } from 'react';
+import { cn } from '../../lib/utils';
 
 interface SectionWrapperProps {
   id?: string;
@@ -9,11 +9,20 @@ interface SectionWrapperProps {
   background?: ReactNode;
 }
 
-export function SectionWrapper({ id, children, className, containerClassName, background }: SectionWrapperProps) {
+export function SectionWrapper({
+  id,
+  children,
+  className,
+  containerClassName,
+  background,
+}: SectionWrapperProps) {
   return (
-    <section id={id} className={cn("py-32 bg-[#020202] relative overflow-hidden", className)}>
+    <section
+      id={id}
+      className={cn('bg-background relative overflow-hidden py-28 md:py-36', className)}
+    >
       {background}
-      <div className={cn("max-w-7xl mx-auto px-6 relative z-10", containerClassName)}>
+      <div className={cn('relative z-10 mx-auto max-w-7xl px-6', containerClassName)}>
         {children}
       </div>
     </section>

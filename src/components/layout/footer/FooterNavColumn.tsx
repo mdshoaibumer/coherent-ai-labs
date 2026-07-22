@@ -1,6 +1,6 @@
-"use client";
-import { ReactNode } from "react";
-import {m } from "motion/react";
+'use client';
+import { ReactNode } from 'react';
+import { m } from 'motion/react';
 
 interface FooterNavColumnProps {
   title: string;
@@ -17,13 +17,20 @@ export function FooterNavColumn({ title, items, delay = 0, renderItem }: FooterN
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
     >
-      <h4 className="font-display text-white font-medium mb-6 tracking-tight text-sm">{title}</h4>
+      <h4 className="font-display text-foreground mb-6 text-sm font-medium tracking-tight">
+        {title}
+      </h4>
       <ul className="space-y-4">
-        {items.map(item => (
+        {items.map((item) => (
           <li key={item}>
-            {renderItem ? renderItem(item) : (
-              <a href="#" className="text-sm text-[#888] hover:text-white transition-colors flex items-center gap-2 group">
-                <span className="w-0 h-px bg-white group-hover:w-3 transition-all duration-300" />
+            {renderItem ? (
+              renderItem(item)
+            ) : (
+              <a
+                href="#"
+                className="text-muted-foreground hover:text-foreground group flex items-center gap-2 text-sm transition-colors"
+              >
+                <span className="h-px w-0 bg-white transition-all duration-300 group-hover:w-3" />
                 {item}
               </a>
             )}

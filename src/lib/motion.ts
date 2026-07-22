@@ -6,7 +6,7 @@
  * to ensure a unified, premium motion language.
  */
 
-import { Variants, Transition } from "motion/react";
+import { Variants, Transition } from 'motion/react';
 
 /* ═══════════════════════════════════════════════════════════
    EASING PRESETS
@@ -84,7 +84,7 @@ export const TRANSITION = {
 
   /** Spring config for physical interactions */
   spring: {
-    type: "spring" as const,
+    type: 'spring' as const,
     stiffness: 120,
     damping: 20,
     mass: 0.8,
@@ -100,44 +100,44 @@ export const TRANSITION = {
 export const reveal = {
   /** Classic fade + rise — refined with blur */
   fadeUp: {
-    hidden: { opacity: 0, y: 30, filter: "blur(6px)" },
+    hidden: { opacity: 0, y: 30, filter: 'blur(6px)' },
     visible: {
       opacity: 1,
       y: 0,
-      filter: "blur(0px)",
+      filter: 'blur(0px)',
       transition: { duration: DURATION.slow, ease: EASE_OUT_EXPO },
     },
   } satisfies Variants,
 
   /** Premium fade up with deeper blur — more cinematic */
   fadeUpPremium: {
-    hidden: { opacity: 0, y: 40, filter: "blur(8px)" },
+    hidden: { opacity: 0, y: 40, filter: 'blur(8px)' },
     visible: {
       opacity: 1,
       y: 0,
-      filter: "blur(0px)",
+      filter: 'blur(0px)',
       transition: { duration: 0.95, ease: EASE_OUT_CUBIC },
     },
   } satisfies Variants,
 
   /** Fade + slight scale from depth */
   scaleUp: {
-    hidden: { opacity: 0, scale: 0.94, filter: "blur(4px)" },
+    hidden: { opacity: 0, scale: 0.94, filter: 'blur(4px)' },
     visible: {
       opacity: 1,
       scale: 1,
-      filter: "blur(0px)",
+      filter: 'blur(0px)',
       transition: { duration: DURATION.slow, ease: EASE_OUT_EXPO },
     },
   } satisfies Variants,
 
   /** Deep scale reveal — premium feel */
   scaleUpPremium: {
-    hidden: { opacity: 0, scale: 0.9, filter: "blur(6px)" },
+    hidden: { opacity: 0, scale: 0.9, filter: 'blur(6px)' },
     visible: {
       opacity: 1,
       scale: 1,
-      filter: "blur(0px)",
+      filter: 'blur(0px)',
       transition: { duration: 1, ease: EASE_OUT_CUBIC },
     },
   } satisfies Variants,
@@ -164,24 +164,24 @@ export const reveal = {
 
   /** Perspective tilt reveal — feels 3D */
   perspective: {
-    hidden: { opacity: 0, rotateX: 8, y: 20, filter: "blur(4px)" },
+    hidden: { opacity: 0, rotateX: 8, y: 20, filter: 'blur(4px)' },
     visible: {
       opacity: 1,
       rotateX: 0,
       y: 0,
-      filter: "blur(0px)",
+      filter: 'blur(0px)',
       transition: { duration: DURATION.slow, ease: EASE_OUT_EXPO },
     },
   } satisfies Variants,
 
   /** Deep perspective reveal — premium 3D effect */
   perspectivePremium: {
-    hidden: { opacity: 0, rotateX: 12, y: 30, filter: "blur(6px)" },
+    hidden: { opacity: 0, rotateX: 12, y: 30, filter: 'blur(6px)' },
     visible: {
       opacity: 1,
       rotateX: 0,
       y: 0,
-      filter: "blur(0px)",
+      filter: 'blur(0px)',
       transition: { duration: 1, ease: EASE_OUT_CUBIC },
     },
   } satisfies Variants,
@@ -207,11 +207,11 @@ export const reveal = {
 
   /** Layered cascade reveal — multiple depths */
   layered: {
-    hidden: { opacity: 0, y: 50, filter: "blur(8px)" },
+    hidden: { opacity: 0, y: 50, filter: 'blur(8px)' },
     visible: {
       opacity: 1,
       y: 0,
-      filter: "blur(0px)",
+      filter: 'blur(0px)',
       transition: { duration: 1.1, ease: EASE_OUT_CUBIC },
     },
   } satisfies Variants,
@@ -223,7 +223,7 @@ export const reveal = {
 
 export function staggerContainer(
   staggerDelay: number = STAGGER.default,
-  delayChildren: number = 0
+  delayChildren: number = 0,
 ): Variants {
   return {
     hidden: {},
@@ -241,11 +241,36 @@ export function staggerContainer(
 ═══════════════════════════════════════════════════════════ */
 
 export const staggerItem: Variants = {
-  hidden: { opacity: 0, y: 16 },
+  hidden: { opacity: 0, y: 16, filter: 'blur(4px)' },
   visible: {
     opacity: 1,
     y: 0,
+    filter: 'blur(0px)',
     transition: { duration: DURATION.normal, ease: EASE_OUT_EXPO },
+  },
+};
+
+/* ═══════════════════════════════════════════════════════════
+   STAGGER ITEM VARIANTS — different intensities
+═══════════════════════════════════════════════════════════ */
+
+export const staggerItemPremium: Variants = {
+  hidden: { opacity: 0, y: 24, filter: 'blur(6px)' },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    transition: { duration: DURATION.slow, ease: EASE_OUT_CUBIC },
+  },
+};
+
+export const staggerItemScale: Variants = {
+  hidden: { opacity: 0, scale: 0.92, filter: 'blur(4px)' },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    filter: 'blur(0px)',
+    transition: { duration: DURATION.slow, ease: EASE_OUT_EXPO },
   },
 };
 
@@ -259,20 +284,80 @@ export const hover = {
   /** Stronger lift for featured elements */
   liftStrong: { y: -6, scale: 1.01, transition: { duration: 0.3, ease: EASE_OUT_EXPO } },
   /** Premium lift with glow — deep elevation */
-  liftPremium: { 
-    y: -8, 
-    scale: 1.02, 
-    transition: { duration: 0.35, ease: EASE_OUT_CUBIC } 
+  liftPremium: {
+    y: -8,
+    scale: 1.02,
+    transition: { duration: 0.35, ease: EASE_OUT_CUBIC },
   },
   /** Scale for buttons and icons */
   scale: { scale: 1.05, transition: { duration: 0.2, ease: EASE_SNAP } },
   /** Premium scale with smooth spring */
-  scalePremium: { 
-    scale: 1.08, 
-    transition: { duration: 0.3, ease: EASE_SPRING } 
+  scalePremium: {
+    scale: 1.08,
+    transition: { duration: 0.3, ease: EASE_SPRING },
   },
   /** Press feedback */
   tap: { scale: 0.97 },
   /** Premium press with spring */
   tapPremium: { scale: 0.93, transition: { duration: 0.2, ease: EASE_SNAP } },
+} as const;
+
+/* ═══════════════════════════════════════════════════════════
+   SCROLL CHOREOGRAPHY — viewport-triggered orchestrations
+   Use for multi-element scenes that need coordinated timing.
+═══════════════════════════════════════════════════════════ */
+
+/**
+ * Creates a choreographed entrance for a group of elements.
+ * Each element gets a progressively delayed entrance.
+ */
+export function choreography(
+  elementCount: number,
+  baseDelay: number = 0,
+  staggerAmount: number = 0.1,
+  duration: number = DURATION.slow,
+) {
+  return Array.from({ length: elementCount }, (_, i) => ({
+    hidden: { opacity: 0, y: 24, filter: 'blur(6px)' },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: 'blur(0px)',
+      transition: {
+        duration,
+        delay: baseDelay + i * staggerAmount,
+        ease: EASE_OUT_CUBIC,
+      },
+    },
+  }));
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SCROLL-LINKED TRANSFORMS — helper for parallax effects
+═══════════════════════════════════════════════════════════ */
+
+export const PARALLAX = {
+  /** Slow drift for background elements */
+  backgroundSlow: { input: [0, 1], output: [0, -40] },
+  /** Medium parallax for mid-ground */
+  midground: { input: [0, 1], output: [0, -80] },
+  /** Fast parallax for foreground elements */
+  foreground: { input: [0, 1], output: [0, -120] },
+  /** Fade out on scroll */
+  fadeOut: { input: [0, 0.5], output: [1, 0] },
+  /** Scale down on scroll */
+  scaleDown: { input: [0, 1], output: [1, 0.9] },
+} as const;
+
+/* ═══════════════════════════════════════════════════════════
+   MAGNETIC INTERACTION — physics presets for magnetic elements
+═══════════════════════════════════════════════════════════ */
+
+export const MAGNETIC = {
+  /** Default magnetic button pull */
+  button: { strength: 25, stiffness: 200, damping: 25, mass: 0.1 },
+  /** Lighter magnetic for navigation links */
+  link: { strength: 12, stiffness: 150, damping: 20, mass: 0.1 },
+  /** Strong magnetic for hero CTAs */
+  cta: { strength: 35, stiffness: 180, damping: 22, mass: 0.15 },
 } as const;

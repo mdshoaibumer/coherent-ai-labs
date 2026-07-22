@@ -84,7 +84,7 @@ function AnimatedCounter({
   return (
     <span>
       {display}
-      <span className="text-2xl text-[#666] md:text-3xl">{suffix}</span>
+      <span className="text-muted-foreground/70 text-2xl md:text-3xl">{suffix}</span>
     </span>
   );
 }
@@ -103,7 +103,7 @@ export function PlatformMetrics() {
       <Container>
         <div className="mx-auto mb-16 max-w-3xl text-center">
           <Reveal variant="fadeUp">
-            <span className="mb-4 block font-mono text-[10px] tracking-widest text-[#555] uppercase">
+            <span className="text-muted-foreground/60 mb-4 block font-mono text-[10px] tracking-widest uppercase">
               Performance
             </span>
             <Heading level={2}>Built for Enterprise Scale</Heading>
@@ -121,13 +121,13 @@ export function PlatformMetrics() {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="rounded-2xl border border-white/[0.05] bg-white/[0.02] p-6 text-center transition-colors hover:border-white/10 md:p-8"
+              className="border-border bg-accent hover:border-border rounded-2xl border p-6 text-center transition-colors md:p-8"
             >
-              <div className="font-display mb-2 text-3xl font-bold tracking-tight text-white md:text-5xl">
+              <div className="font-display text-foreground mb-2 text-3xl font-bold tracking-tight md:text-5xl">
                 <AnimatedCounter target={metric.value} suffix={metric.suffix} inView={inView} />
               </div>
-              <div className="mb-1 text-sm font-medium text-[#ccc]">{metric.label}</div>
-              <div className="font-mono text-[10px] tracking-wide text-[#555]">
+              <div className="text-foreground/80 mb-1 text-sm font-medium">{metric.label}</div>
+              <div className="text-muted-foreground/60 font-mono text-[10px] tracking-wide">
                 {metric.description}
               </div>
             </m.div>

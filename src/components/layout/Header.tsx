@@ -31,10 +31,10 @@ export function Header() {
         animate={{ y: isHidden ? '-100%' : '0%' }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
         className={cn(
-          'fixed top-0 z-50 w-full transition-all duration-500',
+          'fixed top-0 z-50 w-full transition-all duration-600',
           isScrolled
-            ? 'bg-background/80 border-foreground/10 border-b py-3 shadow-[0_8px_40px_rgba(0,0,0,0.1),0_0_30px_rgba(0,200,255,0.05)] backdrop-blur-2xl'
-            : 'bg-transparent py-6',
+            ? 'border-border border-b bg-[var(--surface-overlay)] py-3 shadow-[var(--shadow-lg)] backdrop-blur-2xl'
+            : 'bg-transparent py-5',
         )}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6">

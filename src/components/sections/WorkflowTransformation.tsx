@@ -1,14 +1,14 @@
-"use client";
-import { useRef, useState, useEffect } from "react";
-import { m, useScroll, useTransform, useMotionValueEvent, AnimatePresence } from "motion/react";
-import { LAYERS } from "../../constants/workflow";
-import { InfoPanel } from "./workflow/InfoPanel";
-import { PipelineNode } from "./workflow/PipelineNode";
-import { Section } from "../ui/Section";
-import { Container } from "../ui/Container";
-import { Heading } from "../ui/Heading";
-import { Text } from "../ui/Text";
-import { useReducedMotion } from "../../hooks/useReducedMotion";
+'use client';
+import { useRef, useState, useEffect } from 'react';
+import { m, useScroll, useTransform, useMotionValueEvent, AnimatePresence } from 'motion/react';
+import { LAYERS } from '../../constants/workflow';
+import { InfoPanel } from './workflow/InfoPanel';
+import { PipelineNode } from './workflow/PipelineNode';
+import { Section } from '../ui/Section';
+import { Container } from '../ui/Container';
+import { Heading } from '../ui/Heading';
+import { Text } from '../ui/Text';
+import { useReducedMotion } from '../../hooks/useReducedMotion';
 
 export function WorkflowTransformation() {
   const [activeLayer, setActiveLayer] = useState<string>(LAYERS[0].id);
@@ -22,17 +22,14 @@ export function WorkflowTransformation() {
   // Scroll-driven progression: track section scroll progress
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start end", "end start"],
+    offset: ['start end', 'end start'],
   });
 
   // Map scroll progress to active stage index
-  useMotionValueEvent(scrollYProgress, "change", (progress) => {
+  useMotionValueEvent(scrollYProgress, 'change', (progress) => {
     // Active zone: section enters from 0.15 to 0.75
     const normalized = Math.max(0, Math.min(1, (progress - 0.15) / 0.6));
-    const index = Math.min(
-      LAYERS.length - 1,
-      Math.floor(normalized * LAYERS.length)
-    );
+    const index = Math.min(LAYERS.length - 1, Math.floor(normalized * LAYERS.length));
 
     if (index !== scrollActiveIndex) {
       setScrollActiveIndex(index);
@@ -44,11 +41,7 @@ export function WorkflowTransformation() {
   const lineProgress = useTransform(scrollYProgress, [0.15, 0.75], [0, 1]);
 
   // Ambient glow position follows active stage
-  const glowY = useTransform(
-    scrollYProgress,
-    [0.15, 0.75],
-    ["0%", "80%"]
-  );
+  const glowY = useTransform(scrollYProgress, [0.15, 0.75], ['0%', '80%']);
 
   return (
     <Section
@@ -56,29 +49,25 @@ export function WorkflowTransformation() {
       id="workflow"
       border="top"
       padding="none"
-      className="py-32 relative"
+      className="relative py-32"
       backgroundElement={
         <>
           {/* Top radial glow */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.03)_0%,rgba(0,0,0,0)_70%)] pointer-events-none" />
+          <div className="pointer-events-none absolute top-0 left-1/2 h-[500px] w-[1000px] -translate-x-1/2 bg-[radial-gradient(ellipse_at_top,var(--accent-glow),transparent_70%)] opacity-40" />
 
           {/* Noise texture for depth */}
-          <div
-            className="absolute inset-0 opacity-[0.02] pointer-events-none mix-blend-screen"
-            style={{
-              backgroundImage:
-                'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\'/%3E%3C/svg%3E")',
-            }}
-          />
+          <div className="noise-grain pointer-events-none absolute inset-0 opacity-[0.02] mix-blend-overlay" />
 
           {/* Traveling ambient glow — follows the active stage */}
           {!prefersReducedMotion && (
             <m.div
-              className="absolute left-[10%] w-[500px] h-[300px] pointer-events-none will-change-transform"
+              className="pointer-events-none absolute left-[10%] h-[300px] w-[500px] will-change-transform"
               style={{
                 top: glowY,
                 background:
-                  "radial-gradient(ellipse at center, rgba(255,255,255,0.025) 0%, transparent 70%)",
+                  'radial-gradient(ellipse at center, var(--accent-glow) 0%, transparent 70%)',
+                filter: 'blur(40px)',
+                opacity: 0.4,
               }}
             />
           )}
@@ -87,10 +76,10 @@ export function WorkflowTransformation() {
     >
       <Container>
         {/* ─── Section Header ─── */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
+        <div className="mx-auto mb-20 max-w-3xl text-center">
           <m.div
-            initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
-            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            initial={{ opacity: 0, y: 30, filter: 'blur(6px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             viewport={{ once: true }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           >
@@ -100,53 +89,49 @@ export function WorkflowTransformation() {
               Not More Manual Work.
             </Heading>
             <Text size="lg">
-              We combine AI Agents, enterprise software, cloud infrastructure,
-              and intelligent automation to eliminate repetitive work and
-              accelerate business operations.
+              We combine AI Agents, enterprise software, cloud infrastructure, and intelligent
+              automation to eliminate repetitive work and accelerate business operations.
             </Text>
           </m.div>
         </div>
 
         {/* ─── Pipeline + Panel Grid ─── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 relative">
+        <div className="relative grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-16">
           {/* ═══ Left Pipeline ═══ */}
-          <div ref={pipelineRef} className="lg:col-span-7 relative">
+          <div ref={pipelineRef} className="relative lg:col-span-7">
             {/* Vertical Connection Line — base track */}
-            <div className="absolute left-[19px] sm:left-[27px] top-8 bottom-8 w-[2px] bg-white/[0.04] z-0 rounded-full" />
+            <div className="bg-border absolute top-8 bottom-8 left-[19px] z-0 w-[2px] rounded-full sm:left-[27px]" />
 
             {/* Animated progress fill — scroll-driven */}
             {!prefersReducedMotion && (
               <m.div
-                className="absolute left-[19px] sm:left-[27px] top-8 bottom-8 w-[2px] origin-top z-[1] rounded-full"
+                className="absolute top-8 bottom-8 left-[19px] z-[1] w-[2px] origin-top rounded-full sm:left-[27px]"
                 style={{
                   scaleY: lineProgress,
                   background:
-                    "linear-gradient(to bottom, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.2) 60%, transparent 100%)",
-                  boxShadow: "0 0 8px rgba(255,255,255,0.15)",
+                    'linear-gradient(to bottom, var(--foreground) 0%, var(--muted-foreground) 60%, transparent 100%)',
+                  opacity: 0.4,
                 }}
               />
             )}
 
             {/* Energy beam traveling along the line */}
             {!prefersReducedMotion && (
-              <div className="absolute left-[19px] sm:left-[27px] top-8 bottom-8 w-[2px] z-[2] overflow-hidden rounded-full">
+              <div className="absolute top-8 bottom-8 left-[19px] z-[2] w-[2px] overflow-hidden rounded-full sm:left-[27px]">
                 <m.div
-                  className="absolute left-0 w-full h-[15%] bg-gradient-to-b from-transparent via-white/60 to-transparent"
-                  style={{
-                    boxShadow: "0 0 12px rgba(255,255,255,0.3)",
-                  }}
-                  animate={{ top: ["-15%", "115%"] }}
+                  className="via-foreground/50 absolute left-0 h-[15%] w-full bg-gradient-to-b from-transparent to-transparent"
+                  animate={{ top: ['-15%', '115%'] }}
                   transition={{
                     repeat: Infinity,
                     duration: 3.5,
-                    ease: "linear",
+                    ease: 'linear',
                   }}
                 />
               </div>
             )}
 
             {/* Pipeline Nodes */}
-            <div className="flex flex-col gap-6 sm:gap-10 relative z-10">
+            <div className="relative z-10 flex flex-col gap-6 sm:gap-10">
               {LAYERS.map((layer, idx) => (
                 <PipelineNode
                   key={layer.id}
@@ -162,14 +147,14 @@ export function WorkflowTransformation() {
           </div>
 
           {/* ═══ Right Sticky Panel (Desktop) ═══ */}
-          <div className="lg:col-span-5 hidden lg:block">
+          <div className="hidden lg:col-span-5 lg:block">
             <div className="sticky top-32">
               <AnimatePresence mode="wait">
                 <m.div
                   key={activeLayer}
-                  initial={{ opacity: 0, y: 12, filter: "blur(6px)", scale: 0.98 }}
-                  animate={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
-                  exit={{ opacity: 0, y: -12, filter: "blur(6px)", scale: 0.98 }}
+                  initial={{ opacity: 0, y: 12, filter: 'blur(6px)', scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)', scale: 1 }}
+                  exit={{ opacity: 0, y: -12, filter: 'blur(6px)', scale: 0.98 }}
                   transition={{
                     duration: 0.4,
                     ease: [0.16, 1, 0.3, 1],

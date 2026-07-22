@@ -27,10 +27,10 @@ export function TechStack() {
         <>
           {/* Grid pattern with mask */}
           <div
-            className="pointer-events-none absolute inset-0 opacity-[0.1]"
+            className="pointer-events-none absolute inset-0 opacity-[0.06]"
             style={{
               backgroundImage:
-                'linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.08) 1px, transparent 1px)',
+                'linear-gradient(to right, var(--border) 1px, transparent 1px), linear-gradient(to bottom, var(--border) 1px, transparent 1px)',
               backgroundSize: '44px 44px',
               maskImage: 'radial-gradient(ellipse at center, black 15%, transparent 70%)',
               WebkitMaskImage: 'radial-gradient(ellipse at center, black 15%, transparent 70%)',
@@ -38,13 +38,7 @@ export function TechStack() {
           />
 
           {/* Noise texture for depth */}
-          <div
-            className="pointer-events-none absolute inset-0 opacity-[0.02] mix-blend-screen"
-            style={{
-              backgroundImage:
-                "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
-            }}
-          />
+          <div className="noise-grain pointer-events-none absolute inset-0 opacity-[0.02] mix-blend-overlay" />
 
           {/* Ambient radial glow — shifts based on active state */}
           <m.div
@@ -54,12 +48,13 @@ export function TechStack() {
             }}
             transition={{ duration: 1, ease: 'easeOut' }}
             style={{
-              background: 'radial-gradient(circle, rgba(255,255,255,0.025) 0%, transparent 65%)',
+              background: 'radial-gradient(circle, var(--accent-glow) 0%, transparent 65%)',
+              filter: 'blur(40px)',
             }}
           />
 
           {/* Secondary glow on right (panel side) */}
-          <div className="pointer-events-none absolute top-[30%] right-[5%] h-[400px] w-[400px] bg-[radial-gradient(circle,rgba(255,255,255,0.015)_0%,transparent_70%)]" />
+          <div className="pointer-events-none absolute top-[30%] right-[5%] h-[400px] w-[400px] bg-[radial-gradient(circle,var(--accent-glow),transparent_70%)] opacity-30 blur-[40px]" />
         </>
       }
     >
@@ -109,7 +104,7 @@ export function TechStack() {
                   transition={{ duration: 0.6 }}
                   style={{
                     background:
-                      'radial-gradient(ellipse at top center, rgba(255,255,255,0.03) 0%, transparent 70%)',
+                      'radial-gradient(ellipse at top center, var(--accent-glow) 0%, transparent 70%)',
                   }}
                 />
               )}

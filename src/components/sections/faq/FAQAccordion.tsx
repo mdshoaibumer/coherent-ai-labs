@@ -1,6 +1,6 @@
 'use client';
 import { m, AnimatePresence } from 'motion/react';
-import { Plus, Minus } from 'lucide-react';
+import { Plus, Minus } from '../../illustrations/Icons';
 import { cn } from '../../../lib/utils';
 
 interface FAQItem {
@@ -88,7 +88,11 @@ export function FAQAccordion({
                         : 'bg-foreground/5 border-foreground/5 text-muted-foreground',
                     )}
                   >
-                    {isOpen ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+                    {isOpen ? (
+                      <Minus className="h-4 w-4" size={16} />
+                    ) : (
+                      <Plus className="h-4 w-4" size={16} />
+                    )}
                   </div>
                 </button>
 

@@ -35,45 +35,48 @@ const result = await analystAgent.run(
       <SplitLayout
         leftContent={
           <div className="max-w-xl pl-0 lg:pl-12">
-            <Heading level={2} className="mb-6">Declare agents as code.</Heading>
-            <Paragraph className="text-xl text-[#888] mb-8">
-              Forget clunky visual node editors. Complex workflows require version control, testing, and type safety. Build agents using the tools your engineering team already loves.
+            <Heading level={2} className="mb-6">
+              Declare agents as code.
+            </Heading>
+            <Paragraph className="text-muted-foreground mb-8 text-xl">
+              Forget clunky visual node editors. Complex workflows require version control, testing,
+              and type safety. Build agents using the tools your engineering team already loves.
             </Paragraph>
-            <ul className="space-y-4 mb-8">
-              <li className="flex items-center text-[#e0e0e0]">
-                 <span className="w-1.5 h-1.5 bg-[var(--color-primary)] rounded-full mr-3" />
-                 Zod schema validation for all tool inputs
+            <ul className="mb-8 space-y-4">
+              <li className="text-foreground/90 flex items-center">
+                <span className="mr-3 h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]" />
+                Zod schema validation for all tool inputs
               </li>
-              <li className="flex items-center text-[#e0e0e0]">
-                 <span className="w-1.5 h-1.5 bg-[var(--color-primary)] rounded-full mr-3" />
-                 Built-in tracing and step visualization
+              <li className="text-foreground/90 flex items-center">
+                <span className="mr-3 h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]" />
+                Built-in tracing and step visualization
               </li>
-              <li className="flex items-center text-[#e0e0e0]">
-                 <span className="w-1.5 h-1.5 bg-[var(--color-primary)] rounded-full mr-3" />
-                 Local sandbox testing environment
+              <li className="text-foreground/90 flex items-center">
+                <span className="mr-3 h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]" />
+                Local sandbox testing environment
               </li>
             </ul>
             <Button variant="outline">View API Reference</Button>
           </div>
         }
         rightContent={
-          <div className="w-full relative group">
-             <div className="absolute inset-0 bg-gradient-to-l from-[var(--color-primary)]/20 to-transparent blur-xl transition-opacity opacity-0 group-hover:opacity-100" />
-             <div className="relative bg-[#0a0a0a] border border-white/10 rounded-xl overflow-hidden font-mono text-sm shadow-2xl">
-                <div className="flex items-center px-4 py-3 border-b border-white/10 bg-[#111]">
-                   <div className="flex gap-2">
-                     <div className="w-3 h-3 rounded-full bg-red-500/50" />
-                     <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
-                     <div className="w-3 h-3 rounded-full bg-green-500/50" />
-                   </div>
-                   <div className="mx-auto text-xs text-[#888]">analyst.ts</div>
+          <div className="group relative w-full">
+            <div className="absolute inset-0 bg-gradient-to-l from-[var(--color-primary)]/20 to-transparent opacity-0 blur-xl transition-opacity group-hover:opacity-100" />
+            <div className="bg-muted border-border relative overflow-hidden rounded-xl border font-mono text-sm shadow-2xl">
+              <div className="border-border flex items-center border-b bg-[#111] px-4 py-3">
+                <div className="flex gap-2">
+                  <div className="h-3 w-3 rounded-full bg-red-500/50" />
+                  <div className="h-3 w-3 rounded-full bg-yellow-500/50" />
+                  <div className="h-3 w-3 rounded-full bg-green-500/50" />
                 </div>
-                <div className="p-6 overflow-x-auto">
-                   <pre className="text-[#e0e0e0] leading-relaxed">
-                     <code>{codeSnippet}</code>
-                   </pre>
-                </div>
-             </div>
+                <div className="text-muted-foreground mx-auto text-xs">analyst.ts</div>
+              </div>
+              <div className="overflow-x-auto p-6">
+                <pre className="text-foreground/90 leading-relaxed">
+                  <code>{codeSnippet}</code>
+                </pre>
+              </div>
+            </div>
           </div>
         }
       />

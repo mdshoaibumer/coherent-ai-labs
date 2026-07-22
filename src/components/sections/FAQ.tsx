@@ -1,7 +1,8 @@
 'use client';
 import { useState } from 'react';
 import { m } from 'motion/react';
-import { Search, MessageCircleQuestion } from 'lucide-react';
+import { SearchIcon as Search } from '../illustrations/Icons';
+import { MessageCircleQuestion } from 'lucide-react';
 
 import { FAQS } from '../../constants/faq';
 import { SectionWrapper } from '../ui/SectionWrapper';
@@ -69,7 +70,7 @@ export function FAQ() {
         className="relative mb-12"
       >
         <div className="pointer-events-none absolute inset-y-0 left-4 flex items-center">
-          <Search className="text-muted-foreground h-5 w-5" />
+          <Search className="text-muted-foreground h-5 w-5" size={20} />
         </div>
         <input
           type="text"

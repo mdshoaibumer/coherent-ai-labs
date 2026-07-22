@@ -8,12 +8,10 @@ interface MarketingLayoutProps {
 
 export function MarketingLayout({ children, header, footer }: MarketingLayoutProps) {
   return (
-    <div className="min-h-screen bg-[#020202] text-white flex flex-col selection:bg-[var(--color-primary)] selection:text-white">
+    <div className="bg-background selection:text-foreground flex min-h-screen flex-col text-white selection:bg-[var(--color-primary)]">
       {header && <header className="sticky top-0 z-50 w-full">{header}</header>}
-      <main className="flex-1">
-        {children}
-      </main>
-      {footer && <footer className="border-t border-white/10 mt-auto">{footer}</footer>}
+      <main className="flex-1">{children}</main>
+      {footer && <footer className="border-border mt-auto border-t">{footer}</footer>}
     </div>
   );
 }

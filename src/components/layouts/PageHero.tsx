@@ -1,11 +1,11 @@
-"use client";
-import React from "react";
-import { Container } from "../ui/Container";
-import { Heading } from "../ui/Heading";
-import { Text } from "../ui/Text";
-import { Reveal } from "../animations/Reveal";
-import { AmbientGlow, NoiseTexture } from "../animations/AmbientGlow";
-import { cn } from "../../lib/utils";
+'use client';
+import React from 'react';
+import { Container } from '../ui/Container';
+import { Heading } from '../ui/Heading';
+import { Text } from '../ui/Text';
+import { Reveal } from '../animations/Reveal';
+import { AmbientGlow, NoiseTexture } from '../animations/AmbientGlow';
+import { cn } from '../../lib/utils';
 
 /**
  * PageHero — reusable hero section for sub-pages.
@@ -25,7 +25,7 @@ interface PageHeroProps {
   title: string;
   description?: string;
   children?: React.ReactNode;
-  align?: "left" | "center";
+  align?: 'left' | 'center';
   className?: string;
 }
 
@@ -34,14 +34,14 @@ export function PageHero({
   title,
   description,
   children,
-  align = "center",
+  align = 'center',
   className,
 }: PageHeroProps) {
   return (
     <section
       className={cn(
-        "relative min-h-[50vh] flex items-center pt-32 pb-20 overflow-hidden",
-        className
+        'relative flex min-h-[50vh] items-center overflow-hidden pt-32 pb-20',
+        className,
       )}
     >
       {/* Atmosphere */}
@@ -50,13 +50,13 @@ export function PageHero({
 
       <Container
         className={cn(
-          "relative z-10",
-          align === "center" && "text-center flex flex-col items-center"
+          'relative z-10',
+          align === 'center' && 'flex flex-col items-center text-center',
         )}
       >
         <Reveal variant="fadeUp">
           {eyebrow && (
-            <span className="inline-block text-[10px] font-mono tracking-widest text-[#555] uppercase mb-6 border border-white/10 px-3 py-1.5 rounded-full bg-white/[0.02]">
+            <span className="text-muted-foreground/60 border-border bg-accent mb-6 inline-block rounded-full border px-3 py-1.5 font-mono text-[10px] tracking-widest uppercase">
               {eyebrow}
             </span>
           )}
@@ -64,7 +64,7 @@ export function PageHero({
             {title}
           </Heading>
           {description && (
-            <Text size="lg" className="max-w-2xl mt-6">
+            <Text size="lg" className="mt-6 max-w-2xl">
               {description}
             </Text>
           )}

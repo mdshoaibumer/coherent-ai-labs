@@ -6,7 +6,7 @@ import { EASE_OUT_EXPO, EASE_OUT_CUBIC, DURATION } from '../../lib/motion';
 
 export function ProblemStatement() {
   return (
-    <section className="relative overflow-hidden py-32">
+    <section className="relative overflow-hidden py-32 md:py-40">
       <AmbientGlow position="top-right" size="md" intensity={0.02} />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6">
@@ -28,29 +28,29 @@ export function ProblemStatement() {
           <RevealStagger stagger={0.12} className="space-y-4 font-mono text-sm">
             <RevealItem>
               <m.div
-                className="border-foreground/10 bg-card hover:border-foreground/20 hover:bg-foreground/[0.02] flex items-center justify-between rounded-xl border p-6 shadow-[0_0_16px_rgba(255,68,68,0.08)] transition-all duration-500"
-                whileHover={{ scale: 1.02, boxShadow: '0 0 24px rgba(255,68,68,0.15)' }}
+                className="border-border bg-card hover:border-border-hover hover:bg-accent flex items-center justify-between rounded-2xl border p-6 transition-all duration-500"
+                whileHover={{ scale: 1.01 }}
               >
                 <span className="text-muted-foreground">Avg. Manual Processing Time</span>
-                <span className="font-semibold text-[#ff6b6b]">14.2 mins / cycle</span>
+                <span className="font-semibold text-red-400">14.2 mins / cycle</span>
               </m.div>
             </RevealItem>
             <RevealItem>
               <m.div
-                className="border-foreground/10 bg-card hover:border-foreground/20 hover:bg-foreground/[0.02] flex items-center justify-between rounded-xl border p-6 shadow-[0_0_16px_rgba(255,68,68,0.08)] transition-all duration-500"
-                whileHover={{ scale: 1.02, boxShadow: '0 0 24px rgba(255,68,68,0.15)' }}
+                className="border-border bg-card hover:border-border-hover hover:bg-accent flex items-center justify-between rounded-2xl border p-6 transition-all duration-500"
+                whileHover={{ scale: 1.01 }}
               >
                 <span className="text-muted-foreground">System Latency Overhead</span>
-                <span className="font-semibold text-[#ff6b6b]">+ 28% YoY</span>
+                <span className="font-semibold text-red-400">+ 28% YoY</span>
               </m.div>
             </RevealItem>
             <RevealItem>
               <m.div
-                className="border-foreground/10 bg-card hover:border-foreground/20 hover:bg-foreground/[0.02] flex items-center justify-between rounded-xl border p-6 shadow-[0_0_16px_rgba(255,68,68,0.08)] transition-all duration-500"
-                whileHover={{ scale: 1.02, boxShadow: '0 0 24px rgba(255,68,68,0.15)' }}
+                className="border-border bg-card hover:border-border-hover hover:bg-accent flex items-center justify-between rounded-2xl border p-6 transition-all duration-500"
+                whileHover={{ scale: 1.01 }}
               >
                 <span className="text-muted-foreground">Error Rate (Human Factor)</span>
-                <span className="font-semibold text-[#ff6b6b]">3.4% per 10k ops</span>
+                <span className="font-semibold text-red-400">3.4% per 10k ops</span>
               </m.div>
             </RevealItem>
           </RevealStagger>

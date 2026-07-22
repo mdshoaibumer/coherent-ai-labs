@@ -8,10 +8,10 @@ interface ContentLayoutProps {
 
 export function ContentLayout({ children, header }: ContentLayoutProps) {
   return (
-    <div className="min-h-screen bg-[#020202] text-white flex flex-col">
+    <div className="bg-background text-foreground flex min-h-screen flex-col">
       {header && <header className="w-full">{header}</header>}
       <main className="flex-1 py-16 md:py-24">
-        <Container className="max-w-3xl mx-auto prose prose-invert prose-p:text-[#888] prose-headings:text-white prose-a:text-[var(--color-primary)]">
+        <Container className="prose prose-invert prose-p:text-muted-foreground prose-headings:text-foreground prose-a:text-[var(--color-primary)] mx-auto max-w-3xl">
           {children}
         </Container>
       </main>

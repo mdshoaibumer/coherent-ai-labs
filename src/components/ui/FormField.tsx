@@ -1,5 +1,5 @@
-import React from "react";
-import { cn } from "../../lib/utils";
+import React from 'react';
+import { cn } from '../../lib/utils';
 
 /**
  * FormField — wraps an input with label, description, and error message.
@@ -37,14 +37,11 @@ export function FormField({
   children,
 }: FormFieldProps) {
   return (
-    <div className={cn("space-y-2", className)}>
-      <label
-        htmlFor={htmlFor}
-        className="block text-sm font-medium text-white"
-      >
+    <div className={cn('space-y-2', className)}>
+      <label htmlFor={htmlFor} className="text-foreground block text-sm font-medium">
         {label}
         {required && (
-          <span className="text-[#ff4444] ml-1" aria-hidden="true">
+          <span className="ml-1 text-[#ff4444]" aria-hidden="true">
             *
           </span>
         )}
@@ -53,25 +50,34 @@ export function FormField({
       {children}
 
       {description && !error && (
-        <p className="text-xs text-[#666]" id={htmlFor ? `${htmlFor}-description` : undefined}>
+        <p
+          className="text-muted-foreground/70 text-xs"
+          id={htmlFor ? `${htmlFor}-description` : undefined}
+        >
           {description}
         </p>
       )}
 
       {error && (
         <p
-          className="text-xs text-[#ff4444] flex items-center gap-1"
+          className="flex items-center gap-1 text-xs text-[#ff4444]"
           role="alert"
           id={htmlFor ? `${htmlFor}-error` : undefined}
         >
           <svg
-            className="w-3 h-3 shrink-0"
+            className="h-3 w-3 shrink-0"
             viewBox="0 0 16 16"
             fill="currentColor"
             aria-hidden="true"
           >
             <circle cx="8" cy="8" r="8" opacity="0.2" />
-            <path d="M8 4v5M8 11h.01" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none" />
+            <path
+              d="M8 4v5M8 11h.01"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              fill="none"
+            />
           </svg>
           {error}
         </p>
@@ -99,13 +105,11 @@ interface FormSectionProps {
 
 export function FormSection({ title, description, className, children }: FormSectionProps) {
   return (
-    <fieldset className={cn("space-y-6", className)}>
+    <fieldset className={cn('space-y-6', className)}>
       <legend className="sr-only">{title}</legend>
       <div className="mb-6">
-        <h3 className="font-display text-lg font-medium text-white mb-1">{title}</h3>
-        {description && (
-          <p className="text-sm text-[#888]">{description}</p>
-        )}
+        <h3 className="font-display text-foreground mb-1 text-lg font-medium">{title}</h3>
+        {description && <p className="text-muted-foreground text-sm">{description}</p>}
       </div>
       {children}
     </fieldset>

@@ -6,15 +6,16 @@ interface LazySectionProps {
   fallback?: React.ReactNode;
 }
 
-export function LazySection({ children, fallback = <div className="h-screen w-full bg-[#020202]" /> }: LazySectionProps) {
+export function LazySection({
+  children,
+  fallback = <div className="bg-background h-screen w-full" />,
+}: LazySectionProps) {
   const { ref, inView } = useInView({
     triggerOnce: true,
     rootMargin: '200px 0px', // Load before it comes into view
   });
 
   return (
-    <div ref={ref}>
-      {inView ? <Suspense fallback={fallback}>{children}</Suspense> : fallback}
-    </div>
+    <div ref={ref}>{inView ? <Suspense fallback={fallback}>{children}</Suspense> : fallback}</div>
   );
 }

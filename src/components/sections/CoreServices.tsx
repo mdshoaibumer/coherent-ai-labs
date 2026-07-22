@@ -255,8 +255,7 @@ const BentoCard: React.FC<BentoCardProps> = React.memo(function BentoCard({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           style={{
-            background:
-              'linear-gradient(to right, transparent, rgba(var(--foreground),0.4), transparent)',
+            background: 'linear-gradient(to right, transparent, var(--accent-glow), transparent)',
           }}
         />
       )}
@@ -267,8 +266,8 @@ const BentoCard: React.FC<BentoCardProps> = React.memo(function BentoCard({
           className={cn(
             'flex h-12 w-12 items-center justify-center rounded-xl border shadow-inner transition-all duration-500',
             isHighlighted && !isDimmed
-              ? 'bg-foreground/15 border-foreground/30 shadow-[0_0_24px_rgba(0,200,255,0.2),inset_0_0_12px_rgba(255,255,255,0.08)]'
-              : 'bg-background border-foreground/10 group-hover:bg-foreground/5 group-hover:shadow-[0_0_12px_rgba(0,200,255,0.1)]',
+              ? 'bg-foreground/10 border-foreground/20 shadow-[0_0_20px_var(--accent-glow)]'
+              : 'bg-background border-border group-hover:bg-accent group-hover:border-border-hover',
           )}
           animate={
             prefersReducedMotion
@@ -315,7 +314,7 @@ const BentoCard: React.FC<BentoCardProps> = React.memo(function BentoCard({
         </p>
 
         {/* Business value footer */}
-        <div className="border-foreground/5 group-hover:border-foreground/10 border-t pt-4 transition-colors">
+        <div className="border-border group-hover:border-border-hover border-t pt-4 transition-colors">
           <p className="text-muted-foreground flex items-center gap-2 font-mono text-xs transition-colors">
             <span className="text-foreground/20">↳</span>
             {service.value}
@@ -327,9 +326,7 @@ const BentoCard: React.FC<BentoCardProps> = React.memo(function BentoCard({
       <div
         className={cn(
           'absolute right-4 bottom-4 h-2 w-2 rounded-full transition-all duration-500',
-          isHighlighted && !isDimmed
-            ? 'bg-foreground/50 shadow-[0_0_6px_rgba(var(--foreground),0.3)]'
-            : 'bg-foreground/10',
+          isHighlighted && !isDimmed ? 'bg-[var(--signal-color)] opacity-60' : 'bg-foreground/10',
         )}
       />
     </Card>
@@ -379,15 +376,9 @@ export function CoreServices() {
       background={
         <>
           {/* Noise texture */}
-          <div
-            className="pointer-events-none absolute inset-0 opacity-[0.02] mix-blend-screen"
-            style={{
-              backgroundImage:
-                "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E\")",
-            }}
-          />
+          <div className="noise-grain pointer-events-none absolute inset-0 opacity-[0.02] mix-blend-overlay" />
           {/* Ambient glow */}
-          <div className="pointer-events-none absolute top-[20%] left-1/2 h-[600px] w-[800px] -translate-x-1/2 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.02)_0%,transparent_70%)]" />
+          <div className="pointer-events-none absolute top-[20%] left-1/2 h-[600px] w-[800px] -translate-x-1/2 bg-[radial-gradient(ellipse_at_center,var(--accent-glow),transparent_70%)] opacity-40 blur-[80px]" />
         </>
       }
     >
@@ -424,7 +415,7 @@ export function CoreServices() {
             'focus-visible:ring-foreground rounded-lg border px-4 py-2 text-xs font-medium tracking-wide uppercase transition-all duration-300 outline-none focus-visible:ring-2',
             activeFilter === null
               ? 'bg-foreground text-background border-foreground'
-              : 'bg-foreground/[0.03] text-muted-foreground border-foreground/[0.08] hover:bg-foreground/[0.06] hover:text-foreground hover:border-foreground/15',
+              : 'bg-accent text-muted-foreground border-border hover:bg-foreground/[0.04] hover:text-foreground hover:border-border-hover',
           )}
         >
           All Services
@@ -438,7 +429,7 @@ export function CoreServices() {
               'focus-visible:ring-foreground rounded-lg border px-4 py-2 text-xs font-medium tracking-wide uppercase transition-all duration-300 outline-none focus-visible:ring-2',
               activeFilter === cat.id
                 ? 'bg-foreground text-background border-foreground'
-                : 'bg-foreground/[0.03] text-muted-foreground border-foreground/[0.08] hover:bg-foreground/[0.06] hover:text-foreground hover:border-foreground/15',
+                : 'bg-accent text-muted-foreground border-border hover:bg-foreground/[0.04] hover:text-foreground hover:border-border-hover',
             )}
           >
             {cat.label}
@@ -453,7 +444,7 @@ export function CoreServices() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.2 }}
-              className="flex items-center gap-2 px-3 py-2 font-mono text-[10px] tracking-widest text-[#555] uppercase"
+              className="text-muted-foreground/60 flex items-center gap-2 px-3 py-2 font-mono text-[10px] tracking-widest uppercase"
             >
               {
                 SERVICES.filter(
@@ -498,9 +489,9 @@ export function CoreServices() {
           (stat) => (
             <div
               key={stat}
-              className="flex items-center gap-2 font-mono text-xs tracking-widest text-[#555] uppercase"
+              className="text-muted-foreground/60 flex items-center gap-2 font-mono text-xs tracking-widest uppercase"
             >
-              <div className="h-1 w-1 rounded-full bg-white/20" />
+              <div className="bg-border h-1 w-1 rounded-full" />
               {stat}
             </div>
           ),

@@ -1,10 +1,10 @@
-"use client";
-import React, { useState, useCallback } from "react";
-import { m, AnimatePresence } from "motion/react";
-import { ChevronLeft, ChevronRight, Check } from "lucide-react";
-import { cn } from "../../lib/utils";
-import { EASE_OUT_EXPO } from "../../lib/motion";
-import { useReducedMotion } from "../../hooks/useReducedMotion";
+'use client';
+import React, { useState, useCallback } from 'react';
+import { m, AnimatePresence } from 'motion/react';
+import { ChevronLeft, ChevronRight, Check } from 'lucide-react';
+import { cn } from '../../lib/utils';
+import { EASE_OUT_EXPO } from '../../lib/motion';
+import { useReducedMotion } from '../../hooks/useReducedMotion';
 
 /* ═══════════════════════════════════════════════════════════
    TYPES
@@ -42,20 +42,20 @@ function StepIndicator({
   return (
     <div className="mb-10">
       {/* Progress bar */}
-      <div className="relative h-[2px] w-full bg-white/[0.06] rounded-full mb-6 overflow-hidden">
+      <div className="bg-accent relative mb-6 h-[2px] w-full overflow-hidden rounded-full">
         <m.div
           className="absolute top-0 left-0 h-full rounded-full"
           animate={{ width: `${((currentStep + 1) / steps.length) * 100}%` }}
           transition={{ duration: 0.5, ease: EASE_OUT_EXPO }}
           style={{
-            background: "linear-gradient(to right, rgba(255,255,255,0.3), rgba(255,255,255,0.6))",
-            boxShadow: "0 0 8px rgba(255,255,255,0.1)",
+            background: 'linear-gradient(to right, rgba(255,255,255,0.3), rgba(255,255,255,0.6))',
+            boxShadow: '0 0 8px rgba(255,255,255,0.1)',
           }}
         />
       </div>
 
       {/* Step dots (desktop) */}
-      <div className="hidden sm:flex items-center justify-between">
+      <div className="hidden items-center justify-between sm:flex">
         {steps.map((step, i) => {
           const isCompleted = i < currentStep;
           const isCurrent = i === currentStep;
@@ -67,28 +67,32 @@ function StepIndicator({
               onClick={() => isAccessible && onStepClick(i)}
               disabled={!isAccessible}
               className={cn(
-                "flex items-center gap-2 text-left outline-none focus-visible:ring-2 focus-visible:ring-white rounded-md px-1 py-0.5 transition-all duration-300",
-                isAccessible ? "cursor-pointer" : "cursor-default opacity-40"
+                'focus-visible:ring-ring flex items-center gap-2 rounded-md px-1 py-0.5 text-left transition-all duration-300 outline-none focus-visible:ring-2',
+                isAccessible ? 'cursor-pointer' : 'cursor-default opacity-40',
               )}
               aria-label={`Step ${i + 1}: ${step.title}`}
-              aria-current={isCurrent ? "step" : undefined}
+              aria-current={isCurrent ? 'step' : undefined}
             >
               <div
                 className={cn(
-                  "w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-mono font-bold border transition-all duration-300 shrink-0",
+                  'flex h-6 w-6 shrink-0 items-center justify-center rounded-full border font-mono text-[10px] font-bold transition-all duration-300',
                   isCompleted
-                    ? "bg-white text-black border-white"
+                    ? 'border-white bg-white text-black'
                     : isCurrent
-                      ? "bg-white/10 text-white border-white/40"
-                      : "bg-transparent text-[#555] border-white/10"
+                      ? 'text-foreground border-white/40 bg-white/10'
+                      : 'text-muted-foreground/60 border-border bg-transparent',
                 )}
               >
-                {isCompleted ? <Check className="w-3 h-3" /> : i + 1}
+                {isCompleted ? <Check className="h-3 w-3" /> : i + 1}
               </div>
               <span
                 className={cn(
-                  "text-xs font-medium hidden lg:block transition-colors duration-300",
-                  isCurrent ? "text-white" : isCompleted ? "text-[#aaa]" : "text-[#555]"
+                  'hidden text-xs font-medium transition-colors duration-300 lg:block',
+                  isCurrent
+                    ? 'text-foreground'
+                    : isCompleted
+                      ? 'text-muted-foreground'
+                      : 'text-muted-foreground/60',
                 )}
               >
                 {step.title}
@@ -99,11 +103,11 @@ function StepIndicator({
       </div>
 
       {/* Mobile: current step label */}
-      <div className="sm:hidden flex items-center justify-between">
-        <span className="text-xs font-mono text-[#555]">
+      <div className="flex items-center justify-between sm:hidden">
+        <span className="text-muted-foreground/60 font-mono text-xs">
           Step {currentStep + 1} of {steps.length}
         </span>
-        <span className="text-sm font-medium text-white">{steps[currentStep].title}</span>
+        <span className="text-foreground text-sm font-medium">{steps[currentStep].title}</span>
       </div>
     </div>
   );
@@ -117,7 +121,7 @@ export function FormWizard({
   steps,
   children,
   onComplete,
-  submitLabel = "Submit",
+  submitLabel = 'Submit',
   className,
 }: FormWizardProps) {
   const [currentStep, setCurrentStep] = useState(0);
@@ -146,24 +150,24 @@ export function FormWizard({
       setDirection(index > currentStep ? 1 : -1);
       setCurrentStep(index);
     },
-    [currentStep]
+    [currentStep],
   );
 
   const variants = prefersReducedMotion
     ? { enter: { opacity: 1 }, center: { opacity: 1 }, exit: { opacity: 1 } }
     : {
-        enter: (d: number) => ({ x: d > 0 ? 40 : -40, opacity: 0, filter: "blur(4px)" }),
-        center: { x: 0, opacity: 1, filter: "blur(0px)" },
-        exit: (d: number) => ({ x: d > 0 ? -40 : 40, opacity: 0, filter: "blur(4px)" }),
+        enter: (d: number) => ({ x: d > 0 ? 40 : -40, opacity: 0, filter: 'blur(4px)' }),
+        center: { x: 0, opacity: 1, filter: 'blur(0px)' },
+        exit: (d: number) => ({ x: d > 0 ? -40 : 40, opacity: 0, filter: 'blur(4px)' }),
       };
 
   return (
-    <div className={cn("w-full", className)}>
+    <div className={cn('w-full', className)}>
       <StepIndicator steps={steps} currentStep={currentStep} onStepClick={goToStep} />
 
       {/* Step description */}
       {steps[currentStep].description && (
-        <p className="text-sm text-[#888] mb-6">{steps[currentStep].description}</p>
+        <p className="text-muted-foreground mb-6 text-sm">{steps[currentStep].description}</p>
       )}
 
       {/* Step content with directional animation */}
@@ -185,34 +189,34 @@ export function FormWizard({
       </div>
 
       {/* Navigation */}
-      <div className="flex items-center justify-between mt-8 pt-6 border-t border-white/5">
+      <div className="border-border mt-8 flex items-center justify-between border-t pt-6">
         <button
           onClick={goBack}
           disabled={isFirstStep}
           className={cn(
-            "flex items-center gap-2 text-sm font-medium transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-white rounded-md px-3 py-2",
+            'focus-visible:ring-ring flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-all duration-300 outline-none focus-visible:ring-2',
             isFirstStep
-              ? "text-[#333] cursor-default"
-              : "text-[#888] hover:text-white cursor-pointer"
+              ? 'cursor-default text-[#333]'
+              : 'text-muted-foreground hover:text-foreground cursor-pointer',
           )}
           aria-label="Previous step"
         >
-          <ChevronLeft className="w-4 h-4" />
+          <ChevronLeft className="h-4 w-4" />
           Back
         </button>
 
         <button
           onClick={goNext}
           className={cn(
-            "flex items-center gap-2 font-medium transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-white rounded-xl px-6 py-3",
+            'focus-visible:ring-ring flex items-center gap-2 rounded-xl px-6 py-3 font-medium transition-all duration-300 outline-none focus-visible:ring-2',
             isLastStep
-              ? "bg-white text-black hover:bg-gray-100 text-base"
-              : "bg-white/10 text-white hover:bg-white/15 text-sm border border-white/10"
+              ? 'bg-white text-base text-black hover:bg-gray-100'
+              : 'text-foreground border-border border bg-white/10 text-sm hover:bg-white/15',
           )}
-          aria-label={isLastStep ? submitLabel : "Next step"}
+          aria-label={isLastStep ? submitLabel : 'Next step'}
         >
-          {isLastStep ? submitLabel : "Continue"}
-          {isLastStep ? <Check className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+          {isLastStep ? submitLabel : 'Continue'}
+          {isLastStep ? <Check className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
         </button>
       </div>
     </div>

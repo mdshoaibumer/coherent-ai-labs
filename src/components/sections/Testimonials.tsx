@@ -124,10 +124,10 @@ export function Testimonials() {
             <RevealItem key={standard.title}>
               <GlassPanel
                 variant="dark"
-                className="group hover:border-foreground/15 h-full p-5 transition-all duration-500"
+                className="group hover:border-border-hover h-full p-5 transition-all duration-500"
               >
                 <div className="mb-4 flex items-center justify-between">
-                  <div className="bg-foreground/[0.05] border-foreground/10 group-hover:border-foreground/20 flex h-9 w-9 items-center justify-center rounded-lg border transition-colors duration-500">
+                  <div className="bg-accent border-border group-hover:border-border-hover flex h-9 w-9 items-center justify-center rounded-lg border transition-colors duration-500">
                     <standard.icon
                       className="text-muted-foreground group-hover:text-foreground h-4 w-4 transition-colors duration-500"
                       strokeWidth={1.5}
@@ -153,7 +153,7 @@ export function Testimonials() {
 
         {/* Delivery Principles */}
         <Reveal variant="fade" delay={0.2}>
-          <div className="border-foreground/5 mx-auto max-w-4xl border-t pt-12">
+          <div className="border-border mx-auto max-w-4xl border-t pt-12">
             <div className="mb-8 text-center">
               <span className="text-muted-foreground font-mono text-[10px] tracking-widest uppercase">
                 Delivery Principles
@@ -163,7 +163,7 @@ export function Testimonials() {
               {DELIVERY_PRINCIPLES.map((principle) => (
                 <div
                   key={principle}
-                  className="bg-foreground/[0.02] border-foreground/[0.06] hover:bg-foreground/[0.04] hover:border-foreground/10 flex items-center gap-2 rounded-full border px-4 py-2.5 transition-colors"
+                  className="bg-accent border-border hover:bg-foreground/[0.04] hover:border-border-hover flex items-center gap-2 rounded-full border px-4 py-2.5 transition-colors"
                 >
                   <CheckCircle2 className="text-muted-foreground h-3.5 w-3.5" />
                   <span className="text-muted-foreground text-xs font-medium">{principle}</span>

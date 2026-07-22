@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import React, { useState } from 'react';
 import { m, AnimatePresence } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
@@ -13,22 +13,30 @@ interface AccordionItemProps {
   id?: string;
 }
 
-export function AccordionItem({ title, children, isOpen = false, onClick, id }: AccordionItemProps) {
+export function AccordionItem({
+  title,
+  children,
+  isOpen = false,
+  onClick,
+  id,
+}: AccordionItemProps) {
   const prefersReducedMotion = useReducedMotion();
   const contentId = id ? `accordion-content-${id}` : undefined;
   const buttonId = id ? `accordion-button-${id}` : undefined;
 
   return (
-    <div className="border-b border-white/10 last:border-0">
+    <div className="border-border border-b last:border-0">
       <button
         id={buttonId}
         aria-expanded={isOpen}
         aria-controls={contentId}
         onClick={onClick}
-        className="flex w-full items-center justify-between py-4 text-left text-lg font-medium text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#020202] rounded-md transition-colors hover:text-white/80"
+        className="text-foreground focus-visible:ring-ring hover:text-foreground/80 flex w-full items-center justify-between rounded-md py-4 text-left text-lg font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#020202]"
       >
         <span>{title}</span>
-        <ChevronDown className={cn("h-5 w-5 transition-transform duration-300", isOpen && "rotate-180")} />
+        <ChevronDown
+          className={cn('h-5 w-5 transition-transform duration-300', isOpen && 'rotate-180')}
+        />
       </button>
       <AnimatePresence initial={false}>
         {isOpen && (
@@ -42,9 +50,7 @@ export function AccordionItem({ title, children, isOpen = false, onClick, id }: 
             transition={{ duration: 0.3, ease: 'easeInOut' }}
             className="overflow-hidden"
           >
-            <div className="pb-4 text-[#888]">
-              {children}
-            </div>
+            <div className="text-muted-foreground pb-4">{children}</div>
           </m.div>
         )}
       </AnimatePresence>
@@ -62,7 +68,7 @@ export function Accordion({ items, allowMultiple = false, className }: Accordion
   const [openItems, setOpenItems] = useState<Set<string>>(new Set());
 
   const toggleItem = (id: string) => {
-    setOpenItems(prev => {
+    setOpenItems((prev) => {
       const next = new Set(allowMultiple ? prev : []);
       if (prev.has(id)) {
         next.delete(id);
@@ -74,8 +80,8 @@ export function Accordion({ items, allowMultiple = false, className }: Accordion
   };
 
   return (
-    <div className={cn("w-full", className)}>
-      {items.map(item => (
+    <div className={cn('w-full', className)}>
+      {items.map((item) => (
         <AccordionItem
           key={item.id}
           id={item.id}

@@ -1,7 +1,7 @@
-"use client";
-import React from "react";
-import { RevealStagger, RevealItem } from "../animations/Reveal";
-import { cn } from "../../lib/utils";
+'use client';
+import React from 'react';
+import { RevealStagger, RevealItem } from '../animations/Reveal';
+import { cn } from '../../lib/utils';
 
 /**
  * StatsRow — horizontal row of key metrics/statistics.
@@ -25,36 +25,35 @@ interface StatsRowProps {
   stats: Stat[];
   className?: string;
   /** Visual variant. Default: "default" */
-  variant?: "default" | "bordered" | "cards";
+  variant?: 'default' | 'bordered' | 'cards';
 }
 
-export function StatsRow({ stats, className, variant = "default" }: StatsRowProps) {
+export function StatsRow({ stats, className, variant = 'default' }: StatsRowProps) {
   return (
     <RevealStagger
       stagger={0.1}
       className={cn(
-        "grid gap-8",
-        stats.length <= 3 ? "grid-cols-1 sm:grid-cols-3" : "grid-cols-2 sm:grid-cols-4",
-        className
+        'grid gap-8',
+        stats.length <= 3 ? 'grid-cols-1 sm:grid-cols-3' : 'grid-cols-2 sm:grid-cols-4',
+        className,
       )}
     >
       {stats.map((stat) => (
         <RevealItem key={stat.label}>
           <div
             className={cn(
-              "text-center",
-              variant === "bordered" && "py-6 border-t border-white/10",
-              variant === "cards" &&
-                "p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06]"
+              'text-center',
+              variant === 'bordered' && 'border-border border-t py-6',
+              variant === 'cards' && 'bg-accent border-border rounded-2xl border p-6',
             )}
           >
-            <div className="font-display text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight">
+            <div className="font-display text-foreground mb-2 text-3xl font-bold tracking-tight md:text-4xl">
               {stat.value}
               {stat.suffix && (
-                <span className="text-[#666] text-2xl">{stat.suffix}</span>
+                <span className="text-muted-foreground/70 text-2xl">{stat.suffix}</span>
               )}
             </div>
-            <div className="text-xs font-mono text-[#666] uppercase tracking-widest">
+            <div className="text-muted-foreground/70 font-mono text-xs tracking-widest uppercase">
               {stat.label}
             </div>
           </div>

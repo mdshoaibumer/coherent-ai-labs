@@ -1,43 +1,48 @@
-"use client";
-import { ReactNode, forwardRef } from "react";
-import { m, HTMLMotionProps } from "motion/react";
-import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "../../lib/utils";
-import { useReducedMotion } from "../../hooks/useReducedMotion";
+'use client';
+import { ReactNode, forwardRef } from 'react';
+import { m, HTMLMotionProps, useMotionValue, useTransform } from 'motion/react';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { cn } from '../../lib/utils';
+import { useReducedMotion } from '../../hooks/useReducedMotion';
 
 const cardVariants = cva(
-  "group relative rounded-2xl overflow-hidden transition-all duration-500 outline-none focus-visible:ring-2 focus-visible:ring-white",
+  'group relative rounded-2xl overflow-hidden transition-all duration-500 outline-none focus-visible:ring-2 focus-visible:ring-ring',
   {
     variants: {
       variant: {
-        default: "bg-[var(--color-card)] border border-[var(--color-card-border)]",
-        glass: "bg-white/5 border border-white/10 backdrop-blur-md",
-        ghost: "bg-transparent border border-transparent",
+        default: 'bg-card border border-border hover:border-border-hover',
+        glass: 'glass-panel',
+        ghost: 'bg-transparent border border-transparent hover:border-border',
+        elevated:
+          'bg-card border border-border shadow-[var(--shadow-md)] hover:shadow-[var(--shadow-lg)] hover:border-border-hover',
       },
       padding: {
-        default: "p-6 sm:p-8",
-        sm: "p-4 sm:p-6",
-        none: "p-0",
+        default: 'p-6 sm:p-8',
+        sm: 'p-4 sm:p-6',
+        lg: 'p-8 sm:p-10',
+        none: 'p-0',
       },
       hoverEffect: {
-        true: "hover:border-white/20 shadow-xl hover:shadow-2xl hover:shadow-white/5",
-        false: "",
+        true: '',
+        false: '',
       },
       premium: {
-        true: "",
-        false: "",
-      }
+        true: '',
+        false: '',
+      },
     },
     defaultVariants: {
-      variant: "default",
-      padding: "default",
+      variant: 'default',
+      padding: 'default',
       hoverEffect: true,
       premium: false,
-    }
-  }
+    },
+  },
 );
 
-export interface CardProps extends Omit<HTMLMotionProps<"div">, "className" | "style">, VariantProps<typeof cardVariants> {
+export interface CardProps
+  extends Omit<HTMLMotionProps<'div'>, 'className' | 'style' | 'onMouseMove'>,
+    VariantProps<typeof cardVariants> {
   children: ReactNode;
   className?: string;
 }
@@ -45,29 +50,44 @@ export interface CardProps extends Omit<HTMLMotionProps<"div">, "className" | "s
 export const Card = forwardRef<HTMLDivElement, CardProps>(
   ({ className, variant, padding, hoverEffect, premium, children, ...props }, ref) => {
     const prefersReducedMotion = useReducedMotion();
-    
+    const mouseX = useMotionValue(0);
+    const mouseY = useMotionValue(0);
+
+    const highlightBackground = useTransform(
+      [mouseX, mouseY],
+      ([x, y]) =>
+        `radial-gradient(350px circle at ${x}px ${y}px, var(--accent-glow), transparent 100%)`,
+    );
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+      const { left, top } = e.currentTarget.getBoundingClientRect();
+      mouseX.set(e.clientX - left);
+      mouseY.set(e.clientY - top);
+    };
+
     return (
       <m.div
         ref={ref}
         className={cn(cardVariants({ variant, padding, hoverEffect, premium, className }))}
-        whileHover={!prefersReducedMotion && premium ? { scale: 1.02, y: -4 } : undefined}
-        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+        onMouseMove={hoverEffect && !prefersReducedMotion ? handleMouseMove : undefined}
+        whileHover={!prefersReducedMotion && premium ? { scale: 1.01, y: -3 } : undefined}
+        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
         {...props}
       >
-        {hoverEffect && (
-          <>
-            <div className="absolute inset-0 bg-gradient-to-br from-white/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.06)_0%,transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-            {premium && (
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,200,255,0.03)_0%,transparent_60%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-            )}
-          </>
+        {/* Mouse-following highlight gradient */}
+        {hoverEffect && !prefersReducedMotion && (
+          <m.div
+            className="pointer-events-none absolute inset-0 -z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+            style={{ background: highlightBackground }}
+          />
         )}
-        <div className="relative z-10 flex flex-col h-full">
-          {children}
-        </div>
+
+        {/* Top edge highlight on hover */}
+        <div className="via-foreground/[0.06] pointer-events-none absolute inset-x-0 top-0 z-0 h-px bg-gradient-to-r from-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+        <div className="relative z-10 flex h-full flex-col">{children}</div>
       </m.div>
     );
-  }
+  },
 );
-Card.displayName = "Card";
+Card.displayName = 'Card';

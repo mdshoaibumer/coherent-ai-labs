@@ -26,43 +26,46 @@ console.log(response.output);`;
     <SectionReveal>
       <SplitLayout
         leftContent={
-          <div className="w-full relative group">
-             <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-primary)]/20 to-transparent blur-xl transition-opacity opacity-0 group-hover:opacity-100" />
-             <div className="relative bg-[#0a0a0a] border border-white/10 rounded-xl overflow-hidden font-mono text-sm shadow-2xl">
-                <div className="flex items-center px-4 py-3 border-b border-white/10 bg-[#111]">
-                   <div className="flex gap-2">
-                     <div className="w-3 h-3 rounded-full bg-red-500/50" />
-                     <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
-                     <div className="w-3 h-3 rounded-full bg-green-500/50" />
-                   </div>
-                   <div className="mx-auto text-xs text-[#888]">agent.ts</div>
+          <div className="group relative w-full">
+            <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-primary)]/20 to-transparent opacity-0 blur-xl transition-opacity group-hover:opacity-100" />
+            <div className="bg-muted border-border relative overflow-hidden rounded-xl border font-mono text-sm shadow-2xl">
+              <div className="border-border flex items-center border-b bg-[#111] px-4 py-3">
+                <div className="flex gap-2">
+                  <div className="h-3 w-3 rounded-full bg-red-500/50" />
+                  <div className="h-3 w-3 rounded-full bg-yellow-500/50" />
+                  <div className="h-3 w-3 rounded-full bg-green-500/50" />
                 </div>
-                <div className="p-6 overflow-x-auto">
-                   <pre className="text-[#e0e0e0] leading-relaxed">
-                     <code>{codeSnippet}</code>
-                   </pre>
-                </div>
-             </div>
+                <div className="text-muted-foreground mx-auto text-xs">agent.ts</div>
+              </div>
+              <div className="overflow-x-auto p-6">
+                <pre className="text-foreground/90 leading-relaxed">
+                  <code>{codeSnippet}</code>
+                </pre>
+              </div>
+            </div>
           </div>
         }
         rightContent={
           <div className="max-w-xl pl-0 lg:pl-12">
-            <Heading level={2} className="mb-6">Built for Engineers.</Heading>
-            <Paragraph className="text-xl text-[#888] mb-8">
-              Stop fighting with fragmented Python scripts. Our type-safe SDKs, comprehensive REST APIs, and native CLI get out of your way so you can ship faster.
+            <Heading level={2} className="mb-6">
+              Built for Engineers.
+            </Heading>
+            <Paragraph className="text-muted-foreground mb-8 text-xl">
+              Stop fighting with fragmented Python scripts. Our type-safe SDKs, comprehensive REST
+              APIs, and native CLI get out of your way so you can ship faster.
             </Paragraph>
-            <ul className="space-y-4 mb-8">
-              <li className="flex items-center text-[#e0e0e0]">
-                 <span className="w-1.5 h-1.5 bg-[var(--color-primary)] rounded-full mr-3" />
-                 Native TypeScript & Python SDKs
+            <ul className="mb-8 space-y-4">
+              <li className="text-foreground/90 flex items-center">
+                <span className="mr-3 h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]" />
+                Native TypeScript & Python SDKs
               </li>
-              <li className="flex items-center text-[#e0e0e0]">
-                 <span className="w-1.5 h-1.5 bg-[var(--color-primary)] rounded-full mr-3" />
-                 OpenAPI 3.1 Compliant REST API
+              <li className="text-foreground/90 flex items-center">
+                <span className="mr-3 h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]" />
+                OpenAPI 3.1 Compliant REST API
               </li>
-              <li className="flex items-center text-[#e0e0e0]">
-                 <span className="w-1.5 h-1.5 bg-[var(--color-primary)] rounded-full mr-3" />
-                 Infrastructure as Code (Terraform Provider)
+              <li className="text-foreground/90 flex items-center">
+                <span className="mr-3 h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]" />
+                Infrastructure as Code (Terraform Provider)
               </li>
             </ul>
             <Button variant="outline">View Documentation</Button>
