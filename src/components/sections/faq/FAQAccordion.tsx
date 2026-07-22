@@ -1,7 +1,7 @@
-"use client";
-import {m, AnimatePresence } from "motion/react";
-import { Plus, Minus } from "lucide-react";
-import { cn } from "../../../lib/utils";
+'use client';
+import { m, AnimatePresence } from 'motion/react';
+import { Plus, Minus } from 'lucide-react';
+import { cn } from '../../../lib/utils';
 
 interface FAQItem {
   q: string;
@@ -23,7 +23,7 @@ export function FAQAccordion({
   searchQuery,
   onClearSearch,
   openIndexes,
-  onToggleQuestion
+  onToggleQuestion,
 }: FAQAccordionProps) {
   return (
     <div className="space-y-4">
@@ -33,12 +33,14 @@ export function FAQAccordion({
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="text-center py-12 px-6 bg-[#050505] border border-white/5 rounded-2xl"
+            className="bg-card border-foreground/5 rounded-2xl border px-6 py-12 text-center"
           >
-            <p className="text-[#888] text-lg">No questions found matching "{searchQuery}".</p>
-            <button 
+            <p className="text-muted-foreground text-lg">
+              No questions found matching "{searchQuery}".
+            </p>
+            <button
               onClick={onClearSearch}
-              className="mt-4 text-sm text-white/60 hover:text-white transition-colors"
+              className="text-foreground/60 hover:text-foreground mt-4 text-sm transition-colors"
             >
               Clear search
             </button>
@@ -47,7 +49,7 @@ export function FAQAccordion({
           filteredFaqs.map((faq, i) => {
             const originalIndex = allFaqs.indexOf(faq);
             const isOpen = openIndexes.has(originalIndex);
-            
+
             return (
               <m.div
                 key={faq.q}
@@ -57,44 +59,55 @@ export function FAQAccordion({
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: Math.min(i * 0.05, 0.3) }}
                 className={cn(
-                  "bg-[#050505] border rounded-2xl overflow-hidden transition-colors duration-300",
-                  isOpen ? "border-white/20 shadow-[0_0_30px_rgba(255,255,255,0.03)]" : "border-white/5 hover:border-white/10"
+                  'bg-card overflow-hidden rounded-2xl border transition-colors duration-300',
+                  isOpen
+                    ? 'border-foreground/20 shadow-[0_0_30px_rgba(var(--foreground),0.03)]'
+                    : 'border-foreground/5 hover:border-foreground/10',
                 )}
               >
                 <button
                   id={`faq-button-${originalIndex}`}
                   aria-controls={`faq-panel-${originalIndex}`}
-                  className="w-full px-6 py-6 flex items-start justify-between text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20"
+                  className="focus-visible:ring-foreground/20 flex w-full items-start justify-between px-6 py-6 text-left focus-visible:ring-2 focus-visible:outline-none"
                   onClick={() => onToggleQuestion(originalIndex)}
                   aria-expanded={isOpen}
                 >
-                  <span className={cn(
-                    "text-lg font-medium pr-8 transition-colors duration-300",
-                    isOpen ? "text-white" : "text-[#aaa] hover:text-[#ccc]"
-                  )}>
+                  <span
+                    className={cn(
+                      'pr-8 text-lg font-medium transition-colors duration-300',
+                      isOpen ? 'text-foreground' : 'text-muted-foreground hover:text-foreground/80',
+                    )}
+                  >
                     {faq.q}
                   </span>
-                  <div className={cn(
-                    "p-1 rounded-full border shrink-0 transition-colors duration-300 mt-0.5",
-                    isOpen ? "bg-white/10 border-white/20 text-white" : "bg-white/5 border-white/5 text-[#666]"
-                  )}>
-                    {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                  <div
+                    className={cn(
+                      'mt-0.5 shrink-0 rounded-full border p-1 transition-colors duration-300',
+                      isOpen
+                        ? 'bg-foreground/10 border-foreground/20 text-foreground'
+                        : 'bg-foreground/5 border-foreground/5 text-muted-foreground',
+                    )}
+                  >
+                    {isOpen ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
                   </div>
                 </button>
-                
+
                 <AnimatePresence initial={false}>
                   {isOpen && (
                     <m.div
                       initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
+                      animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      transition={{ duration: 0.3, ease: 'easeInOut' }}
                     >
-                      <div id={`faq-panel-${originalIndex}`} aria-labelledby={`faq-button-${originalIndex}`} role="region" className="px-6 pb-6 pt-2">
-                        <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-6" />
-                        <p className="text-[#888] leading-relaxed text-base">
-                          {faq.a}
-                        </p>
+                      <div
+                        id={`faq-panel-${originalIndex}`}
+                        aria-labelledby={`faq-button-${originalIndex}`}
+                        role="region"
+                        className="px-6 pt-2 pb-6"
+                      >
+                        <div className="via-foreground/10 mb-6 h-px w-full bg-gradient-to-r from-transparent to-transparent" />
+                        <p className="text-muted-foreground text-base leading-relaxed">{faq.a}</p>
                       </div>
                     </m.div>
                   )}

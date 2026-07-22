@@ -1,70 +1,76 @@
-"use client";
-import {m } from "motion/react";
-import { CheckCircle2 } from "lucide-react";
-import { EASE_OUT_EXPO, EASE_OUT_CUBIC } from "../../lib/motion";
+'use client';
+import { m } from 'motion/react';
+import { CheckCircle2 } from 'lucide-react';
+import { EASE_OUT_EXPO, EASE_OUT_CUBIC } from '../../lib/motion';
 
-import { DIFFERENTIATORS, PRINCIPLES } from "../../constants/whyUs";
+import { DIFFERENTIATORS, PRINCIPLES } from '../../constants/whyUs';
 
 export function WhyUs() {
   return (
-    <section id="why-us" className="py-32 bg-[#020202] relative overflow-hidden">
+    <section id="why-us" className="bg-background relative overflow-hidden py-32">
       {/* Background Lighting — layered depth */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-white/[0.03] blur-[140px] pointer-events-none rounded-full" />
-      <div className="absolute top-1/2 right-0 w-[600px] h-[300px] bg-[radial-gradient(ellipse,rgba(0,200,255,0.02)_0%,transparent_70%)] blur-[120px] pointer-events-none" />
-      
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-20">
+      <div className="bg-foreground/[0.03] pointer-events-none absolute top-1/4 left-1/2 h-[400px] w-[800px] -translate-x-1/2 rounded-full blur-[140px]" />
+      <div className="pointer-events-none absolute top-1/2 right-0 h-[300px] w-[600px] bg-[radial-gradient(ellipse,rgba(var(--foreground),0.02)_0%,transparent_70%)] blur-[120px]" />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
+        <div className="mx-auto mb-20 max-w-3xl text-center">
           <m.div
-            initial={{ opacity: 0, y: 35, filter: "blur(8px)" }}
-            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            initial={{ opacity: 0, y: 35, filter: 'blur(8px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             viewport={{ once: true }}
             transition={{ duration: 0.95, ease: EASE_OUT_CUBIC }}
           >
-            <h2 className="font-display text-4xl md:text-5xl font-medium tracking-tight text-white mb-6">
+            <h2 className="font-display text-foreground mb-6 text-4xl font-medium tracking-tight md:text-5xl">
               Why Engineering Teams Choose Coherent AI Labs
             </h2>
-            <p className="text-[#888] text-lg leading-relaxed">
-              We build AI-native software with a focus on scalability, maintainability, security, and measurable business outcomes.
+            <p className="text-muted-foreground text-lg leading-relaxed">
+              We build AI-native software with a focus on scalability, maintainability, security,
+              and measurable business outcomes.
             </p>
           </m.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
+        <div className="mb-24 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {DIFFERENTIATORS.map((item, i) => (
             <m.div
               key={item.title}
-              initial={{ opacity: 0, y: 28, scale: 0.96, filter: "blur(4px)" }}
-              whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+              initial={{ opacity: 0, y: 28, scale: 0.96, filter: 'blur(4px)' }}
+              whileInView={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.08, ease: EASE_OUT_CUBIC }}
               whileHover={{ y: -4, scale: 1.02 }}
-              className="group relative p-8 rounded-2xl bg-[#080808] border border-white/8 hover:border-white/25 hover:bg-white/[0.02] transition-all duration-500 overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-white shadow-[0_0_0_rgba(0,200,255,0),inset_0_0_0_rgba(255,255,255,0)] hover:shadow-[0_0_20px_rgba(0,200,255,0.08),inset_0_1px_1px_rgba(255,255,255,0.05)]"
+              className="group bg-card border-foreground/5 hover:border-foreground/25 hover:bg-foreground/[0.02] focus-visible:ring-foreground relative overflow-hidden rounded-2xl border p-8 shadow-[0_0_0_rgba(var(--foreground),0),inset_0_0_0_rgba(var(--foreground),0)] transition-all duration-500 outline-none hover:shadow-[0_0_20px_rgba(var(--foreground),0.05),inset_0_1px_1px_rgba(var(--foreground),0.05)] focus-visible:ring-2"
               tabIndex={0}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-white/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(0,200,255,0.05)_0%,transparent_60%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-              
-              <div className="relative z-10 flex flex-col h-full">
-                <m.div 
-                  className="w-12 h-12 bg-white/8 border border-white/15 rounded-xl flex items-center justify-center mb-6 group-hover:border-white/40 transition-all duration-500 shadow-[0_0_12px_rgba(0,200,255,0.05)]"
-                  whileHover={{ scale: 1.15, boxShadow: "0 0 20px rgba(0,200,255,0.15)" }}
+              <div className="from-foreground/[0.04] absolute inset-0 bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(var(--foreground),0.05)_0%,transparent_60%)] opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
+
+              <div className="relative z-10 flex h-full flex-col">
+                <m.div
+                  className="bg-foreground/5 border-foreground/15 group-hover:border-foreground/40 mb-6 flex h-12 w-12 items-center justify-center rounded-xl border shadow-[0_0_12px_rgba(var(--foreground),0.05)] transition-all duration-500"
+                  whileHover={{ scale: 1.15, boxShadow: '0 0 20px rgba(var(--foreground),0.1)' }}
                   transition={{ duration: 0.3 }}
                 >
-                  <item.icon className="w-6 h-6 text-[#ddd] group-hover:text-white transition-colors duration-500" strokeWidth={1.5} />
+                  <item.icon
+                    className="text-muted-foreground group-hover:text-foreground h-6 w-6 transition-colors duration-500"
+                    strokeWidth={1.5}
+                  />
                 </m.div>
-                
-                <h3 className="font-display text-xl font-medium text-white mb-3 tracking-tight">
+
+                <h3 className="font-display text-foreground mb-3 text-xl font-medium tracking-tight">
                   {item.title}
                 </h3>
-                
-                <p className="text-[#888] text-sm leading-relaxed mb-8 flex-1">
+
+                <p className="text-muted-foreground mb-8 flex-1 text-sm leading-relaxed">
                   {item.description}
                 </p>
-                
-                <div className="flex items-center gap-2 pt-4 border-t border-white/5">
-                  <span className="text-xs font-mono text-[#666] tracking-widest uppercase">Business Value</span>
-                  <div className="w-1 h-1 rounded-full bg-white/20 mx-2" />
-                  <span className="text-xs font-medium text-white/80">{item.value}</span>
+
+                <div className="border-foreground/5 flex items-center gap-2 border-t pt-4">
+                  <span className="text-muted-foreground font-mono text-xs tracking-widest uppercase">
+                    Business Value
+                  </span>
+                  <div className="bg-foreground/20 mx-2 h-1 w-1 rounded-full" />
+                  <span className="text-foreground/80 text-xs font-medium">{item.value}</span>
                 </div>
               </div>
             </m.div>
@@ -77,20 +83,22 @@ export function WhyUs() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="max-w-5xl mx-auto"
+          className="mx-auto max-w-5xl"
         >
-          <div className="text-center mb-10">
-            <h3 className="font-display text-sm font-mono tracking-widest text-[#555] uppercase">Core Engineering Principles</h3>
+          <div className="mb-10 text-center">
+            <h3 className="font-display text-muted-foreground font-mono text-sm tracking-widest uppercase">
+              Core Engineering Principles
+            </h3>
           </div>
-          
+
           <div className="flex flex-wrap justify-center gap-3 md:gap-4">
             {PRINCIPLES.map((principle) => (
-              <div 
+              <div
                 key={principle}
-                className="flex items-center gap-3 px-5 py-3 rounded-full bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-colors"
+                className="bg-foreground/[0.02] border-foreground/5 hover:bg-foreground/[0.04] flex items-center gap-3 rounded-full border px-5 py-3 transition-colors"
               >
-                <CheckCircle2 className="w-4 h-4 text-[#555]" strokeWidth={2} />
-                <span className="text-sm font-medium text-[#aaa]">{principle}</span>
+                <CheckCircle2 className="text-muted-foreground h-4 w-4" strokeWidth={2} />
+                <span className="text-muted-foreground text-sm font-medium">{principle}</span>
               </div>
             ))}
           </div>

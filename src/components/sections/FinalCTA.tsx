@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import {
   ArrowRight,
   CheckCircle2,
@@ -8,54 +8,54 @@ import {
   Zap,
   Code,
   PlayCircle,
-} from "lucide-react";
-import { Section } from "../ui/Section";
-import { Container } from "../ui/Container";
-import { Heading } from "../ui/Heading";
-import { Text } from "../ui/Text";
-import { Grid } from "../ui/Grid";
-import { GlassPanel } from "../ui/GlassPanel";
-import { Reveal, RevealStagger, RevealItem } from "../animations/Reveal";
-import { MagneticButton } from "../animations/MagneticButton";
-import { AmbientGlow } from "../animations/AmbientGlow";
+} from 'lucide-react';
+import { Section } from '../ui/Section';
+import { Container } from '../ui/Container';
+import { Heading } from '../ui/Heading';
+import { Text } from '../ui/Text';
+import { Grid } from '../ui/Grid';
+import { GlassPanel } from '../ui/GlassPanel';
+import { Reveal, RevealStagger, RevealItem } from '../animations/Reveal';
+import { MagneticButton } from '../animations/MagneticButton';
+import { AmbientGlow } from '../animations/AmbientGlow';
 
 const HIGHLIGHTS = [
-  "AI Strategy & Consulting",
-  "Custom Software Development",
-  "Enterprise AI Solutions",
-  "Workflow Automation",
-  "Cloud-Native Engineering",
-  "Long-Term Technical Partnership",
+  'AI Strategy & Consulting',
+  'Custom Software Development',
+  'Enterprise AI Solutions',
+  'Workflow Automation',
+  'Cloud-Native Engineering',
+  'Long-Term Technical Partnership',
 ];
 
 const PROCESS = [
   {
-    step: "01",
-    title: "Discovery Call",
-    desc: "Understand your business goals and technical challenges.",
+    step: '01',
+    title: 'Discovery Call',
+    desc: 'Understand your business goals and technical challenges.',
   },
   {
-    step: "02",
-    title: "Solution Design",
-    desc: "Define architecture, roadmap, and implementation strategy.",
+    step: '02',
+    title: 'Solution Design',
+    desc: 'Define architecture, roadmap, and implementation strategy.',
   },
   {
-    step: "03",
-    title: "Build & Integrate",
-    desc: "Develop, integrate, test, and deploy your solution.",
+    step: '03',
+    title: 'Build & Integrate',
+    desc: 'Develop, integrate, test, and deploy your solution.',
   },
   {
-    step: "04",
-    title: "Continuous Growth",
-    desc: "Support, optimize, and evolve your platform over time.",
+    step: '04',
+    title: 'Continuous Growth',
+    desc: 'Support, optimize, and evolve your platform over time.',
   },
 ];
 
 const CONTACT_OPTIONS = [
-  { title: "Business Inquiries", icon: Mail },
-  { title: "Partnership Opportunities", icon: Zap },
-  { title: "Technical Consultation", icon: Code },
-  { title: "Product Demonstrations", icon: PlayCircle },
+  { title: 'Business Inquiries', icon: Mail },
+  { title: 'Partnership Opportunities', icon: Zap },
+  { title: 'Technical Consultation', icon: Code },
+  { title: 'Product Demonstrations', icon: PlayCircle },
 ];
 
 export function FinalCTA() {
@@ -71,37 +71,37 @@ export function FinalCTA() {
     >
       <Container size="md">
         {/* Main Header */}
-        <div className="text-center max-w-4xl mx-auto mb-20">
+        <div className="mx-auto mb-20 max-w-4xl text-center">
           <Reveal variant="perspectivePremium">
-            <Heading level={2} className="md:text-6xl leading-[1.1] mb-8">
-              Let&apos;s Build the Future of{" "}
-              <br className="hidden md:block" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/90">Your Business with AI</span>
+            <Heading level={2} className="mb-8 leading-[1.1] md:text-6xl">
+              Let&apos;s Build the Future of <br className="hidden md:block" />
+              <span className="from-foreground via-foreground to-foreground/90 bg-gradient-to-r bg-clip-text text-transparent">
+                Your Business with AI
+              </span>
             </Heading>
-            <Text size="xl" className="max-w-3xl mx-auto mb-12">
-              Whether you&apos;re exploring AI agents, workflow automation,
-              enterprise software, or a complete digital transformation,
-              we&apos;re ready to help design the right solution for your
-              business.
+            <Text size="xl" className="mx-auto mb-12 max-w-3xl">
+              Whether you&apos;re exploring AI agents, workflow automation, enterprise software, or
+              a complete digital transformation, we&apos;re ready to help design the right solution
+              for your business.
             </Text>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+            <div className="mb-16 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <a href="/contact">
                 <MagneticButton
                   strength={28}
-                  className="w-full sm:w-auto rounded-xl font-medium transition-all duration-300 flex items-center justify-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white outline-none shrink-0 bg-white text-black hover:bg-gray-100 hover:scale-[1.02] active:scale-[0.97] px-8 py-4 text-lg shadow-[0_0_24px_rgba(255,255,255,0.08)] hover:shadow-[0_0_36px_rgba(255,255,255,0.14)]"
+                  className="group focus-visible:ring-foreground bg-foreground text-background flex w-full shrink-0 items-center justify-center gap-3 rounded-xl px-8 py-4 text-lg font-medium shadow-[0_0_24px_rgba(var(--foreground),0.08)] transition-all duration-300 outline-none hover:scale-[1.02] hover:opacity-90 hover:shadow-[0_0_36px_rgba(var(--foreground),0.14)] focus-visible:ring-2 focus-visible:outline-none active:scale-[0.97] sm:w-auto"
                 >
-                  <Calendar className="w-5 h-5" />
+                  <Calendar className="h-5 w-5" />
                   Book a Discovery Call
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </MagneticButton>
               </a>
               <a href="/contact">
                 <MagneticButton
                   strength={20}
-                  className="w-full sm:w-auto rounded-xl font-medium transition-all duration-300 flex items-center justify-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white outline-none shrink-0 bg-white/5 text-white border border-white/10 hover:bg-white/10 hover:border-white/20 px-8 py-4 text-lg"
+                  className="group focus-visible:ring-foreground bg-foreground/5 text-foreground border-foreground/10 hover:bg-foreground/10 hover:border-foreground/20 flex w-full shrink-0 items-center justify-center gap-3 rounded-xl border px-8 py-4 text-lg font-medium transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:outline-none sm:w-auto"
                 >
-                  <MessageSquare className="w-5 h-5 text-[#888]" />
+                  <MessageSquare className="text-muted-foreground h-5 w-5" />
                   Discuss Your Project
                 </MagneticButton>
               </a>
@@ -110,7 +110,7 @@ export function FinalCTA() {
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-3">
               {HIGHLIGHTS.map((highlight) => (
                 <div key={highlight} className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#666]" />
+                  <CheckCircle2 className="text-muted-foreground h-4 w-4" />
                   <Text size="sm">{highlight}</Text>
                 </div>
               ))}
@@ -120,24 +120,24 @@ export function FinalCTA() {
 
         {/* Engagement Process */}
         <Reveal variant="fadeUp" delay={0.1} className="mb-24">
-          <div className="text-center mb-10">
-            <h3 className="font-display text-sm font-mono tracking-widest text-[#555] uppercase">
+          <div className="mb-10 text-center">
+            <h3 className="font-display text-muted-foreground font-mono text-sm tracking-widest uppercase">
               Engagement Process
             </h3>
           </div>
           <RevealStagger stagger={0.1}>
             <Grid cols={4} gap="sm" className="relative">
-              <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+              <div className="via-foreground/10 absolute top-12 right-[10%] left-[10%] hidden h-px bg-gradient-to-r from-transparent to-transparent md:block" />
               {PROCESS.map((step) => (
                 <RevealItem key={step.step}>
                   <GlassPanel
                     variant="default"
-                    className="p-8 group hover:bg-[#0a0a0a] transition-colors relative z-10"
+                    className="group hover:bg-foreground/[0.02] relative z-10 p-8 transition-colors"
                   >
-                    <div className="text-[10px] font-mono tracking-widest text-[#666] uppercase mb-4 px-3 py-1 bg-white/5 rounded-full inline-block border border-white/5">
+                    <div className="text-muted-foreground bg-foreground/5 border-foreground/5 mb-4 inline-block rounded-full border px-3 py-1 font-mono text-[10px] tracking-widest uppercase">
                       Step {step.step}
                     </div>
-                    <h4 className="font-display text-lg font-medium text-white mb-2">
+                    <h4 className="font-display text-foreground mb-2 text-lg font-medium">
                       {step.title}
                     </h4>
                     <Text size="sm">{step.desc}</Text>
@@ -149,15 +149,19 @@ export function FinalCTA() {
         </Reveal>
 
         {/* Contact Summary */}
-        <Reveal variant="fade" delay={0.2} className="border-t border-white/5 pt-16 max-w-4xl mx-auto">
+        <Reveal
+          variant="fade"
+          delay={0.2}
+          className="border-foreground/5 mx-auto max-w-4xl border-t pt-16"
+        >
           <Grid cols={4} gap="sm" className="text-center">
             {CONTACT_OPTIONS.map((option) => (
               <div
                 key={option.title}
-                className="flex flex-col items-center gap-3 p-4 rounded-xl hover:bg-white/[0.02] transition-colors cursor-pointer group"
+                className="hover:bg-foreground/[0.02] group flex cursor-pointer flex-col items-center gap-3 rounded-xl p-4 transition-colors"
               >
-                <option.icon className="w-5 h-5 text-[#555] group-hover:text-white transition-colors" />
-                <span className="text-sm font-medium text-[#888] group-hover:text-[#ccc] transition-colors">
+                <option.icon className="text-muted-foreground group-hover:text-foreground h-5 w-5 transition-colors" />
+                <span className="text-muted-foreground group-hover:text-foreground text-sm font-medium transition-colors">
                   {option.title}
                 </span>
               </div>

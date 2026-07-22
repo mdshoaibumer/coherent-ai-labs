@@ -108,10 +108,13 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
   --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
@@ -120,8 +123,7 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-card: var(--card);
   --color-card-border: var(--card-border);
-  
-
+  --color-ring: var(--ring);
 
   --radius-sm: 0.25rem;
   --radius-md: 0.5rem;
@@ -129,33 +131,69 @@
   --radius-xl: 1.5rem;
   --radius-2xl: 2rem;
 
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  --shadow-glow: 0 0 20px rgba(255, 255, 255, 0.1);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-glow: var(--shadow-glow);
 }
 
 @layer base {
   :root {
+    /* LIGHT THEME (Premium, minimal, refined) */
+    --background: #fdfdfd;
+    --foreground: #111111;
+    --primary: #000000;
+    --primary-foreground: #ffffff;
+    --secondary: #f4f4f5;
+    --secondary-foreground: #18181b;
+    --muted: #f4f4f5;
+    --muted-foreground: #71717a;
+    --border: #e4e4e7;
+    --border-hover: #d4d4d8;
+    --accent: rgba(0, 0, 0, 0.04);
+    --accent-foreground: #111111;
+    --card: #ffffff;
+    --card-border: rgba(0, 0, 0, 0.06);
+    --ring: rgba(0, 0, 0, 0.1);
+    
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.04), 0 10px 10px -5px rgba(0, 0, 0, 0.01);
+    --shadow-glow: 0 0 20px rgba(0, 0, 0, 0.03);
+  }
+  
+  .dark {
+    /* DARK THEME (Cinematic, elegant, immersive) */
     --background: #020202;
-    --foreground: #eaeaea;
+    --foreground: #ededed;
     --primary: #ffffff;
     --primary-foreground: #000000;
-    --muted: #050505;
-    --muted-foreground: #a3a3a3;
-    --border: #111111;
-    --border-hover: #222222;
+    --secondary: #111111;
+    --secondary-foreground: #ededed;
+    --muted: #0a0a0a;
+    --muted-foreground: #a1a1aa;
+    --border: #1a1a1a;
+    --border-hover: #2a2a2a;
     --accent: rgba(255, 255, 255, 0.05);
     --accent-foreground: #ffffff;
     --card: #050505;
-    --card-border: rgba(255, 255, 255, 0.05);
+    --card-border: rgba(255, 255, 255, 0.06);
+    --ring: rgba(255, 255, 255, 0.2);
+    
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+    --shadow-glow: 0 0 30px rgba(0, 200, 255, 0.15);
   }
   
   html {
     background-color: var(--background);
     color: var(--foreground);
     font-family: var(--font-sans);
+    color-scheme: light dark;
   }
 
   body {
@@ -164,15 +202,16 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
   }
 
   ::selection {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(0, 200, 255, 0.2);
     color: inherit;
   }
 
   *:focus-visible {
-    outline: 2px solid white;
+    outline: 2px solid var(--ring);
     outline-offset: 2px;
   }
 }

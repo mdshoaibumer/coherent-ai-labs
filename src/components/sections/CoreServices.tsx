@@ -1,6 +1,6 @@
-"use client";
-import React, { useState, useCallback } from "react";
-import { m, AnimatePresence } from "motion/react";
+'use client';
+import React, { useState, useCallback } from 'react';
+import { m, AnimatePresence } from 'motion/react';
 import {
   Bot,
   Workflow,
@@ -18,23 +18,23 @@ import {
   FileText,
   ArrowRight,
   LucideIcon,
-} from "lucide-react";
-import { cn } from "../../lib/utils";
-import { Card } from "../ui/Card";
-import { Badge } from "../ui/Badge";
-import { SectionWrapper } from "../ui/SectionWrapper";
-import { useReducedMotion } from "../../hooks/useReducedMotion";
+} from 'lucide-react';
+import { cn } from '../../lib/utils';
+import { Card } from '../ui/Card';
+import { Badge } from '../ui/Badge';
+import { SectionWrapper } from '../ui/SectionWrapper';
+import { useReducedMotion } from '../../hooks/useReducedMotion';
 
 /* ═══════════════════════════════════════════════════════════
    DATA — services with category grouping for relationships
 ═══════════════════════════════════════════════════════════ */
 
 type ServiceCategory =
-  | "ai-engineering"
-  | "enterprise-software"
-  | "applications"
-  | "cloud-automation"
-  | "data-intelligence";
+  | 'ai-engineering'
+  | 'enterprise-software'
+  | 'applications'
+  | 'cloud-automation'
+  | 'data-intelligence';
 
 interface ServiceItem {
   title: string;
@@ -48,151 +48,151 @@ interface ServiceItem {
 }
 
 const CATEGORIES: { id: ServiceCategory; label: string }[] = [
-  { id: "ai-engineering", label: "AI Engineering" },
-  { id: "data-intelligence", label: "Data & Intelligence" },
-  { id: "enterprise-software", label: "Enterprise Software" },
-  { id: "applications", label: "Applications" },
-  { id: "cloud-automation", label: "Cloud & Automation" },
+  { id: 'ai-engineering', label: 'AI Engineering' },
+  { id: 'data-intelligence', label: 'Data & Intelligence' },
+  { id: 'enterprise-software', label: 'Enterprise Software' },
+  { id: 'applications', label: 'Applications' },
+  { id: 'cloud-automation', label: 'Cloud & Automation' },
 ];
 
 const SERVICES: ServiceItem[] = [
   {
-    title: "AI Agents",
-    desc: "Autonomous entities that perceive context, reason through problems, and act on your behalf.",
-    value: "Replaces manual cognitive load with scalable intelligence.",
+    title: 'AI Agents',
+    desc: 'Autonomous entities that perceive context, reason through problems, and act on your behalf.',
+    value: 'Replaces manual cognitive load with scalable intelligence.',
     icon: Bot,
-    size: "col-span-1 md:col-span-2 lg:col-span-2 lg:row-span-2",
-    highlight: "24/7 Autonomous Execution",
-    category: "ai-engineering",
-    related: ["data-intelligence", "cloud-automation"],
+    size: 'col-span-1 md:col-span-2 lg:col-span-2 lg:row-span-2',
+    highlight: '24/7 Autonomous Execution',
+    category: 'ai-engineering',
+    related: ['data-intelligence', 'cloud-automation'],
   },
   {
-    title: "AI Workflow Automation",
-    desc: "End-to-end intelligent pipelines that replace legacy manual processes.",
-    value: "Exponential ROI and zero-error processing.",
+    title: 'AI Workflow Automation',
+    desc: 'End-to-end intelligent pipelines that replace legacy manual processes.',
+    value: 'Exponential ROI and zero-error processing.',
     icon: Workflow,
-    size: "col-span-1 md:col-span-1 lg:col-span-2 lg:row-span-1",
-    category: "ai-engineering",
-    related: ["cloud-automation", "enterprise-software"],
+    size: 'col-span-1 md:col-span-1 lg:col-span-2 lg:row-span-1',
+    category: 'ai-engineering',
+    related: ['cloud-automation', 'enterprise-software'],
   },
   {
-    title: "Enterprise Software",
-    desc: "Bespoke full-stack applications purpose-built for the AI era.",
-    value: "Modernizes legacy architecture securely.",
+    title: 'Enterprise Software',
+    desc: 'Bespoke full-stack applications purpose-built for the AI era.',
+    value: 'Modernizes legacy architecture securely.',
     icon: Layers,
-    size: "col-span-1 md:col-span-1 lg:col-span-2 lg:row-span-1",
-    category: "enterprise-software",
-    related: ["ai-engineering", "cloud-automation"],
+    size: 'col-span-1 md:col-span-1 lg:col-span-2 lg:row-span-1',
+    category: 'enterprise-software',
+    related: ['ai-engineering', 'cloud-automation'],
   },
   {
-    title: "Custom Web Applications",
-    desc: "High-performance, accessible, and scalable web experiences.",
-    value: "Global reach with native-like performance.",
+    title: 'Custom Web Applications',
+    desc: 'High-performance, accessible, and scalable web experiences.',
+    value: 'Global reach with native-like performance.',
     icon: AppWindow,
-    size: "col-span-1 md:col-span-2 lg:col-span-2 lg:row-span-1",
-    category: "applications",
-    related: ["enterprise-software", "cloud-automation"],
+    size: 'col-span-1 md:col-span-2 lg:col-span-2 lg:row-span-1',
+    category: 'applications',
+    related: ['enterprise-software', 'cloud-automation'],
   },
   {
-    title: "iOS Applications",
-    desc: "Premium native experiences for the Apple ecosystem.",
-    value: "Deep platform integration.",
+    title: 'iOS Applications',
+    desc: 'Premium native experiences for the Apple ecosystem.',
+    value: 'Deep platform integration.',
     icon: Smartphone,
-    size: "col-span-1 md:col-span-1 lg:col-span-1 lg:row-span-1",
-    category: "applications",
-    related: ["enterprise-software"],
+    size: 'col-span-1 md:col-span-1 lg:col-span-1 lg:row-span-1',
+    category: 'applications',
+    related: ['enterprise-software'],
   },
   {
-    title: "Android Applications",
-    desc: "Scalable native apps for billions of devices worldwide.",
-    value: "Maximum market penetration.",
+    title: 'Android Applications',
+    desc: 'Scalable native apps for billions of devices worldwide.',
+    value: 'Maximum market penetration.',
     icon: Smartphone,
-    size: "col-span-1 md:col-span-1 lg:col-span-1 lg:row-span-1",
-    category: "applications",
-    related: ["enterprise-software"],
+    size: 'col-span-1 md:col-span-1 lg:col-span-1 lg:row-span-1',
+    category: 'applications',
+    related: ['enterprise-software'],
   },
   {
-    title: "LLM Integration",
-    desc: "Custom tuning and deployment of foundational language models.",
-    value: "Domain-specific intelligence.",
+    title: 'LLM Integration',
+    desc: 'Custom tuning and deployment of foundational language models.',
+    value: 'Domain-specific intelligence.',
     icon: Brain,
-    size: "col-span-1 md:col-span-1 md:row-span-2 lg:col-span-1 lg:row-span-2",
-    highlight: "Custom Fine-Tuning",
-    category: "ai-engineering",
-    related: ["data-intelligence"],
+    size: 'col-span-1 md:col-span-1 md:row-span-2 lg:col-span-1 lg:row-span-2',
+    highlight: 'Custom Fine-Tuning',
+    category: 'ai-engineering',
+    related: ['data-intelligence'],
   },
   {
-    title: "RAG Systems",
-    desc: "High-density vector search grounding AI in proprietary data.",
-    value: "Eliminates hallucinations.",
+    title: 'RAG Systems',
+    desc: 'High-density vector search grounding AI in proprietary data.',
+    value: 'Eliminates hallucinations.',
     icon: Database,
-    size: "col-span-1 md:col-span-1 lg:col-span-2 lg:row-span-1",
-    category: "data-intelligence",
-    related: ["ai-engineering"],
+    size: 'col-span-1 md:col-span-1 lg:col-span-2 lg:row-span-1',
+    category: 'data-intelligence',
+    related: ['ai-engineering'],
   },
   {
-    title: "Internal AI Assistants",
-    desc: "Secure, enterprise-ready copilots for your workforce.",
-    value: "10x employee productivity.",
+    title: 'Internal AI Assistants',
+    desc: 'Secure, enterprise-ready copilots for your workforce.',
+    value: '10x employee productivity.',
     icon: MessageSquare,
-    size: "col-span-1 md:col-span-1 lg:col-span-1 lg:row-span-1",
-    category: "ai-engineering",
-    related: ["enterprise-software", "data-intelligence"],
+    size: 'col-span-1 md:col-span-1 lg:col-span-1 lg:row-span-1',
+    category: 'ai-engineering',
+    related: ['enterprise-software', 'data-intelligence'],
   },
   {
-    title: "Business Process Automation",
-    desc: "Replacing repetitive tasks with deterministic rule engines.",
-    value: "Unbounded scalability.",
+    title: 'Business Process Automation',
+    desc: 'Replacing repetitive tasks with deterministic rule engines.',
+    value: 'Unbounded scalability.',
     icon: Settings,
-    size: "col-span-1 md:col-span-2 lg:col-span-2 lg:row-span-1",
-    category: "cloud-automation",
-    related: ["ai-engineering", "enterprise-software"],
+    size: 'col-span-1 md:col-span-2 lg:col-span-2 lg:row-span-1',
+    category: 'cloud-automation',
+    related: ['ai-engineering', 'enterprise-software'],
   },
   {
-    title: "Cloud Engineering",
-    desc: "Scalable, secure, and resilient infrastructure design.",
-    value: "99.99% SLA availability.",
+    title: 'Cloud Engineering',
+    desc: 'Scalable, secure, and resilient infrastructure design.',
+    value: '99.99% SLA availability.',
     icon: Cloud,
-    size: "col-span-1 md:col-span-1 lg:col-span-1 lg:row-span-1",
-    category: "cloud-automation",
-    related: ["enterprise-software", "applications"],
+    size: 'col-span-1 md:col-span-1 lg:col-span-1 lg:row-span-1',
+    category: 'cloud-automation',
+    related: ['enterprise-software', 'applications'],
   },
   {
-    title: "Desktop Applications",
-    desc: "High-performance native apps for macOS and Windows.",
-    value: "Maximum computational power.",
+    title: 'Desktop Applications',
+    desc: 'High-performance native apps for macOS and Windows.',
+    value: 'Maximum computational power.',
     icon: Laptop,
-    size: "col-span-1 md:col-span-1 lg:col-span-1 lg:row-span-1",
-    category: "applications",
-    related: ["enterprise-software"],
+    size: 'col-span-1 md:col-span-1 lg:col-span-1 lg:row-span-1',
+    category: 'applications',
+    related: ['enterprise-software'],
   },
   {
-    title: "API Integrations",
-    desc: "Connecting disparate systems into unified architectures.",
-    value: "Real-time data synchronization.",
+    title: 'API Integrations',
+    desc: 'Connecting disparate systems into unified architectures.',
+    value: 'Real-time data synchronization.',
     icon: Network,
-    size: "col-span-1 md:col-span-1 lg:col-span-1 lg:row-span-1",
-    category: "cloud-automation",
-    related: ["enterprise-software", "data-intelligence"],
+    size: 'col-span-1 md:col-span-1 lg:col-span-1 lg:row-span-1',
+    category: 'cloud-automation',
+    related: ['enterprise-software', 'data-intelligence'],
   },
   {
-    title: "Analytics Dashboards",
-    desc: "Real-time business intelligence and data visualization.",
-    value: "Data-driven decision making.",
+    title: 'Analytics Dashboards',
+    desc: 'Real-time business intelligence and data visualization.',
+    value: 'Data-driven decision making.',
     icon: LineChart,
-    size: "col-span-1 md:col-span-1 lg:col-span-2 lg:row-span-1",
-    category: "data-intelligence",
-    related: ["enterprise-software", "ai-engineering"],
+    size: 'col-span-1 md:col-span-1 lg:col-span-2 lg:row-span-1',
+    category: 'data-intelligence',
+    related: ['enterprise-software', 'ai-engineering'],
   },
   {
-    title: "AI Document Processing",
-    desc: "Automated extraction and understanding of unstructured documents, contracts, and invoices.",
-    value: "Turns static PDFs into structured, queryable data instantly.",
+    title: 'AI Document Processing',
+    desc: 'Automated extraction and understanding of unstructured documents, contracts, and invoices.',
+    value: 'Turns static PDFs into structured, queryable data instantly.',
     icon: FileText,
-    size: "col-span-1 md:col-span-2 lg:col-span-4 lg:row-span-1",
-    highlight: "Unstructured Data Mining",
-    category: "data-intelligence",
-    related: ["ai-engineering", "cloud-automation"],
+    size: 'col-span-1 md:col-span-2 lg:col-span-4 lg:row-span-1',
+    highlight: 'Unstructured Data Mining',
+    category: 'data-intelligence',
+    related: ['ai-engineering', 'cloud-automation'],
   },
 ];
 
@@ -219,15 +219,13 @@ const BentoCard: React.FC<BentoCardProps> = React.memo(function BentoCard({
   onLeave,
   prefersReducedMotion,
 }) {
-  const isLarge =
-    service.size.includes("lg:row-span-2") ||
-    service.size.includes("lg:col-span-4");
+  const isLarge = service.size.includes('lg:row-span-2') || service.size.includes('lg:col-span-4');
 
   return (
     <Card
-      initial={{ opacity: 0, y: 32, scale: 0.95, filter: "blur(6px)" }}
-      whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-      viewport={{ once: true, margin: "-60px" }}
+      initial={{ opacity: 0, y: 32, scale: 0.95, filter: 'blur(6px)' }}
+      whileInView={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+      viewport={{ once: true, margin: '-60px' }}
       transition={{
         duration: 0.7,
         delay: index * 0.05,
@@ -238,9 +236,9 @@ const BentoCard: React.FC<BentoCardProps> = React.memo(function BentoCard({
       premium={true}
       className={cn(
         service.size,
-        "transition-[opacity,filter] duration-500",
-        isDimmed && "opacity-35 blur-[0.8px]",
-        isHighlighted && !isDimmed && "opacity-100"
+        'transition-[opacity,filter] duration-500',
+        isDimmed && 'opacity-35 blur-[0.8px]',
+        isHighlighted && !isDimmed && 'opacity-100',
       )}
       tabIndex={0}
       role="button"
@@ -252,25 +250,25 @@ const BentoCard: React.FC<BentoCardProps> = React.memo(function BentoCard({
       {/* Top edge glow on highlighted */}
       {isHighlighted && !isDimmed && (
         <m.div
-          className="absolute top-0 left-0 right-0 h-[1px] z-20 pointer-events-none"
+          className="pointer-events-none absolute top-0 right-0 left-0 z-20 h-[1px]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           style={{
             background:
-              "linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent)",
+              'linear-gradient(to right, transparent, rgba(var(--foreground),0.4), transparent)',
           }}
         />
       )}
 
-      <div className="flex items-start justify-between mb-8">
+      <div className="mb-8 flex items-start justify-between">
         {/* Icon with contextual glow */}
         <m.div
           className={cn(
-            "w-12 h-12 rounded-xl border flex items-center justify-center transition-all duration-500 shadow-inner",
+            'flex h-12 w-12 items-center justify-center rounded-xl border shadow-inner transition-all duration-500',
             isHighlighted && !isDimmed
-              ? "bg-white/15 border-white/30 shadow-[0_0_24px_rgba(0,200,255,0.2),inset_0_0_12px_rgba(255,255,255,0.08)]"
-              : "bg-[#111] border-white/10 group-hover:bg-white/12 group-hover:shadow-[0_0_12px_rgba(0,200,255,0.1)]"
+              ? 'bg-foreground/15 border-foreground/30 shadow-[0_0_24px_rgba(0,200,255,0.2),inset_0_0_12px_rgba(255,255,255,0.08)]'
+              : 'bg-background border-foreground/10 group-hover:bg-foreground/5 group-hover:shadow-[0_0_12px_rgba(0,200,255,0.1)]',
           )}
           animate={
             prefersReducedMotion
@@ -283,18 +281,18 @@ const BentoCard: React.FC<BentoCardProps> = React.memo(function BentoCard({
         >
           <service.icon
             className={cn(
-              "w-6 h-6 transition-colors duration-500",
+              'h-6 w-6 transition-colors duration-500',
               isHighlighted && !isDimmed
-                ? "text-white"
-                : "text-[#888] group-hover:text-white"
+                ? 'text-foreground'
+                : 'text-muted-foreground group-hover:text-foreground',
             )}
             strokeWidth={1.5}
           />
         </m.div>
 
         {/* Arrow reveal */}
-        <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 border border-white/10">
-          <ArrowRight className="w-4 h-4 text-white" />
+        <div className="bg-foreground/5 border-foreground/10 flex h-8 w-8 -translate-x-2 items-center justify-center rounded-full border opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100">
+          <ArrowRight className="text-foreground h-4 w-4" />
         </div>
       </div>
 
@@ -306,20 +304,20 @@ const BentoCard: React.FC<BentoCardProps> = React.memo(function BentoCard({
         )}
         <h3
           className={cn(
-            "font-display font-medium text-white mb-2 tracking-tight transition-colors group-hover:text-white",
-            isLarge ? "text-2xl lg:text-3xl" : "text-xl"
+            'font-display text-foreground group-hover:text-foreground mb-2 font-medium tracking-tight transition-colors',
+            isLarge ? 'text-2xl lg:text-3xl' : 'text-xl',
           )}
         >
           {service.title}
         </h3>
-        <p className="text-[#888] text-sm leading-relaxed mb-6 max-w-sm group-hover:text-[#aaa] transition-colors">
+        <p className="text-muted-foreground mb-6 max-w-sm text-sm leading-relaxed transition-colors">
           {service.desc}
         </p>
 
         {/* Business value footer */}
-        <div className="pt-4 border-t border-white/5 group-hover:border-white/10 transition-colors">
-          <p className="text-xs font-mono text-[#666] group-hover:text-[#aaa] transition-colors flex items-center gap-2">
-            <span className="text-white/20">↳</span>
+        <div className="border-foreground/5 group-hover:border-foreground/10 border-t pt-4 transition-colors">
+          <p className="text-muted-foreground flex items-center gap-2 font-mono text-xs transition-colors">
+            <span className="text-foreground/20">↳</span>
             {service.value}
           </p>
         </div>
@@ -328,10 +326,10 @@ const BentoCard: React.FC<BentoCardProps> = React.memo(function BentoCard({
       {/* Category indicator dot */}
       <div
         className={cn(
-          "absolute bottom-4 right-4 w-2 h-2 rounded-full transition-all duration-500",
+          'absolute right-4 bottom-4 h-2 w-2 rounded-full transition-all duration-500',
           isHighlighted && !isDimmed
-            ? "bg-white/50 shadow-[0_0_6px_rgba(255,255,255,0.3)]"
-            : "bg-white/10"
+            ? 'bg-foreground/50 shadow-[0_0_6px_rgba(var(--foreground),0.3)]'
+            : 'bg-foreground/10',
         )}
       />
     </Card>
@@ -352,9 +350,7 @@ export function CoreServices() {
     (service: ServiceItem, idx: number) => {
       // If filtering by category
       if (activeFilter) {
-        const matches =
-          service.category === activeFilter ||
-          service.related.includes(activeFilter);
+        const matches = service.category === activeFilter || service.related.includes(activeFilter);
         return { isHighlighted: matches, isDimmed: !matches };
       }
 
@@ -374,7 +370,7 @@ export function CoreServices() {
 
       return { isHighlighted: false, isDimmed: false };
     },
-    [activeFilter, hoveredService]
+    [activeFilter, hoveredService],
   );
 
   return (
@@ -384,39 +380,38 @@ export function CoreServices() {
         <>
           {/* Noise texture */}
           <div
-            className="absolute inset-0 opacity-[0.02] pointer-events-none mix-blend-screen"
+            className="pointer-events-none absolute inset-0 opacity-[0.02] mix-blend-screen"
             style={{
               backgroundImage:
-                'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.85\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")',
+                "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E\")",
             }}
           />
           {/* Ambient glow */}
-          <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.02)_0%,transparent_70%)] pointer-events-none" />
+          <div className="pointer-events-none absolute top-[20%] left-1/2 h-[600px] w-[800px] -translate-x-1/2 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.02)_0%,transparent_70%)]" />
         </>
       }
     >
       {/* ─── Section Header ─── */}
-      <div className="max-w-3xl mb-16">
+      <div className="mb-16 max-w-3xl">
         <m.div
-          initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          initial={{ opacity: 0, y: 30, filter: 'blur(6px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h2 className="font-display text-4xl md:text-5xl font-medium tracking-tight text-white mb-6">
+          <h2 className="font-display text-foreground mb-6 text-4xl font-medium tracking-tight md:text-5xl">
             Everything You Need to Build an Intelligent Business
           </h2>
-          <p className="text-[#888] text-lg leading-relaxed">
-            From AI Agents to enterprise software, we engineer complete
-            intelligent systems that automate, integrate, and scale your
-            business.
+          <p className="text-muted-foreground text-lg leading-relaxed">
+            From AI Agents to enterprise software, we engineer complete intelligent systems that
+            automate, integrate, and scale your business.
           </p>
         </m.div>
       </div>
 
       {/* ─── Category Filter Pills ─── */}
       <m.div
-        className="flex flex-wrap gap-2 mb-10"
+        className="mb-10 flex flex-wrap gap-2"
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -426,10 +421,10 @@ export function CoreServices() {
         <button
           onClick={() => setActiveFilter(null)}
           className={cn(
-            "px-4 py-2 rounded-lg text-xs font-medium tracking-wide uppercase transition-all duration-300 border outline-none focus-visible:ring-2 focus-visible:ring-white",
+            'focus-visible:ring-foreground rounded-lg border px-4 py-2 text-xs font-medium tracking-wide uppercase transition-all duration-300 outline-none focus-visible:ring-2',
             activeFilter === null
-              ? "bg-white text-black border-white"
-              : "bg-white/[0.03] text-[#888] border-white/[0.08] hover:bg-white/[0.06] hover:text-white hover:border-white/15"
+              ? 'bg-foreground text-background border-foreground'
+              : 'bg-foreground/[0.03] text-muted-foreground border-foreground/[0.08] hover:bg-foreground/[0.06] hover:text-foreground hover:border-foreground/15',
           )}
         >
           All Services
@@ -438,14 +433,12 @@ export function CoreServices() {
         {CATEGORIES.map((cat) => (
           <button
             key={cat.id}
-            onClick={() =>
-              setActiveFilter(activeFilter === cat.id ? null : cat.id)
-            }
+            onClick={() => setActiveFilter(activeFilter === cat.id ? null : cat.id)}
             className={cn(
-              "px-4 py-2 rounded-lg text-xs font-medium tracking-wide uppercase transition-all duration-300 border outline-none focus-visible:ring-2 focus-visible:ring-white",
+              'focus-visible:ring-foreground rounded-lg border px-4 py-2 text-xs font-medium tracking-wide uppercase transition-all duration-300 outline-none focus-visible:ring-2',
               activeFilter === cat.id
-                ? "bg-white text-black border-white"
-                : "bg-white/[0.03] text-[#888] border-white/[0.08] hover:bg-white/[0.06] hover:text-white hover:border-white/15"
+                ? 'bg-foreground text-background border-foreground'
+                : 'bg-foreground/[0.03] text-muted-foreground border-foreground/[0.08] hover:bg-foreground/[0.06] hover:text-foreground hover:border-foreground/15',
             )}
           >
             {cat.label}
@@ -460,13 +453,13 @@ export function CoreServices() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.2 }}
-              className="flex items-center gap-2 px-3 py-2 text-[10px] font-mono text-[#555] tracking-widest uppercase"
+              className="flex items-center gap-2 px-3 py-2 font-mono text-[10px] tracking-widest text-[#555] uppercase"
             >
-              {SERVICES.filter(
-                (s) =>
-                  s.category === activeFilter ||
-                  s.related.includes(activeFilter)
-              ).length}{" "}
+              {
+                SERVICES.filter(
+                  (s) => s.category === activeFilter || s.related.includes(activeFilter),
+                ).length
+              }{' '}
               related services
             </m.span>
           )}
@@ -474,12 +467,9 @@ export function CoreServices() {
       </m.div>
 
       {/* ─── Bento Grid ─── */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 auto-rows-[minmax(280px,auto)]">
+      <div className="grid auto-rows-[minmax(280px,auto)] grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-4">
         {SERVICES.map((service, index) => {
-          const { isHighlighted, isDimmed } = getHighlightState(
-            service,
-            index
-          );
+          const { isHighlighted, isDimmed } = getHighlightState(service, index);
 
           return (
             <BentoCard
@@ -504,20 +494,17 @@ export function CoreServices() {
         viewport={{ once: true }}
         transition={{ duration: 0.8, delay: 0.3 }}
       >
-        {[
-          "15 Core Capabilities",
-          "5 Domains",
-          "Full-Stack Delivery",
-          "Enterprise Scale",
-        ].map((stat) => (
-          <div
-            key={stat}
-            className="flex items-center gap-2 text-xs font-mono text-[#555] tracking-widest uppercase"
-          >
-            <div className="w-1 h-1 rounded-full bg-white/20" />
-            {stat}
-          </div>
-        ))}
+        {['15 Core Capabilities', '5 Domains', 'Full-Stack Delivery', 'Enterprise Scale'].map(
+          (stat) => (
+            <div
+              key={stat}
+              className="flex items-center gap-2 font-mono text-xs tracking-widest text-[#555] uppercase"
+            >
+              <div className="h-1 w-1 rounded-full bg-white/20" />
+              {stat}
+            </div>
+          ),
+        )}
       </m.div>
     </SectionWrapper>
   );

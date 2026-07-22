@@ -1,12 +1,12 @@
-"use client";
-import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
-import {m, AnimatePresence } from "motion/react";
-import { cn } from "../../lib/utils";
-import { useHeaderScroll } from "../../hooks/useHeaderScroll";
-import { DesktopNavigation } from "./header/DesktopNavigation";
-import { MobileNavigation } from "./header/MobileNavigation";
-import Link from "next/link";
+'use client';
+import { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
+import { m, AnimatePresence } from 'motion/react';
+import { cn } from '../../lib/utils';
+import { useHeaderScroll } from '../../hooks/useHeaderScroll';
+import { DesktopNavigation } from './header/DesktopNavigation';
+import { MobileNavigation } from './header/MobileNavigation';
+import Link from 'next/link';
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -15,12 +15,12 @@ export function Header() {
   // Prevent scroll when mobile menu is open
   useEffect(() => {
     if (mobileOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = 'unset';
     }
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = 'unset';
     };
   }, [mobileOpen]);
 
@@ -28,38 +28,55 @@ export function Header() {
     <>
       <m.header
         initial={{ y: 0 }}
-        animate={{ y: isHidden ? "-100%" : "0%" }}
+        animate={{ y: isHidden ? '-100%' : '0%' }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
         className={cn(
-          "fixed top-0 w-full z-50 transition-all duration-500",
-          isScrolled 
-            ? "bg-black/40 backdrop-blur-2xl border-b border-white/8 py-3 shadow-[0_8px_40px_rgba(0,0,0,0.3),0_0_30px_rgba(0,200,255,0.05)]" 
-            : "bg-transparent py-6"
+          'fixed top-0 z-50 w-full transition-all duration-500',
+          isScrolled
+            ? 'bg-background/80 border-foreground/10 border-b py-3 shadow-[0_8px_40px_rgba(0,0,0,0.1),0_0_30px_rgba(0,200,255,0.05)] backdrop-blur-2xl'
+            : 'bg-transparent py-6',
         )}
       >
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3 group relative z-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded-sm">
-            <div className="w-5 h-5 bg-white rounded-sm group-hover:scale-95 transition-transform" />
-            <span className="font-display text-lg font-medium tracking-tight text-white">Coherent AI Labs</span>
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6">
+          <Link
+            href="/"
+            className="group focus-visible:ring-foreground relative z-50 flex items-center gap-3 rounded-sm focus-visible:ring-2 focus-visible:outline-none"
+          >
+            <div className="bg-foreground h-5 w-5 rounded-sm transition-transform group-hover:scale-95" />
+            <span className="font-display text-foreground text-lg font-medium tracking-tight">
+              Coherent AI Labs
+            </span>
           </Link>
 
           <DesktopNavigation />
 
           {/* Mobile Menu Toggle */}
           <button
-            className="lg:hidden text-white relative z-50 p-2 -mr-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded-sm"
+            className="text-foreground focus-visible:ring-foreground relative z-50 -mr-2 rounded-sm p-2 focus-visible:ring-2 focus-visible:outline-none lg:hidden"
             onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={mobileOpen}
           >
             <AnimatePresence mode="wait">
               {mobileOpen ? (
-                <m.div key="close" initial={{ opacity: 0, rotate: -90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: 90 }} transition={{ duration: 0.2 }}>
-                  <X className="w-6 h-6" />
+                <m.div
+                  key="close"
+                  initial={{ opacity: 0, rotate: -90 }}
+                  animate={{ opacity: 1, rotate: 0 }}
+                  exit={{ opacity: 0, rotate: 90 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <X className="h-6 w-6" />
                 </m.div>
               ) : (
-                <m.div key="menu" initial={{ opacity: 0, rotate: 90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: -90 }} transition={{ duration: 0.2 }}>
-                  <Menu className="w-6 h-6" />
+                <m.div
+                  key="menu"
+                  initial={{ opacity: 0, rotate: 90 }}
+                  animate={{ opacity: 1, rotate: 0 }}
+                  exit={{ opacity: 0, rotate: -90 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Menu className="h-6 w-6" />
                 </m.div>
               )}
             </AnimatePresence>
@@ -68,9 +85,7 @@ export function Header() {
       </m.header>
 
       <AnimatePresence>
-        {mobileOpen && (
-          <MobileNavigation onClose={() => setMobileOpen(false)} />
-        )}
+        {mobileOpen && <MobileNavigation onClose={() => setMobileOpen(false)} />}
       </AnimatePresence>
     </>
   );

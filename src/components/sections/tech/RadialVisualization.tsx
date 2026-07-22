@@ -1,9 +1,9 @@
-"use client";
-import React from "react";
-import { m } from "motion/react";
-import { cn } from "../../../lib/utils";
-import { TechCategory } from "../../../types";
-import { useReducedMotion } from "../../../hooks/useReducedMotion";
+'use client';
+import React from 'react';
+import { m } from 'motion/react';
+import { cn } from '../../../lib/utils';
+import { TechCategory } from '../../../types';
+import { useReducedMotion } from '../../../hooks/useReducedMotion';
 
 interface RadialVisualizationProps {
   categories: TechCategory[];
@@ -19,17 +19,14 @@ export const RadialVisualization = React.memo(function RadialVisualization({
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <div className="hidden lg:flex lg:col-span-7 relative aspect-square w-full max-w-[600px] mx-auto items-center justify-center">
+    <div className="relative mx-auto hidden aspect-square w-full max-w-[600px] items-center justify-center lg:col-span-7 lg:flex">
       {/* Perspective container for 3D depth */}
       <div
         className="absolute inset-0"
-        style={{ perspective: "1200px", perspectiveOrigin: "50% 50%" }}
+        style={{ perspective: '1200px', perspectiveOrigin: '50% 50%' }}
       >
         {/* SVG Connection System */}
-        <svg
-          className="absolute inset-0 w-full h-full pointer-events-none z-0"
-          aria-hidden="true"
-        >
+        <svg className="pointer-events-none absolute inset-0 z-0 h-full w-full" aria-hidden="true">
           <defs>
             <filter id="eco-glow" x="-30%" y="-30%" width="160%" height="160%">
               <feGaussianBlur stdDeviation="5" result="blur" />
@@ -69,12 +66,8 @@ export const RadialVisualization = React.memo(function RadialVisualization({
                   y1="50%"
                   x2={`${x2}%`}
                   y2={`${y2}%`}
-                  stroke={
-                    isActive
-                      ? "rgba(255,255,255,0.35)"
-                      : "rgba(255,255,255,0.06)"
-                  }
-                  strokeWidth={isActive ? "1.5" : "1"}
+                  stroke={isActive ? 'rgba(255,255,255,0.35)' : 'rgba(255,255,255,0.06)'}
+                  strokeWidth={isActive ? '1.5' : '1'}
                   className="transition-all duration-700"
                 />
 
@@ -110,10 +103,10 @@ export const RadialVisualization = React.memo(function RadialVisualization({
                       duration: isActive ? 2 : 3.5,
                       delay: i * 0.5,
                       repeat: Infinity,
-                      ease: "linear",
+                      ease: 'linear',
                     }}
                     style={{
-                      vectorEffect: "non-scaling-stroke" as React.CSSProperties["vectorEffect"],
+                      vectorEffect: 'non-scaling-stroke' as React.CSSProperties['vectorEffect'],
                     }}
                   />
                 )}
@@ -135,10 +128,10 @@ export const RadialVisualization = React.memo(function RadialVisualization({
                       duration: isActive ? 2.5 : 4,
                       delay: i * 0.5 + 1.2,
                       repeat: Infinity,
-                      ease: "linear",
+                      ease: 'linear',
                     }}
                     style={{
-                      vectorEffect: "non-scaling-stroke" as React.CSSProperties["vectorEffect"],
+                      vectorEffect: 'non-scaling-stroke' as React.CSSProperties['vectorEffect'],
                     }}
                   />
                 )}
@@ -156,9 +149,7 @@ export const RadialVisualization = React.memo(function RadialVisualization({
               const y1 = 50 + Math.sin(angle1) * 40;
               const x2 = 50 + Math.cos(angle2) * 40;
               const y2 = 50 + Math.sin(angle2) * 40;
-              const isRelated =
-                activeLayer === cat.id ||
-                activeLayer === categories[nextIdx].id;
+              const isRelated = activeLayer === cat.id || activeLayer === categories[nextIdx].id;
 
               return (
                 <line
@@ -167,11 +158,7 @@ export const RadialVisualization = React.memo(function RadialVisualization({
                   y1={`${y1}%`}
                   x2={`${x2}%`}
                   y2={`${y2}%`}
-                  stroke={
-                    isRelated
-                      ? "rgba(255,255,255,0.12)"
-                      : "rgba(255,255,255,0.025)"
-                  }
+                  stroke={isRelated ? 'rgba(255,255,255,0.12)' : 'rgba(255,255,255,0.025)'}
                   strokeWidth="0.5"
                   strokeDasharray="3 6"
                   className="transition-all duration-700"
@@ -182,42 +169,42 @@ export const RadialVisualization = React.memo(function RadialVisualization({
 
         {/* ═══ Center Platform Node ═══ */}
         <m.div
-          className="absolute z-20 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-36 h-36 rounded-full bg-[#050505] border border-white/20 flex flex-col items-center justify-center will-change-transform"
+          className="bg-card border-foreground/20 absolute top-1/2 left-1/2 z-20 flex h-36 w-36 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border will-change-transform"
           animate={
             prefersReducedMotion
               ? {}
               : {
                   boxShadow: activeLayer
                     ? [
-                        "0 0 40px rgba(255,255,255,0.06)",
-                        "0 0 60px rgba(255,255,255,0.1)",
-                        "0 0 40px rgba(255,255,255,0.06)",
+                        '0 0 40px rgba(255,255,255,0.06)',
+                        '0 0 60px rgba(255,255,255,0.1)',
+                        '0 0 40px rgba(255,255,255,0.06)',
                       ]
                     : [
-                        "0 0 30px rgba(255,255,255,0.04)",
-                        "0 0 45px rgba(255,255,255,0.07)",
-                        "0 0 30px rgba(255,255,255,0.04)",
+                        '0 0 30px rgba(255,255,255,0.04)',
+                        '0 0 45px rgba(255,255,255,0.07)',
+                        '0 0 30px rgba(255,255,255,0.04)',
                       ],
                 }
           }
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
         >
           {/* Breathing ring */}
           {!prefersReducedMotion && (
             <m.div
-              className="absolute inset-0 rounded-full border border-white/10"
+              className="border-foreground/10 absolute inset-0 rounded-full border"
               animate={{
                 scale: [1, 1.06, 1],
                 opacity: [0.3, 0.1, 0.3],
               }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
             />
           )}
 
-          <div className="w-10 h-10 bg-white rounded-sm mb-3 flex items-center justify-center">
-            <div className="w-4 h-4 bg-black rounded-[2px]" />
+          <div className="bg-foreground mb-3 flex h-10 w-10 items-center justify-center rounded-sm">
+            <div className="bg-background h-4 w-4 rounded-[2px]" />
           </div>
-          <span className="text-[10px] tracking-widest uppercase font-medium text-white px-4 text-center leading-tight">
+          <span className="text-foreground px-4 text-center text-[10px] leading-tight font-medium tracking-widest uppercase">
             Coherent AI Platform
           </span>
         </m.div>
@@ -242,7 +229,7 @@ export const RadialVisualization = React.memo(function RadialVisualization({
               {/* Outer glow halo */}
               {!prefersReducedMotion && (
                 <m.div
-                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-36 h-36 rounded-full pointer-events-none"
+                  className="pointer-events-none absolute top-1/2 left-1/2 h-36 w-36 -translate-x-1/2 -translate-y-1/2 rounded-full"
                   animate={{
                     opacity: isActive ? [0.3, 0.12, 0.3] : [0.05, 0.02, 0.05],
                     scale: isActive ? [1, 1.15, 1] : [1, 1.05, 1],
@@ -250,12 +237,12 @@ export const RadialVisualization = React.memo(function RadialVisualization({
                   transition={{
                     duration: isActive ? 2.5 : 4,
                     repeat: Infinity,
-                    ease: "easeInOut",
+                    ease: 'easeInOut',
                   }}
                   style={{
                     background: isActive
-                      ? "radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%)"
-                      : "radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%)",
+                      ? 'radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%)'
+                      : 'radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%)',
                   }}
                 />
               )}
@@ -263,10 +250,10 @@ export const RadialVisualization = React.memo(function RadialVisualization({
               {/* Node button with orbital micro-motion */}
               <m.button
                 className={cn(
-                  "relative w-32 p-4 rounded-xl border backdrop-blur-sm flex flex-col items-center gap-3 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-white -translate-x-1/2 -translate-y-1/2 will-change-transform",
+                  'focus-visible:ring-foreground relative flex w-32 -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col items-center gap-3 rounded-xl border p-4 backdrop-blur-sm will-change-transform outline-none focus-visible:ring-2',
                   isActive
-                    ? "bg-white/[0.08] border-white/30"
-                    : "bg-[#080808] border-white/[0.08] hover:border-white/15 hover:bg-[#0a0a0a]"
+                    ? 'bg-foreground/[0.08] border-foreground/30'
+                    : 'bg-card border-foreground/[0.08] hover:border-foreground/15 hover:bg-foreground/[0.03]',
                 )}
                 animate={
                   prefersReducedMotion
@@ -276,14 +263,14 @@ export const RadialVisualization = React.memo(function RadialVisualization({
                         y: isActive ? 0 : [0, orbitOffsetY, 0],
                         scale: isActive ? 1.1 : 1,
                         boxShadow: isActive
-                          ? "0 0 30px rgba(255,255,255,0.08), 0 8px 32px rgba(0,0,0,0.4)"
-                          : "0 0 0px rgba(255,255,255,0), 0 4px 16px rgba(0,0,0,0.2)",
+                          ? '0 0 30px rgba(255,255,255,0.08), 0 8px 32px rgba(0,0,0,0.4)'
+                          : '0 0 0px rgba(255,255,255,0), 0 4px 16px rgba(0,0,0,0.2)',
                       }
                 }
                 transition={
                   isActive
                     ? { duration: 0.5, ease: [0.16, 1, 0.3, 1] }
-                    : { duration: 6, repeat: Infinity, ease: "easeInOut" }
+                    : { duration: 6, repeat: Infinity, ease: 'easeInOut' }
                 }
                 onMouseEnter={() => onSetActiveLayer(cat.id)}
                 onFocus={() => onSetActiveLayer(cat.id)}
@@ -293,7 +280,7 @@ export const RadialVisualization = React.memo(function RadialVisualization({
                 {/* Inner pulse ring on active */}
                 {!prefersReducedMotion && isActive && (
                   <m.div
-                    className="absolute inset-0 rounded-xl border border-white/20 pointer-events-none"
+                    className="border-foreground/20 pointer-events-none absolute inset-0 rounded-xl border"
                     animate={{
                       scale: [1, 1.08, 1],
                       opacity: [0.5, 0, 0.5],
@@ -301,22 +288,22 @@ export const RadialVisualization = React.memo(function RadialVisualization({
                     transition={{
                       duration: 2,
                       repeat: Infinity,
-                      ease: "easeInOut",
+                      ease: 'easeInOut',
                     }}
                   />
                 )}
 
                 <cat.icon
                   className={cn(
-                    "w-6 h-6 transition-colors duration-500",
-                    isActive ? "text-white" : "text-[#666]"
+                    'h-6 w-6 transition-colors duration-500',
+                    isActive ? 'text-foreground' : 'text-muted-foreground',
                   )}
                   strokeWidth={1.5}
                 />
                 <span
                   className={cn(
-                    "text-xs text-center font-medium transition-colors duration-500",
-                    isActive ? "text-white" : "text-[#aaa]"
+                    'text-center text-xs font-medium transition-colors duration-500',
+                    isActive ? 'text-foreground' : 'text-muted-foreground',
                   )}
                 >
                   {cat.title}

@@ -1,6 +1,6 @@
-import { ChevronDown } from "lucide-react";
-import { NavItem } from "../../types";
-import { cn } from "../../lib/utils";
+import { ChevronDown } from 'lucide-react';
+import { NavItem } from '../../types';
+import { cn } from '../../lib/utils';
 
 interface MegaMenuProps {
   title: string;
@@ -8,31 +8,35 @@ interface MegaMenuProps {
   columns?: number;
 }
 
-import Link from "next/link";
+import Link from 'next/link';
 
 export function MegaMenu({ title, items, columns = 2 }: MegaMenuProps) {
   return (
     <div className="group relative">
-      <button className="flex items-center gap-1 text-sm font-medium text-[#888] hover:text-white focus-visible:outline-none focus-visible:text-white transition-colors py-6">
+      <button className="text-muted-foreground hover:text-foreground focus-visible:text-foreground flex items-center gap-1 py-6 text-sm font-medium transition-colors focus-visible:outline-none">
         {title}
-        <ChevronDown className="w-3 h-3 group-hover:rotate-180 transition-transform duration-300" />
+        <ChevronDown className="h-3 w-3 transition-transform duration-300 group-hover:rotate-180" />
       </button>
-      
-      <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-50">
-        <div className="bg-[#050505] border border-white/5 p-6 shadow-2xl min-w-[500px] rounded-xl">
-          <div className={cn("grid gap-x-8 gap-y-6", columns === 1 ? "grid-cols-1" : "grid-cols-2")}>
+
+      <div className="pointer-events-none absolute top-full left-1/2 z-50 -translate-x-1/2 translate-y-2 pt-2 opacity-0 transition-all duration-300 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100">
+        <div className="bg-card border-border min-w-[500px] rounded-xl border p-6 shadow-2xl">
+          <div
+            className={cn('grid gap-x-8 gap-y-6', columns === 1 ? 'grid-cols-1' : 'grid-cols-2')}
+          >
             {items.map((item, i) => (
-              <Link 
-                key={i} 
-                href={item.href || `/#${item.name.toLowerCase().replace(/\\s+/g, '-')}`} 
-                className="group/item flex items-start gap-4 hover:bg-white/5 focus-visible:outline-none focus-visible:bg-white/5 p-3 -m-3 transition-colors rounded-lg"
+              <Link
+                key={i}
+                href={item.href || `/#${item.name.toLowerCase().replace(/\\s+/g, '-')}`}
+                className="group/item hover:bg-foreground/5 focus-visible:bg-foreground/5 -m-3 flex items-start gap-4 rounded-lg p-3 transition-colors focus-visible:outline-none"
               >
-                <div className="mt-0.5 p-2 bg-white/5 border border-white/10 text-[#888] group-hover/item:text-white group-hover/item:border-white/20 transition-colors rounded-md">
-                  <item.icon className="w-4 h-4" />
+                <div className="bg-foreground/5 border-foreground/10 text-muted-foreground group-hover/item:text-foreground group-hover/item:border-foreground/20 mt-0.5 rounded-md border p-2 transition-colors">
+                  <item.icon className="h-4 w-4" />
                 </div>
                 <div>
-                  <div className="text-sm font-medium text-white mb-1 group-hover/item:text-white transition-colors">{item.name}</div>
-                  <div className="text-xs text-[#666] leading-relaxed">{item.desc}</div>
+                  <div className="text-foreground group-hover/item:text-foreground mb-1 text-sm font-medium transition-colors">
+                    {item.name}
+                  </div>
+                  <div className="text-muted-foreground text-xs leading-relaxed">{item.desc}</div>
                 </div>
               </Link>
             ))}

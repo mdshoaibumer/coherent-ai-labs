@@ -1,9 +1,9 @@
-"use client";
-import { m, AnimatePresence } from "motion/react";
-import { cn } from "../../../lib/utils";
-import { LayerData } from "../../../constants/workflow";
-import { InfoPanel } from "./InfoPanel";
-import { useReducedMotion } from "../../../hooks/useReducedMotion";
+'use client';
+import { m, AnimatePresence } from 'motion/react';
+import { cn } from '../../../lib/utils';
+import { LayerData } from '../../../constants/workflow';
+import { InfoPanel } from './InfoPanel';
+import { useReducedMotion } from '../../../hooks/useReducedMotion';
 
 interface PipelineNodeProps {
   layer: LayerData;
@@ -31,13 +31,13 @@ export function PipelineNode({
     <m.div
       initial={{ opacity: 0, x: -30 }}
       whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{ once: true, margin: '-80px' }}
       transition={{
         duration: 0.7,
         delay: index * 0.08,
         ease: [0.16, 1, 0.3, 1],
       }}
-      className="relative flex items-start gap-4 sm:gap-8 group outline-none"
+      className="group relative flex items-start gap-4 outline-none sm:gap-8"
       onMouseEnter={() => onSetActiveLayer(layer.id)}
       onClick={() => onSetActiveLayer(layer.id)}
       onFocus={() => onSetActiveLayer(layer.id)}
@@ -48,7 +48,7 @@ export function PipelineNode({
       {/* ═══════════════════════════════════════
           TIMELINE NODE — living orchestration dot
       ═══════════════════════════════════════ */}
-      <div className="relative z-10 shrink-0 flex items-center justify-center">
+      <div className="relative z-10 flex shrink-0 items-center justify-center">
         {/* Outer halo — breathing glow ring on active/reached nodes */}
         {!prefersReducedMotion && isReached && (
           <m.div
@@ -61,15 +61,15 @@ export function PipelineNode({
             transition={{
               duration: isActive ? 2.5 : 0.5,
               repeat: isActive ? Infinity : 0,
-              ease: "easeInOut",
+              ease: 'easeInOut',
             }}
             style={{
               width: 56,
               height: 56,
               background: isActive
-                ? "radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%)"
-                : "radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%)",
-              filter: "blur(4px)",
+                ? 'radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%)'
+                : 'radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%)',
+              filter: 'blur(4px)',
             }}
           />
         )}
@@ -80,18 +80,18 @@ export function PipelineNode({
             {[0, 1, 2].map((i) => (
               <m.div
                 key={`particle-${layer.id}-${i}`}
-                className="absolute w-1 h-1 rounded-full bg-white/40"
+                className="absolute h-1 w-1 rounded-full bg-white/40"
                 animate={{
                   opacity: [0.6, 0],
                   scale: [0.5, 1.5],
                   x: [0, (i - 1) * 18],
-                  y: [0, (i === 1 ? -16 : i === 0 ? 10 : 12)],
+                  y: [0, i === 1 ? -16 : i === 0 ? 10 : 12],
                 }}
                 transition={{
                   duration: 2,
                   delay: i * 0.6,
                   repeat: Infinity,
-                  ease: "easeOut",
+                  ease: 'easeOut',
                 }}
               />
             ))}
@@ -101,12 +101,12 @@ export function PipelineNode({
         {/* Core node circle */}
         <m.div
           className={cn(
-            "w-10 h-10 sm:w-14 sm:h-14 rounded-full border flex items-center justify-center transition-colors duration-500 relative",
+            'relative flex h-10 w-10 items-center justify-center rounded-full border transition-colors duration-500 sm:h-14 sm:w-14',
             isActive
-              ? "bg-white/[0.08] border-white/40"
+              ? 'bg-foreground/[0.08] border-foreground/40'
               : isReached
-                ? "bg-white/[0.04] border-white/20"
-                : "bg-[#050505] border-white/[0.08]"
+                ? 'bg-foreground/[0.04] border-foreground/20'
+                : 'bg-card border-foreground/[0.08]',
           )}
           animate={
             prefersReducedMotion
@@ -114,10 +114,10 @@ export function PipelineNode({
               : {
                   scale: isActive ? 1.12 : isReached ? 1.02 : 1,
                   boxShadow: isActive
-                    ? "0 0 24px rgba(255,255,255,0.1), 0 0 48px rgba(255,255,255,0.04)"
+                    ? '0 0 24px rgba(255,255,255,0.1), 0 0 48px rgba(255,255,255,0.04)'
                     : isReached
-                      ? "0 0 12px rgba(255,255,255,0.04)"
-                      : "0 0 0px rgba(255,255,255,0)",
+                      ? '0 0 12px rgba(255,255,255,0.04)'
+                      : '0 0 0px rgba(255,255,255,0)',
                 }
           }
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
@@ -127,18 +127,18 @@ export function PipelineNode({
             <m.div
               className="absolute inset-0 rounded-full border border-white/20"
               animate={{ scale: [1, 1.3, 1], opacity: [0.4, 0, 0.4] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
             />
           )}
 
           <layer.icon
             className={cn(
-              "w-4 h-4 sm:w-5 sm:h-5 transition-colors duration-500",
+              'h-4 w-4 transition-colors duration-500 sm:h-5 sm:w-5',
               isActive
-                ? "text-white"
+                ? 'text-foreground'
                 : isReached
-                  ? "text-white/70"
-                  : "text-[#555]"
+                  ? 'text-foreground/70'
+                  : 'text-muted-foreground',
             )}
           />
         </m.div>
@@ -146,12 +146,12 @@ export function PipelineNode({
         {/* Stage number indicator */}
         <div
           className={cn(
-            "absolute -bottom-1 -right-1 w-4 h-4 rounded-full flex items-center justify-center text-[8px] font-mono font-bold transition-all duration-500",
+            'absolute -right-1 -bottom-1 flex h-4 w-4 items-center justify-center rounded-full font-mono text-[8px] font-bold transition-all duration-500',
             isActive
-              ? "bg-white text-black"
+              ? 'bg-foreground text-background'
               : isReached
-                ? "bg-white/20 text-white/60"
-                : "bg-white/5 text-white/20"
+                ? 'bg-foreground/20 text-foreground/60'
+                : 'bg-foreground/5 text-foreground/20',
           )}
         >
           {index + 1}
@@ -161,15 +161,15 @@ export function PipelineNode({
       {/* ═══════════════════════════════════════
           CARD — content container with depth
       ═══════════════════════════════════════ */}
-      <div className="flex-1 min-w-0">
+      <div className="min-w-0 flex-1">
         <m.div
           className={cn(
-            "p-5 sm:p-8 rounded-2xl border cursor-pointer backdrop-blur-sm group-focus-visible:ring-2 group-focus-visible:ring-white transition-colors duration-500 relative overflow-hidden",
+            'group-focus-visible:ring-foreground relative cursor-pointer overflow-hidden rounded-2xl border p-5 backdrop-blur-sm transition-colors duration-500 group-focus-visible:ring-2 sm:p-8',
             isActive
-              ? "bg-white/[0.04] border-white/20"
+              ? 'bg-foreground/[0.04] border-foreground/20'
               : isReached
-                ? "bg-white/[0.02] border-white/10"
-                : "bg-[#050505] border-white/[0.05] hover:border-white/10"
+                ? 'bg-foreground/[0.02] border-foreground/10'
+                : 'bg-card border-foreground/[0.05] hover:border-foreground/10',
           )}
           animate={
             prefersReducedMotion
@@ -177,20 +177,20 @@ export function PipelineNode({
               : {
                   y: isActive ? -2 : 0,
                   boxShadow: isActive
-                    ? "0 8px 40px rgba(255,255,255,0.03), 0 0 1px rgba(255,255,255,0.1)"
-                    : "0 0px 0px rgba(255,255,255,0)",
+                    ? '0 8px 40px rgba(255,255,255,0.03), 0 0 1px rgba(255,255,255,0.1)'
+                    : '0 0px 0px rgba(255,255,255,0)',
                 }
           }
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
           {/* Top edge highlight on active */}
           <m.div
-            className="absolute top-0 left-0 right-0 h-[1px]"
+            className="absolute top-0 right-0 left-0 h-[1px]"
             animate={{
               opacity: isActive ? 1 : 0,
               background: isActive
-                ? "linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent)"
-                : "linear-gradient(to right, transparent, rgba(255,255,255,0), transparent)",
+                ? 'linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent)'
+                : 'linear-gradient(to right, transparent, rgba(255,255,255,0), transparent)',
             }}
             transition={{ duration: 0.5 }}
           />
@@ -198,27 +198,27 @@ export function PipelineNode({
           {/* Card content */}
           <h3
             className={cn(
-              "text-lg sm:text-2xl font-medium mb-5 sm:mb-6 transition-colors duration-500 font-display tracking-tight",
+              'font-display mb-5 text-lg font-medium tracking-tight transition-colors duration-500 sm:mb-6 sm:text-2xl',
               isActive
-                ? "text-white"
+                ? 'text-foreground'
                 : isReached
-                  ? "text-white/80"
-                  : "text-[#777]"
+                  ? 'text-foreground/80'
+                  : 'text-muted-foreground',
             )}
           >
             {layer.title}
           </h3>
 
           {/* Items grid with staggered activation */}
-          <div className="grid grid-cols-1 min-[400px]:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-2 sm:gap-3">
+          <div className="grid grid-cols-1 gap-2 min-[400px]:grid-cols-2 sm:gap-3 lg:grid-cols-2 xl:grid-cols-3">
             {layer.items.map((item, itemIdx) => (
               <m.div
                 key={item.name}
                 className={cn(
-                  "flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 rounded-xl border transition-colors duration-300",
+                  'flex items-center gap-2 rounded-xl border p-2.5 transition-colors duration-300 sm:gap-3 sm:p-3',
                   isActive
-                    ? "bg-white/[0.06] border-white/10"
-                    : "bg-white/[0.02] border-white/[0.04] hover:bg-white/[0.05] hover:border-white/[0.08]"
+                    ? 'bg-foreground/[0.06] border-foreground/10'
+                    : 'bg-foreground/[0.02] border-foreground/[0.04] hover:bg-foreground/[0.05] hover:border-foreground/[0.08]',
                 )}
                 animate={
                   prefersReducedMotion
@@ -236,14 +236,18 @@ export function PipelineNode({
               >
                 <item.icon
                   className={cn(
-                    "w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 transition-colors duration-500",
-                    isActive ? "text-white/80" : "text-[#666]"
+                    'h-3.5 w-3.5 shrink-0 transition-colors duration-500 sm:h-4 sm:w-4',
+                    isActive ? 'text-foreground/80' : 'text-muted-foreground',
                   )}
                 />
                 <span
                   className={cn(
-                    "text-xs sm:text-sm font-medium truncate transition-colors duration-500",
-                    isActive ? "text-white" : isReached ? "text-[#aaa]" : "text-[#777]"
+                    'truncate text-xs font-medium transition-colors duration-500 sm:text-sm',
+                    isActive
+                      ? 'text-foreground'
+                      : isReached
+                        ? 'text-foreground/70'
+                        : 'text-muted-foreground',
                   )}
                 >
                   {item.name}
@@ -258,16 +262,12 @@ export function PipelineNode({
           {isActive && (
             <m.div
               initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
+              animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="overflow-hidden lg:hidden mt-4"
+              className="mt-4 overflow-hidden lg:hidden"
             >
-              <InfoPanel
-                data={layer}
-                activeIndex={index}
-                totalStages={5}
-              />
+              <InfoPanel data={layer} activeIndex={index} totalStages={5} />
             </m.div>
           )}
         </AnimatePresence>

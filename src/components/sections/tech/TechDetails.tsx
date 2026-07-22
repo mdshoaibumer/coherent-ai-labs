@@ -1,6 +1,6 @@
-"use client";
-import { m } from "motion/react";
-import { TechCategory } from "../../../types";
+'use client';
+import { m } from 'motion/react';
+import { TechCategory } from '../../../types';
 
 interface TechDetailsProps {
   data: TechCategory;
@@ -8,39 +8,39 @@ interface TechDetailsProps {
 
 export function TechDetails({ data }: TechDetailsProps) {
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex h-full flex-col">
       {/* ─── Header with icon + title ─── */}
       <m.div
-        className="flex items-center gap-4 mb-6"
+        className="mb-6 flex items-center gap-4"
         initial={{ opacity: 0, x: -12 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       >
         <div className="relative">
-          <div className="w-11 h-11 rounded-xl bg-white/[0.06] border border-white/15 flex items-center justify-center">
-            <data.icon className="w-5 h-5 text-white" strokeWidth={1.5} />
+          <div className="bg-foreground/[0.06] border-foreground/15 flex h-11 w-11 items-center justify-center rounded-xl border">
+            <data.icon className="text-foreground h-5 w-5" strokeWidth={1.5} />
           </div>
           {/* Subtle icon glow */}
           <m.div
-            className="absolute inset-0 rounded-xl pointer-events-none"
+            className="pointer-events-none absolute inset-0 rounded-xl"
             animate={{
               boxShadow: [
-                "0 0 0px rgba(255,255,255,0)",
-                "0 0 12px rgba(255,255,255,0.08)",
-                "0 0 0px rgba(255,255,255,0)",
+                '0 0 0px rgba(255,255,255,0)',
+                '0 0 12px rgba(255,255,255,0.08)',
+                '0 0 0px rgba(255,255,255,0)',
               ],
             }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
           />
         </div>
-        <h3 className="font-display text-2xl font-medium text-white tracking-tight">
+        <h3 className="font-display text-foreground text-2xl font-medium tracking-tight">
           {data.title}
         </h3>
       </m.div>
 
       {/* ─── Technology items — staggered pill reveal ─── */}
       <m.div
-        className="flex flex-wrap gap-2 mb-8"
+        className="mb-8 flex flex-wrap gap-2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3, delay: 0.1 }}
@@ -48,7 +48,7 @@ export function TechDetails({ data }: TechDetailsProps) {
         {data.items.map((item, i) => (
           <m.span
             key={item}
-            className="px-3 py-1.5 bg-white/[0.04] border border-white/[0.08] rounded-md text-xs font-medium text-[#ccc]"
+            className="bg-foreground/[0.04] border-foreground/[0.08] text-muted-foreground rounded-md border px-3 py-1.5 text-xs font-medium"
             initial={{ opacity: 0, scale: 0.85, y: 6 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{
@@ -63,16 +63,16 @@ export function TechDetails({ data }: TechDetailsProps) {
       </m.div>
 
       {/* ─── Content sections with progressive reveal ─── */}
-      <div className="space-y-7 flex-1 overflow-y-auto pr-2 custom-scrollbar">
+      <div className="custom-scrollbar flex-1 space-y-7 overflow-y-auto pr-2">
         {/* Purpose */}
         <m.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h4 className="font-mono text-[10px] tracking-widest text-[#555] uppercase mb-3 flex items-center gap-2">
+          <h4 className="text-muted-foreground mb-3 flex items-center gap-2 font-mono text-[10px] tracking-widest uppercase">
             <m.span
-              className="inline-block w-3 h-[1px] bg-white/30"
+              className="bg-foreground/30 inline-block h-[1px] w-3"
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ duration: 0.4, delay: 0.25 }}
@@ -80,7 +80,7 @@ export function TechDetails({ data }: TechDetailsProps) {
             />
             Purpose
           </h4>
-          <p className="text-[#aaa] text-sm leading-relaxed">{data.purpose}</p>
+          <p className="text-muted-foreground text-sm leading-relaxed">{data.purpose}</p>
         </m.div>
 
         {/* Business Value */}
@@ -89,9 +89,9 @@ export function TechDetails({ data }: TechDetailsProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h4 className="font-mono text-[10px] tracking-widest text-[#555] uppercase mb-3 flex items-center gap-2">
+          <h4 className="text-muted-foreground mb-3 flex items-center gap-2 font-mono text-[10px] tracking-widest uppercase">
             <m.span
-              className="inline-block w-3 h-[1px] bg-white/30"
+              className="bg-foreground/30 inline-block h-[1px] w-3"
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ duration: 0.4, delay: 0.35 }}
@@ -99,7 +99,7 @@ export function TechDetails({ data }: TechDetailsProps) {
             />
             Business Value
           </h4>
-          <p className="text-[#aaa] text-sm leading-relaxed">{data.value}</p>
+          <p className="text-muted-foreground text-sm leading-relaxed">{data.value}</p>
         </m.div>
 
         {/* Use Cases */}
@@ -108,9 +108,9 @@ export function TechDetails({ data }: TechDetailsProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h4 className="font-mono text-[10px] tracking-widest text-[#555] uppercase mb-3 flex items-center gap-2">
+          <h4 className="text-muted-foreground mb-3 flex items-center gap-2 font-mono text-[10px] tracking-widest uppercase">
             <m.span
-              className="inline-block w-3 h-[1px] bg-white/30"
+              className="bg-foreground/30 inline-block h-[1px] w-3"
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ duration: 0.4, delay: 0.45 }}
@@ -122,7 +122,7 @@ export function TechDetails({ data }: TechDetailsProps) {
             {data.useCases.map((uc, i) => (
               <m.li
                 key={uc}
-                className="text-sm text-[#aaa] flex items-start gap-3"
+                className="text-muted-foreground flex items-start gap-3 text-sm"
                 initial={{ opacity: 0, x: -8 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{
@@ -132,19 +132,19 @@ export function TechDetails({ data }: TechDetailsProps) {
                 }}
               >
                 <m.div
-                  className="w-1.5 h-1.5 rounded-full bg-white/30 mt-1.5 shrink-0"
+                  className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-white/30"
                   animate={{
                     backgroundColor: [
-                      "rgba(255,255,255,0.3)",
-                      "rgba(255,255,255,0.6)",
-                      "rgba(255,255,255,0.3)",
+                      'rgba(255,255,255,0.3)',
+                      'rgba(255,255,255,0.6)',
+                      'rgba(255,255,255,0.3)',
                     ],
                   }}
                   transition={{
                     duration: 2.5,
                     delay: i * 0.4,
                     repeat: Infinity,
-                    ease: "easeInOut",
+                    ease: 'easeInOut',
                   }}
                 />
                 {uc}
@@ -159,9 +159,9 @@ export function TechDetails({ data }: TechDetailsProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h4 className="font-mono text-[10px] tracking-widest text-[#555] uppercase mb-3 flex items-center gap-2">
+          <h4 className="text-muted-foreground mb-3 flex items-center gap-2 font-mono text-[10px] tracking-widest uppercase">
             <m.span
-              className="inline-block w-3 h-[1px] bg-white/30"
+              className="bg-foreground/30 inline-block h-[1px] w-3"
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ duration: 0.4, delay: 0.6 }}
@@ -170,7 +170,7 @@ export function TechDetails({ data }: TechDetailsProps) {
             Ecosystem Relationship
           </h4>
           <m.p
-            className="text-[#aaa] text-sm leading-relaxed px-4 py-3 rounded-lg bg-white/[0.02] border border-white/[0.05]"
+            className="text-muted-foreground bg-foreground/[0.02] border-foreground/[0.05] rounded-lg border px-4 py-3 text-sm leading-relaxed"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4, delay: 0.65 }}

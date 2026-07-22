@@ -1,24 +1,22 @@
-"use client";
-import { useState } from "react";
-import { m, AnimatePresence } from "motion/react";
-import { cn } from "../../lib/utils";
-import { Brain, ChevronDown } from "lucide-react";
-import { CATEGORIES } from "../../constants/techStack";
-import { TechDetails } from "./tech/TechDetails";
-import { RadialVisualization } from "./tech/RadialVisualization";
-import { Section } from "../ui/Section";
-import { Container } from "../ui/Container";
-import { Heading } from "../ui/Heading";
-import { Text } from "../ui/Text";
-import { GlassPanel } from "../ui/GlassPanel";
-import { IconWrapper } from "../ui/IconWrapper";
-import { useReducedMotion } from "../../hooks/useReducedMotion";
+'use client';
+import { useState } from 'react';
+import { m, AnimatePresence } from 'motion/react';
+import { cn } from '../../lib/utils';
+import { Brain, ChevronDown } from 'lucide-react';
+import { CATEGORIES } from '../../constants/techStack';
+import { TechDetails } from './tech/TechDetails';
+import { RadialVisualization } from './tech/RadialVisualization';
+import { Section } from '../ui/Section';
+import { Container } from '../ui/Container';
+import { Heading } from '../ui/Heading';
+import { Text } from '../ui/Text';
+import { GlassPanel } from '../ui/GlassPanel';
+import { IconWrapper } from '../ui/IconWrapper';
+import { useReducedMotion } from '../../hooks/useReducedMotion';
 
 export function TechStack() {
   const [activeLayer, setActiveLayer] = useState<string | null>(null);
-  const activeData = activeLayer
-    ? CATEGORIES.find((c) => c.id === activeLayer)
-    : null;
+  const activeData = activeLayer ? CATEGORIES.find((c) => c.id === activeLayer) : null;
   const prefersReducedMotion = useReducedMotion();
 
   return (
@@ -29,51 +27,48 @@ export function TechStack() {
         <>
           {/* Grid pattern with mask */}
           <div
-            className="absolute inset-0 pointer-events-none opacity-[0.1]"
+            className="pointer-events-none absolute inset-0 opacity-[0.1]"
             style={{
               backgroundImage:
-                "linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.08) 1px, transparent 1px)",
-              backgroundSize: "44px 44px",
-              maskImage:
-                "radial-gradient(ellipse at center, black 15%, transparent 70%)",
-              WebkitMaskImage:
-                "radial-gradient(ellipse at center, black 15%, transparent 70%)",
+                'linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.08) 1px, transparent 1px)',
+              backgroundSize: '44px 44px',
+              maskImage: 'radial-gradient(ellipse at center, black 15%, transparent 70%)',
+              WebkitMaskImage: 'radial-gradient(ellipse at center, black 15%, transparent 70%)',
             }}
           />
 
           {/* Noise texture for depth */}
           <div
-            className="absolute inset-0 opacity-[0.02] pointer-events-none mix-blend-screen"
+            className="pointer-events-none absolute inset-0 opacity-[0.02] mix-blend-screen"
             style={{
               backgroundImage:
-                'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\'/%3E%3C/svg%3E")',
+                "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
             }}
           />
 
           {/* Ambient radial glow — shifts based on active state */}
           <m.div
-            className="absolute top-1/2 left-[30%] -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] pointer-events-none will-change-transform"
+            className="pointer-events-none absolute top-1/2 left-[30%] h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 will-change-transform"
             animate={{
               opacity: activeLayer ? 0.6 : 0.3,
             }}
-            transition={{ duration: 1, ease: "easeOut" }}
+            transition={{ duration: 1, ease: 'easeOut' }}
             style={{
-              background:
-                "radial-gradient(circle, rgba(255,255,255,0.025) 0%, transparent 65%)",
+              background: 'radial-gradient(circle, rgba(255,255,255,0.025) 0%, transparent 65%)',
             }}
           />
 
           {/* Secondary glow on right (panel side) */}
-          <div className="absolute top-[30%] right-[5%] w-[400px] h-[400px] bg-[radial-gradient(circle,rgba(255,255,255,0.015)_0%,transparent_70%)] pointer-events-none" />
+          <div className="pointer-events-none absolute top-[30%] right-[5%] h-[400px] w-[400px] bg-[radial-gradient(circle,rgba(255,255,255,0.015)_0%,transparent_70%)]" />
         </>
       }
     >
       <Container>
         {/* ─── Section Header ─── */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
+        <div className="mx-auto mb-20 max-w-3xl text-center">
           <m.div
-            initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
-            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            initial={{ opacity: 0, y: 30, filter: 'blur(6px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             viewport={{ once: true }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           >
@@ -83,14 +78,13 @@ export function TechStack() {
               Powered by Intelligence.
             </Heading>
             <Text size="lg">
-              We combine modern software engineering, cloud infrastructure, and
-              AI technologies into secure, scalable, and intelligent business
-              platforms.
+              We combine modern software engineering, cloud infrastructure, and AI technologies into
+              secure, scalable, and intelligent business platforms.
             </Text>
           </m.div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
+        <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-8">
           {/* ═══ Radial Visualization (Desktop) ═══ */}
           <RadialVisualization
             categories={CATEGORIES}
@@ -99,23 +93,23 @@ export function TechStack() {
           />
 
           {/* ═══ Details Panel (Desktop) ═══ */}
-          <div className="hidden lg:block lg:col-span-5 h-full min-h-[500px]">
+          <div className="hidden h-full min-h-[500px] lg:col-span-5 lg:block">
             <GlassPanel
               variant="default"
               gradient
-              className="p-8 h-full shadow-2xl relative overflow-hidden"
+              className="relative h-full overflow-hidden p-8 shadow-2xl"
             >
               {/* Panel ambient glow that responds to state */}
               {!prefersReducedMotion && (
                 <m.div
-                  className="absolute top-0 left-0 right-0 h-[200px] pointer-events-none"
+                  className="pointer-events-none absolute top-0 right-0 left-0 h-[200px]"
                   animate={{
                     opacity: activeData ? 0.5 : 0,
                   }}
                   transition={{ duration: 0.6 }}
                   style={{
                     background:
-                      "radial-gradient(ellipse at top center, rgba(255,255,255,0.03) 0%, transparent 70%)",
+                      'radial-gradient(ellipse at top center, rgba(255,255,255,0.03) 0%, transparent 70%)',
                   }}
                 />
               )}
@@ -127,26 +121,26 @@ export function TechStack() {
                     initial={{
                       opacity: 0,
                       y: 14,
-                      filter: "blur(6px)",
+                      filter: 'blur(6px)',
                       scale: 0.97,
                     }}
                     animate={{
                       opacity: 1,
                       y: 0,
-                      filter: "blur(0px)",
+                      filter: 'blur(0px)',
                       scale: 1,
                     }}
                     exit={{
                       opacity: 0,
                       y: -14,
-                      filter: "blur(6px)",
+                      filter: 'blur(6px)',
                       scale: 0.97,
                     }}
                     transition={{
                       duration: 0.4,
                       ease: [0.16, 1, 0.3, 1],
                     }}
-                    className="h-full relative z-10"
+                    className="relative z-10 h-full"
                   >
                     <TechDetails data={activeData} />
                   </m.div>
@@ -160,29 +154,21 @@ export function TechStack() {
                       duration: 0.4,
                       ease: [0.16, 1, 0.3, 1],
                     }}
-                    className="h-full flex flex-col justify-center text-center px-6 relative z-10"
+                    className="relative z-10 flex h-full flex-col justify-center px-6 text-center"
                   >
-                    <IconWrapper
-                      variant="default"
-                      size="lg"
-                      className="mx-auto mb-6"
-                    >
-                      <Brain
-                        className="w-8 h-8 text-[#666]"
-                        strokeWidth={1.5}
-                      />
+                    <IconWrapper variant="default" size="lg" className="mx-auto mb-6">
+                      <Brain className="text-muted-foreground h-8 w-8" strokeWidth={1.5} />
                     </IconWrapper>
                     <Heading level={3}>Ecosystem Explorer</Heading>
                     <Text size="sm">
-                      Hover over any technology domain in the radial
-                      visualization to explore our specific engineering
-                      capabilities, technologies, and business outcomes.
+                      Hover over any technology domain in the radial visualization to explore our
+                      specific engineering capabilities, technologies, and business outcomes.
                     </Text>
 
                     {/* Subtle breathing ring around the icon */}
                     {!prefersReducedMotion && (
                       <m.div
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full border border-white/5 pointer-events-none"
+                        className="border-foreground/5 pointer-events-none absolute top-1/2 left-1/2 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full border"
                         animate={{
                           scale: [1, 1.2, 1],
                           opacity: [0.3, 0.05, 0.3],
@@ -190,7 +176,7 @@ export function TechStack() {
                         transition={{
                           duration: 4,
                           repeat: Infinity,
-                          ease: "easeInOut",
+                          ease: 'easeInOut',
                         }}
                       />
                     )}
@@ -201,7 +187,7 @@ export function TechStack() {
           </div>
 
           {/* ═══ Mobile Accordion View ═══ */}
-          <div className="lg:hidden col-span-1 flex flex-col gap-4 relative z-10">
+          <div className="relative z-10 col-span-1 flex flex-col gap-4 lg:hidden">
             {CATEGORIES.map((cat, catIdx) => {
               const isActive = activeLayer === cat.id;
 
@@ -210,7 +196,7 @@ export function TechStack() {
                   key={`mobile-${cat.id}`}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
+                  viewport={{ once: true, margin: '-50px' }}
                   transition={{
                     duration: 0.5,
                     delay: catIdx * 0.06,
@@ -222,33 +208,28 @@ export function TechStack() {
                       id={`tech-accordion-button-${cat.id}`}
                       aria-controls={`tech-accordion-panel-${cat.id}`}
                       className={cn(
-                        "w-full p-5 flex items-center justify-between transition-colors outline-none focus-visible:ring-2 focus-visible:ring-white inset-0",
+                        'focus-visible:ring-foreground inset-0 flex w-full items-center justify-between p-5 transition-colors outline-none focus-visible:ring-2',
                         isActive
-                          ? "bg-white/[0.04]"
-                          : "bg-white/[0.02] hover:bg-white/[0.03]"
+                          ? 'bg-foreground/[0.04]'
+                          : 'bg-foreground/[0.02] hover:bg-foreground/[0.03]',
                       )}
-                      onClick={() =>
-                        setActiveLayer(isActive ? null : cat.id)
-                      }
+                      onClick={() => setActiveLayer(isActive ? null : cat.id)}
                       aria-expanded={isActive}
                     >
                       <div className="flex items-center gap-4">
-                        <IconWrapper
-                          variant={isActive ? "active" : "default"}
-                          size="sm"
-                        >
+                        <IconWrapper variant={isActive ? 'active' : 'default'} size="sm">
                           <cat.icon
                             className={cn(
-                              "w-5 h-5",
-                              isActive ? "text-white" : "text-[#888]"
+                              'h-5 w-5',
+                              isActive ? 'text-foreground' : 'text-muted-foreground',
                             )}
                             strokeWidth={1.5}
                           />
                         </IconWrapper>
                         <span
                           className={cn(
-                            "font-medium text-lg tracking-tight transition-colors duration-300",
-                            isActive ? "text-white" : "text-[#aaa]"
+                            'text-lg font-medium tracking-tight transition-colors duration-300',
+                            isActive ? 'text-foreground' : 'text-muted-foreground',
                           )}
                         >
                           {cat.title}
@@ -261,7 +242,7 @@ export function TechStack() {
                           ease: [0.16, 1, 0.3, 1],
                         }}
                       >
-                        <ChevronDown className="w-5 h-5 text-[#666]" />
+                        <ChevronDown className="text-muted-foreground h-5 w-5" />
                       </m.div>
                     </button>
 
@@ -272,7 +253,7 @@ export function TechStack() {
                           aria-labelledby={`tech-accordion-button-${cat.id}`}
                           role="region"
                           initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
+                          animate={{ height: 'auto', opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
                           transition={{
                             duration: 0.4,
@@ -280,7 +261,7 @@ export function TechStack() {
                           }}
                           className="overflow-hidden"
                         >
-                          <div className="p-5 pt-2 border-t border-white/5 bg-black/20">
+                          <div className="border-foreground/5 bg-background/20 border-t p-5 pt-2">
                             <TechDetails data={cat} />
                           </div>
                         </m.div>
